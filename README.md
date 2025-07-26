@@ -1,2 +1,2 @@
-# TheOdinProject_-_React
+# The Odin Project - React
 Monolithic repository for The Odin Project's "React" curriculum
