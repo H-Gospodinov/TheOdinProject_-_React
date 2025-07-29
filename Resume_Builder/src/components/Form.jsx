@@ -1,4 +1,4 @@
-import FormGroup from './Fields'
+import FormGroup from './Group'
 
 function DataForm({ currentData, setCurrentData }) {
 
@@ -11,6 +11,14 @@ function DataForm({ currentData, setCurrentData }) {
                 field.name === fieldName ? { ...field, value } : field);
             return { ...group, fields: update };
         });
+        setCurrentData(updatedData);
+    };
+
+    const handleListChange = (groupName, newEntries) => {
+        const updatedData = currentData.map(group =>
+            group.name === groupName ?
+                { ...group, entries: newEntries } : group
+        );
         setCurrentData(updatedData);
     };
 
@@ -47,9 +55,11 @@ function DataForm({ currentData, setCurrentData }) {
                     key = { group.name }
                     name = { group.name }
                     fields = { group.fields }
+                    entries = { group.entries }
                     onChange = { handleInputChange }
+                    onListing = { handleListChange }
                     onUpload = { handleFileUpload }
-                    onRemove = { handleFileRemove }
+                    onCancel = { handleFileRemove }
                     onDestroy = { handleGroupRemove }
                 />
             ))}

@@ -1,60 +1,52 @@
 
 function InputGroup(
-    { label, name, type, value, onChange, onRemove }
+    { label, name, type, value, entry,
+      onChange, onEntry, onRemove }
 ) {
-    const fileUpload = () => {
-        return (
-            <>
-            <input name={name} type="file" accept="image/*" onChange={onChange}
-                // Key ensures input resets if value is cleared
-                key={value ? 'has-file' : 'no-file'} />
-            {value && <button type="button" onClick={onRemove}>Remove</button>}</>
-        );
+    const listInput = () => {
+        return (<>
+            <input name={name} type="text" value={entry}
+                onChange={onChange} onKeyDown={e => {
+                    if (e.key !== 'Enter') return;
+                    e.preventDefault(); onEntry();
+                }}
+            /><button type="button" onClick={onEntry}>Add</button>
+        </>);
+    }
+    const fileInput = () => {
+        return (<>
+            <input name={name} type="file" accept="image/*"
+                onChange={onChange} key={value ? 'has-file' : 'no-file'} />
+                {/* key ensures input resets if value is cleared */}
+            {value && <button type="button" onClick={onRemove}>X</button>}
+        </>);
     }
     return (
         <div className="input-group">
             <label>{label}</label>
             {
-                type === 'file' ? fileUpload() : type === 'textarea'
+                onEntry ? listInput() : type === 'file' ? fileInput() : type === 'textarea'
                 ? <textarea name={name} value={value || ''} onChange={onChange} />
                 : <input name={name} type={type} value={value || ''} onChange={onChange} />
             }
         </div>
-    ); // 3 types of input: file, textarea, all others
+    ); // input types are: file, textarea, all others
 }
 
-function FormGroup(
-    { name, fields, onChange, onUpload, onRemove, onDestroy }
-) {
-    const update = (field) => (e) => {
-        if (field.type === 'file') {
-            onUpload(name, field.name, e);
-        } else {
-            onChange(name, field.name, e.target.value);
-        }
-    }
-    const remove = (field) => () => {
-        onRemove(name, field.name);
-    }
-    return (
-        <div className="form-group">
-            { name && <h3>{name}</h3> }
-            { name !== 'Personal' && (
-                <button type="button" onClick={
-                    () => onDestroy(name)}>
-                    Remove Section
-                </button>
-            )}
-            { fields.map((field) => (
-                <InputGroup
-                    key = { field.name }
-                    { ...field } // all
-                    //value = { field.value }
-                    onChange = { update(field) }
-                    onRemove = { remove(field) }
-                />
-            ))}
-        </div>
+function ListGroup({ entries, onRemove }) {
+    return(
+        <ul>
+            {entries.map((entry, index) => {
+                const value = Object.values(entry)[0];
+                const remove = () => onRemove(value);
+                return (
+                    <li key={index}>
+                        <span>{value}</span>
+                        <button type="button" onClick={remove}>X</button>
+                    </li>
+                ); {/*list items*/}
+            })}
+        </ul> // groups with entries only
     );
 }
-export default FormGroup
+export { InputGroup, ListGroup }
