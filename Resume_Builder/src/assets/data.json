@@ -1,0 +1,31 @@
+[
+    {
+        "name": "Personal",
+        "fields": [
+            { "label": "Photo", "name": "photo", "type": "file", "value": "" },
+            { "label": "Full Name", "name": "fullname", "type": "text", "value": "Hristo Gospodinov" },
+            { "label": "Headline", "name": "headline", "type": "text", "value": "Front-end web developer" },
+            { "label": "E-mail", "name": "email", "type": "email", "value": "email@website.com" },
+            { "label": "Phone", "name": "phone", "type": "tel", "value": "0886237367" },
+            { "label": "Website", "name": "website", "type": "url", "value": "website.com" }
+        ]
+    },
+    {
+        "name": "Skills",
+        "fields": [
+            { "label": "Add skill", "name": "addSkill", "type": "text" }
+        ]
+    },
+    {
+        "name": "Languages",
+        "fields": [
+            { "label": "Add language", "name": "addLanguage", "type": "text" }
+        ]
+    },
+    {
+        "name": "Additional",
+        "fields": [
+            { "label": "", "name": "additional", "type": "textarea" }
+        ]
+    }
+]
