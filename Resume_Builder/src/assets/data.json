@@ -15,21 +15,14 @@
         "fields": [
             { "label": "Add skill", "name": "skill", "type": "text" }
         ],
-        "entries": [
-            { "skill": "React" },
-            { "skill": "JavaScript" },
-            { "skill": "CSS" }
-        ]
+        "entries": [ "React", "JavaScript", "CSS" ]
     },
     {
         "name": "Languages",
         "fields": [
             { "label": "Add language", "name": "language", "type": "text" }
         ],
-        "entries": [
-            { "language": "English" },
-            { "language": "Bulgarian" }
-        ]
+        "entries": [ "English", "Bulgarian" ]
     },
     {
         "name": "Additional",

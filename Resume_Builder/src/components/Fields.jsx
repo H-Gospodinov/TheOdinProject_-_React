@@ -37,11 +37,10 @@ function ListGroup({ entries, onRemove }) {
     return(
         <ul>
             {entries.map((entry, index) => {
-                const value = Object.values(entry)[0];
-                const remove = () => onRemove(value);
+                const remove = () => onRemove(entry);
                 return (
                     <li key={index}>
-                        <span>{value}</span>
+                        <span>{entry}</span>
                         <button type="button" onClick={remove}>X</button>
                     </li>
                 ); {/*list items*/}

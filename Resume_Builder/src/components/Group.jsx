@@ -13,18 +13,16 @@ function FormGroup(
             const text = listEntry.trim();
             if (!text) return;
 
-            const taken = entries.some((entry) =>
-                Object.values(entry)[0] === text
-            );
-            if (taken) {setlistEntry(''); return;}
-
-            const newEntry = { [fields[0].name]: text };
-            onListing(name, [...entries, newEntry]);
+            if (entries.includes(text)) {
+                setlistEntry(''); return;
+            }
+            onListing(name, [...entries, text]);
             setlistEntry('');
         },
-        remove: (value) => {
+
+        remove: (target) => {
             const newEntries = entries.filter((entry) =>
-                Object.values(entry)[0] !== value
+                entry !== target
             );
             onListing(name, newEntries);
         },
