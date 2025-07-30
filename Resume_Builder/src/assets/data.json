@@ -25,6 +25,25 @@
         "entries": [ "English", "Bulgarian" ]
     },
     {
+        "name": "Work",
+        "fields": [
+            { "label": "Company", "name": "company", "type": "text" },
+            { "label": "Position", "name": "position", "type": "text" },
+            { "label": "From", "name": "from", "type": "date" },
+            { "label": "Until", "name": "until", "type": "date" },
+            { "label": "Details", "name": "details", "type": "textarea" }
+        ],
+        "entries": [
+            {
+                "company": "Seven Spikes Ltd",
+                "position": "Front-end web developer",
+                "from": "2012-06-12",
+                "until": "2024-07-03",
+                "details": "I worked here."
+            }
+        ]
+    },
+    {
         "name": "Additional",
         "fields": [
             { "label": "", "name": "additional", "type": "textarea" }

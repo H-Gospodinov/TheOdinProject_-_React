@@ -5,21 +5,31 @@ function FormGroup(
     { name, fields, entries, onChange, onListing,
       onUpload, onCancel, onDestroy }
 ) {
-    const [listEntry, setlistEntry] = useState('');
+    const [listEntry, setlistEntry] = useState(''); // single
+    const [entryList, setEntryList] = useState({}); // multi
 
     const updateList = () => ({
 
-        insert: () => {
-            const text = listEntry.trim();
-            if (!text) return;
+        insert: () => { // multi || single
 
-            if (entries.includes(text)) {
-                setlistEntry(''); return;
+            if (fields.length > 1) {
+                const hasValue = Object.values(
+                    entryList).some(value => value.trim());
+                if (!hasValue) return;
+
+                onListing(name, [...entries, entryList]);
+                setEntryList({});
             }
-            onListing(name, [...entries, text]);
-            setlistEntry('');
-        },
+            else {
+                if (!listEntry.trim()) return;
 
+                if (entries.includes(listEntry)) {
+                    setlistEntry(''); return;
+                }
+                onListing(name, [...entries, listEntry]);
+                setlistEntry('');
+            }
+        },
         remove: (target) => {
             const newEntries = entries.filter((entry) =>
                 entry !== target
@@ -27,6 +37,7 @@ function FormGroup(
             onListing(name, newEntries);
         },
     });
+
     const updateField = (field) => ({
 
         change: (e) => {
@@ -40,31 +51,54 @@ function FormGroup(
             onCancel(name, field.name); // file
         },
     });
+
+    const prepareInput = (field) => {
+
+        switch (true) {
+
+            case entries && fields.length > 1:
+
+                const update = (field, value) => {
+                    setEntryList((prev) => (
+                        { ...prev, [field.name]: value }
+                    ));
+                }; return {
+                value: entryList[field.name] || '',
+                onChange: e => update(field, e.target.value),
+            };
+
+            case !!entries: return {
+
+                entry: listEntry,
+                onChange: e => setlistEntry(e.target.value),
+                onEntry: updateList().insert,
+            };
+
+            case !entries: return {
+
+                onChange: updateField(field).change,
+                onRemove: updateField(field).remove,
+            };
+        }
+    };
     return (
         <div className="form-group">
             { name && <h3>{name}</h3> }
-            { name !== 'Personal' && (
-                <button type="button" onClick={
-                    () => onDestroy(name)}>
-                    Remove Section
-                </button>
-            )}
-            { entries ? <InputGroup
-                key = { fields[0].name }
-                { ...fields[0] }
-                entry = { listEntry }
-                onChange = { e =>
-                    setlistEntry(e.target.value) }
-                onEntry = { updateList().insert }
-            />
-            : fields.map((field) =>
+            { name !== 'Personal' &&
+                <button type="button" onClick={() =>
+                    onDestroy(name)}>Remove</button>
+            }
+            { fields.map(field =>
                 <InputGroup
-                    key = { field.name }
-                    { ...field } // all
-                    onChange = { updateField(field).change }
-                    onRemove = { updateField(field).remove }
+                    key={field.name}
+                    {...field}
+                    {...prepareInput(field)}
                 />
             )}
+            { entries && fields.length > 1 &&
+                <button type="button" onClick={
+                    updateList().insert}>Add</button>
+            }
             { entries && <ListGroup
                     entries = { entries }
                     onRemove = { updateList().remove }

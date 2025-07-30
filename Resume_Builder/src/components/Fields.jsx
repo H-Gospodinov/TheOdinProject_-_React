@@ -36,16 +36,16 @@ function InputGroup(
 function ListGroup({ entries, onRemove }) {
     return(
         <ul>
-            {entries.map((entry, index) => {
-                const remove = () => onRemove(entry);
-                return (
-                    <li key={index}>
-                        <span>{entry}</span>
-                        <button type="button" onClick={remove}>X</button>
-                    </li>
-                ); {/*list items*/}
-            })}
-        </ul> // groups with entries only
+            {entries.map((entry, index) => (
+                <li key={index}>
+                    {typeof entry === "string" ? <span>{entry}</span> : <>
+                        <strong>{entry.position}</strong>
+                        <span>at {entry.company}</span>
+                    </>}
+                    <button type="button" onClick={() => onRemove(entry)}>X</button>
+                </li>
+            ))}
+        </ul> // entries can be singular or groups
     );
 }
 export { InputGroup, ListGroup }

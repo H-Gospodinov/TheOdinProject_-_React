@@ -20,21 +20,21 @@ function MainPage({ currentData }) {
             </>
         );
     }
-    function renderSingle(group) {
-
-        const field = group.fields[0];
+    function renderEntries(entries) {
 
         return (
-            !group.entries ?
-            <div>
-                <p style={{whiteSpace: 'pre-line'}}>
-                    {field.value || ''}</p>
-            </div>
-            :
-            group.entries.length > 0 &&
+            entries.length > 0 &&
             <ul>
-                {group.entries.map((entry, index) => (
-                    <li key={index}>{entry}</li>
+                {entries.map((entry, index) => (
+                    <li key={index}>
+                        {typeof entry === "string" ? <span>{entry}</span> :
+                        <div>
+                            <strong>{entry.position}</strong>
+                            <span>at {entry.company}</span>
+                            <span>{entry.from} {entry.until}</span>
+                            <span>{entry.details}</span>
+                        </div>}
+                    </li>
                 ))}
             </ul>
         );
@@ -42,12 +42,20 @@ function MainPage({ currentData }) {
 
     return (
         <div className="page">
-            {currentData.map((group) => (
-                <section className={'section '+ group.name.toLowerCase()} key={group.name}>
-                    { <h2>{group.name}</h2> }
-                    { group.fields.length > 1 ? personDetails(group.fields) : renderSingle(group)}
-                </section>
-            ))}
+            {currentData.map((group) => {
+
+                return (
+                    <section className={'section '+ group.name.toLowerCase()} key={group.name}>
+                        { <h2>{group.name}</h2> }
+                        { group.name === 'Personal' ? personDetails(group.fields) :
+                        group.entries ? renderEntries(group.entries) :
+                        <div>
+                            <p style={{whiteSpace: 'pre-line'}}>{group.fields[0].value || ''}</p>
+                        </div>
+                        }
+                    </section>
+                )
+            })}
         </div>
     );
 }
