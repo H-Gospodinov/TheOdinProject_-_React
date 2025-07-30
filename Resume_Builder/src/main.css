@@ -18,3 +18,37 @@ body {
     overflow-x: clip;
     font-family: sans-serif;
 }
+.container {
+    display: flex;
+    flex-flow: column;
+    row-gap: 10px;
+}
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.main {
+    display: flex;
+    column-gap: 50px;
+}
+.form-group {
+    border: 1px solid;
+    padding: 20px;
+}
+.input-group {
+    margin-top: 15px;
+}
+textarea {
+    width: 100%;
+    min-height: 150px;
+}
+.page img {
+    max-width: 300px;
+}
+.page ul {
+    list-style: none;
+}
+.page li {
+    margin-top: 15px;
+}

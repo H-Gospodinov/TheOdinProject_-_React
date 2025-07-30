@@ -48,8 +48,8 @@ function DataForm({ currentData, setCurrentData }) {
         setCurrentData(updatedData);
     };
 
-    return ( // render current
-        <form>
+    return ( // current
+        <form className="form">
             {currentData.map((group) => (
                 <FormGroup
                     key = { group.name }
