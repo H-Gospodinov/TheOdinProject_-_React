@@ -1,6 +1,7 @@
 [
     {
         "name": "Header",
+        "primary": true,
         "position": "left",
         "fields": [
             { "label": "Full Name", "name": "fullname", "type": "text", "value": "John Doe" },
@@ -10,6 +11,7 @@
     },
     {
         "name": "Contact",
+        "primary": true,
         "position": "left",
         "fields": [
             { "label": "E-mail", "name": "email", "type": "email", "value": "email@website.com" },

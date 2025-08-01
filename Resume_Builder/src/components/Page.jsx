@@ -11,7 +11,7 @@ function MainPage({ currentData }) {
 
     const fieldSet = (fields) => (
 
-        <ul className="">
+        <ul className="primary">
             {fields.map((field) => field.value &&
                 <li key={field.name} className={field.name}>
                     {field.type !== 'file' ?
@@ -53,27 +53,25 @@ function MainPage({ currentData }) {
 
     const renderColumn = (groups) => (
 
-        groups.map((group) => (
-            <section className={'section '+ group.name.toLowerCase()} key={group.name}>
-
-                {group.name !== 'Header' && group.name !== 'Contact' &&
-                    <h2>
-                        {/* {sectionIcons[group.name] && (
+        groups.map((group, index) => (
+            <section className={'section '+ group.name} key={group.name}>
+                {group.primary ? fieldSet(group.fields) :
+                  <><h2>
+                        {/*{sectionIcons[group.name] && (
                             <img src={sectionIcons[group.name]} alt="" />
-                        )}  */}
+                        )}*/}
                         {sectionIcons[group.name] && sectionIcons[group.name]({
-                            fill: '#163853', stroke: '#163853',
+                            style: { color: 'var(--main-color)' }
                         })}
                         <span>{group.name}</span>
                     </h2>
+                    {group.entries ? group.entries.length > 0 && listStack(group.entries) :
+                        <div>
+                            <p style={{whiteSpace: 'pre-line'}}>{group.fields[0].value || ''}</p>
+                        </div>
+                    }</> // non-primary, !== "Header" & "Contact"
                 }
-                {group.name === 'Header' || group.name === 'Contact' ? fieldSet(group.fields) :
-                    group.entries && group.entries.length > 0 ? listStack(group.entries) :
-                    <div>
-                        <p style={{whiteSpace: 'pre-line'}}>{group.fields[0].value || ''}</p>
-                    </div>
-                }
-            </section> // ToDo: BUG fix: when all entries from a group are deleted, the app renders the "textarea" layout
+            </section> // primary ? "Header" & "Contact" : all other
         ))
     );
     return (
