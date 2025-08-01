@@ -38,10 +38,9 @@ function ListGroup({ entries, onRemove }) {
         <ul>
             {entries.map((entry, index) => (
                 <li key={index}>
-                    {typeof entry === "string" ? <span>{entry}</span> : <>
-                        <strong>{entry.position}</strong>
-                        <span>at {entry.company}</span>
-                    </>}
+                    <span>{typeof entry !== 'object' ?
+                        entry : `${entry.position} @ ${entry.company}`}
+                    </span>
                     <button type="button" onClick={() => onRemove(entry)}>X</button>
                 </li>
             ))}

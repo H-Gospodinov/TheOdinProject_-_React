@@ -21,7 +21,9 @@ function App() {
         <>
             <header className="header">
                 <h1 className="title">CV Builder</h1>
-                <button type="button">Download</button>
+                <button id="print" type="button" onClick={
+                    () => window.print()}>Download
+                </button>
             </header>
             <main className="main">
                 <div className="data-form">

@@ -83,26 +83,26 @@ function FormGroup(
     };
     return (
         <div className="form-group">
-            { name && <h3>{name}</h3> }
-            { name !== 'Personal' &&
+            {name && <h3>{name}</h3>}
+            {name !== 'Header' &&
                 <button type="button" onClick={() =>
                     onDestroy(name)}>Remove</button>
             }
-            { fields.map(field =>
+            {fields.map(field =>
                 <InputGroup
                     key={field.name}
                     {...field}
                     {...prepareInput(field)}
                 />
             )}
-            { entries && fields.length > 1 &&
+            {entries && fields.length > 1 &&
                 <button type="button" onClick={
                     updateList().insert}>Add</button>
             }
-            { entries && <ListGroup
-                    entries = { entries }
-                    onRemove = { updateList().remove }
-            /> }
+            {entries && <ListGroup
+                entries={entries}
+                onRemove={updateList().remove}
+            />}
         </div>
     );
 }

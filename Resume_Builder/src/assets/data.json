@@ -1,31 +1,49 @@
 [
     {
-        "name": "Personal",
+        "name": "Header",
+        "position": "left",
         "fields": [
-            { "label": "Photo", "name": "photo", "type": "file", "value": "" },
-            { "label": "Full Name", "name": "fullname", "type": "text", "value": "Hristo Gospodinov" },
+            { "label": "Full Name", "name": "fullname", "type": "text", "value": "John Doe" },
             { "label": "Headline", "name": "headline", "type": "text", "value": "Front-end web developer" },
+            { "label": "Photo", "name": "photo", "type": "file", "value": "" }
+        ]
+    },
+    {
+        "name": "Contact",
+        "position": "left",
+        "fields": [
             { "label": "E-mail", "name": "email", "type": "email", "value": "email@website.com" },
             { "label": "Phone", "name": "phone", "type": "tel", "value": "0886237367" },
+            { "label": "Location", "name": "location", "type": "text", "value": "Sofia, Bulgaria" },
             { "label": "Website", "name": "website", "type": "url", "value": "website.com" }
         ]
     },
     {
         "name": "Skills",
+        "position": "left",
         "fields": [
             { "label": "Add skill", "name": "skill", "type": "text" }
         ],
         "entries": [ "React", "JavaScript", "CSS" ]
     },
     {
-        "name": "Languages",
+        "name": "Language",
+        "position": "left",
         "fields": [
             { "label": "Add language", "name": "language", "type": "text" }
         ],
         "entries": [ "English", "Bulgarian" ]
     },
     {
-        "name": "Work",
+        "name": "Profile",
+        "position": "right",
+        "fields": [
+            { "name": "profile", "type": "textarea", "value": "Performance-driven front-end developer with 14 years of professional experience in the e-commerce field. Proficient in developing, implementing and supporting complex and flexible layouts for variety of online stores and apps. Passionate about graphic design and user experience." }
+        ]
+    },
+    {
+        "name": "Career",
+        "position": "right",
         "fields": [
             { "label": "Company", "name": "company", "type": "text" },
             { "label": "Position", "name": "position", "type": "text" },
@@ -36,17 +54,32 @@
         "entries": [
             {
                 "company": "Seven Spikes Ltd",
-                "position": "Front-end web developer",
-                "from": "2012-06-12",
-                "until": "2024-07-03",
-                "details": "I worked here."
+                "position": "Web Developer",
+                "from": "2012",
+                "until": "2025",
+                "details": "Front-end developer for variety of nopCommerce based online stores, nopCommerce plugins and Shopify apps under the brands of \"Nop Templates\" and \"Sherpas Design\". Team lead and supervisor of a team of 4 developers."
+            },
+            {
+                "company": "Elegans Design Ltd",
+                "position": "Web Developer",
+                "from": "2010",
+                "until": "2012",
+                "details": "Front-end developer for a large number of customer exclusive, fully customized web stores."
+            },
+            {
+                "company": "Brand Circle Ltd",
+                "position": "Graphic & Web Designer",
+                "from": "2008",
+                "until": "2010",
+                "details": "Provided graphic, web, and prepress design for domestic and foreign packaging & marketing companies."
             }
         ]
     },
     {
-        "name": "Additional",
+        "name": "Details",
+        "position": "right",
         "fields": [
-            { "label": "", "name": "additional", "type": "textarea" }
+            { "name": "details", "type": "textarea", "value": "Built the front-end layout and functionality for over a 100 commercial online stores, and developed the front-end base for the \"nopCommerce\" e-commerce platform. Proficiency in HTML and CSS. Plenty of experience with JS and jQuery. Familiar with Shopify's component library Polaris. Very long experience with Adobe Photoshop." }
         ]
     }
 ]
