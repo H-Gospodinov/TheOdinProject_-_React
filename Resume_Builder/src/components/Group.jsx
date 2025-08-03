@@ -84,8 +84,8 @@ function FormGroup(
     return (
         <div className="form-group">
             {name && <h3>{name}</h3>}
-            {name !== 'Header' &&
-                <button type="button" onClick={() =>
+            {name !== 'Identity' && name !== 'Contact'
+                && <button type="button" onClick={() =>
                     onDestroy(name)}>Remove</button>
             }
             {fields.map(field =>

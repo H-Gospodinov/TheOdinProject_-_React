@@ -14,6 +14,7 @@ import languageRaw from '../assets/language.svg?raw'
 
 import profileRaw from '../assets/profile.svg?raw'
 import careerRaw from '../assets/career.svg?raw'
+import educationRaw from '../assets/education.svg?raw'
 import detailsRaw from '../assets/details.svg?raw'
 
 const sectionIcons = {
@@ -21,11 +22,12 @@ const sectionIcons = {
     Language: (props) => <SvgIcon svg={languageRaw} {...props} />,
     Profile: (props) => <SvgIcon svg={profileRaw} {...props} />,
     Career: (props) => <SvgIcon svg={careerRaw} {...props} />,
+    Education: (props) => <SvgIcon svg={educationRaw} {...props} />,
     Details: (props) => <SvgIcon svg={detailsRaw} {...props} />,
 };
 const SvgIcon = ({ svg, style }) => {
 
-    return <span style={style}
+    return <span className="icon" style={style}
         dangerouslySetInnerHTML={{ __html: svg }}
     />; // inject raw svg code
 };

@@ -11,7 +11,7 @@ function MainPage({ currentData }) {
 
     const fieldSet = (fields) => (
 
-        <ul className="primary">
+        <ul className="list">
             {fields.map((field) => field.value &&
                 <li key={field.name} className={field.name}>
                     {field.type !== 'file' ?
@@ -24,54 +24,54 @@ function MainPage({ currentData }) {
                     <img src={field.value} alt="Your photo" />}
                 </li>
             )}
-        </ul> // "Header", "Contact", "Profile", "Details"
+        </ul> // Identity, Contact
     );
 
     const listStack = (entries) => (
 
-        <ul className="entry-group">
+        <ul className="stack">
             {entries.map((entry, index) => (
 
-                typeof entry === 'object' ?
+                typeof entry === 'object' ? // multi || single
 
                 <li className="multi" key={index}>
                     <div className="head">
-                        <h3 className="employment">
-                            <span>{entry.position}</span> <span>{entry.company}</span>
+                        <h3 className="names">
+                            <strong>{entry.company || entry.school}</strong>
+                            <span>{entry.position || entry.degree}</span>
                         </h3>
-                        <time className="timeframe">
-                            <span>{entry.from}</span> <span>{entry.until}</span>
-                        </time>
-                    </div>
-                    <div className="body">
-                        <p>{entry.details}</p>
-                    </div>
+                        <div className="years">
+                            {entry.from && <span>{entry.from} -</span>}
+                            <span>{entry.until || entry.year}</span>
+                        </div>
+                    </div> {entry.details && <div className="body">
+                        <p className="text">{entry.details}</p>
+                    </div>}
                 </li> : <li className="single" key={index}><span>{entry}</span></li>
             ))}
-        </ul> // "Skills", "Language", "Career", "Education"
+        </ul> // Skills, Language, Career, Education
     );
 
     const renderColumn = (groups) => (
 
-        groups.map((group, index) => (
-            <section className={'section '+ group.name} key={group.name}>
-                {group.primary ? fieldSet(group.fields) :
-                  <><h2>
-                        {/*{sectionIcons[group.name] && (
-                            <img src={sectionIcons[group.name]} alt="" />
-                        )}*/}
-                        {sectionIcons[group.name] && sectionIcons[group.name]({
-                            style: { color: 'var(--main-color)' }
-                        })}
+        groups.map((group) => (
+            <section className={'section ' + group.name.toLowerCase()} key={group.name}>
+                {group.primary ? // Identity, Contact
+                    group.fields.some(field => field.value) && fieldSet(group.fields) : <>
+                    <h2 className="title">
+                        {sectionIcons[group.name] && sectionIcons[group.name](
+                            {style: { color: 'var(--main-color)' }}
+                        )}
                         <span>{group.name}</span>
                     </h2>
-                    {group.entries ? group.entries.length > 0 && listStack(group.entries) :
-                        <div>
-                            <p style={{whiteSpace: 'pre-line'}}>{group.fields[0].value || ''}</p>
+                    {group.entries ? // Skills, Language, Career, Education
+                        group.entries.length > 0 && listStack(group.entries) :
+                        <div className="block">
+                            <p className="text">{group.fields[0].value || ''}</p>
                         </div>
-                    }</> // non-primary, !== "Header" & "Contact"
+                    }</> // Profile, Details
                 }
-            </section> // primary ? "Header" & "Contact" : all other
+            </section> // all sections
         ))
     );
     return (
