@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 
 function InputGroup(
     { label, name, type, value, entry,
@@ -13,12 +14,17 @@ function InputGroup(
             /><button className="add-new" type="button" onClick={onEntry}>Add</button>
         </>
     );
+    const fileInputRef = useRef(null);
+    const fileRemove = () => {
+        if (fileInputRef.current) {
+            fileInputRef.current.value = ''; // clear the actual input value
+        } onRemove();
+    };
     const fileInput = () => (
         <>
             <input className="input" id={name} name={name} type="file" accept="image/*"
-                onChange={onChange} key={value ? 'has-file' : 'no-file'} />
-                {/* key ensures input resets if value is cleared */}
-            {value && <button className="remove" type="button" title="Remove" onClick={onRemove}>X</button>}
+                onChange={onChange} ref={fileInputRef} />
+            {value && <button className="remove" type="button" title="Remove" onClick={fileRemove}>X</button>}
         </>
     );
     return (
