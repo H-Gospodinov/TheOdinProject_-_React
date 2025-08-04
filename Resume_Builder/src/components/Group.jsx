@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { fieldseIcons } from './Icons';
 import { InputGroup, ListGroup } from './Fields';
 
 function FormGroup(
@@ -82,28 +83,38 @@ function FormGroup(
         }
     };
     return (
-        <div className="form-group">
-            {name && <h3>{name}</h3>}
-            {name !== 'Identity' && name !== 'Contact'
-                && <button type="button" onClick={() =>
-                    onDestroy(name)}>Remove</button>
-            }
-            {fields.map(field =>
-                <InputGroup
-                    key={field.name}
-                    {...field}
-                    {...prepareInput(field)}
-                />
-            )}
-            {entries && fields.length > 1 &&
-                <button type="button" onClick={
-                    updateList().insert}>Add</button>
-            }
-            {entries && <ListGroup
-                entries={entries}
-                onRemove={updateList().remove}
-            />}
-        </div>
+        <fieldset className="fieldset">
+            <div className="head">
+                {name && <h3 className="title">{name}</h3>}
+                {name !== 'Identity' && name !== 'Contact' &&
+                <div className="buttons">
+                    <button className="rename" type="button" title="Rename"
+                        onClick={() => onRename(name)}>{fieldseIcons.rename()}
+                    </button>
+                    <button className="exclude" type="button" title="Remove"
+                        onClick={() => onDestroy(name)}>{fieldseIcons.remove()}
+                    </button>
+                </div>}
+            </div>
+            <div className="body">
+                <ul className="input-group">
+                    {fields.map(field =>
+                        <InputGroup
+                            key={field.name} {...field}
+                            {...prepareInput(field)}
+                        /> // input line
+                    )}
+                </ul>
+                {entries && fields.length > 1 &&
+                    <button className="add-new" type="button" onClick={
+                        updateList().insert}>Add</button>
+                }
+                {entries && <ListGroup
+                    entries={entries}
+                    onRemove={updateList().remove}
+                />}
+            </div>
+        </fieldset>
     );
 }
 export default FormGroup

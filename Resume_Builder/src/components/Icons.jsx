@@ -7,7 +7,7 @@ const contactIcons = { email, phone, location, website };
 
 /* section icons use raw svg code for dynamic color control.
 "skills" and "language" shouldn't be controlled but to save
-some extra logic their color is just hardcoded in the files */
+some extra logic their static color is just hardcoded in the files */
 
 import skillsRaw from '../assets/skills.svg?raw'
 import languageRaw from '../assets/language.svg?raw'
@@ -18,17 +18,24 @@ import educationRaw from '../assets/education.svg?raw'
 import detailsRaw from '../assets/details.svg?raw'
 
 const sectionIcons = {
-    Skills: (props) => <SvgIcon svg={skillsRaw} {...props} />,
-    Language: (props) => <SvgIcon svg={languageRaw} {...props} />,
-    Profile: (props) => <SvgIcon svg={profileRaw} {...props} />,
-    Career: (props) => <SvgIcon svg={careerRaw} {...props} />,
-    Education: (props) => <SvgIcon svg={educationRaw} {...props} />,
-    Details: (props) => <SvgIcon svg={detailsRaw} {...props} />,
+    Skills: () => <SvgIcon svg={skillsRaw} />,
+    Language: () => <SvgIcon svg={languageRaw} />,
+    Profile: () => <SvgIcon svg={profileRaw} />,
+    Career: () => <SvgIcon svg={careerRaw} />,
+    Education: () => <SvgIcon svg={educationRaw} />,
+    Details: () => <SvgIcon svg={detailsRaw} />,
 };
-const SvgIcon = ({ svg, style }) => {
+const SvgIcon = ({ svg }) => {
 
-    return <span className="icon" style={style}
+    return <span className="icon"
         dangerouslySetInnerHTML={{ __html: svg }}
     />; // inject raw svg code
 };
-export { contactIcons, sectionIcons }
+import renameRaw from '../assets/rename.svg?raw'
+import removeRaw from '../assets/remove.svg?raw'
+
+const fieldseIcons = {
+    rename: (props) => <SvgIcon svg={renameRaw} />,
+    remove: (props) => <SvgIcon svg={removeRaw} />,
+};
+export { contactIcons, sectionIcons, fieldseIcons }
