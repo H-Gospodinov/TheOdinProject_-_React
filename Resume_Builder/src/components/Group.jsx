@@ -1,11 +1,14 @@
 import { useState } from 'react'
-import { fieldseIcons } from './Icons';
+import { fieldsetIcons } from './Icons';
 import { InputGroup, ListGroup } from './Fields';
 
 function FormGroup(
     { name, fields, entries, onChange, onListing,
-      onUpload, onCancel, onDestroy }
+      onUpload, onCancel, onRename, onDestroy }
 ) {
+    const [renaming, setRenaming] = useState(false);
+    const [newName, setNewName] = useState(name);
+
     const [listEntry, setlistEntry] = useState(''); // single
     const [entryList, setEntryList] = useState({}); // multi
 
@@ -82,17 +85,35 @@ function FormGroup(
             };
         }
     };
+    const renameGroup = () => {
+
+        if (newName.trim() && newName !== name) {
+            onRename(name, newName.trim());
+        }
+        setRenaming(false);
+    }
+
     return (
         <fieldset className="fieldset">
             <div className="head">
+                {renaming &&
+                    <input className="edit" type="text" value={newName}
+                        onChange={e => setNewName(e.target.value)}
+                        onKeyDown={e => {
+                            e.key === 'Enter' && renameGroup();
+                            e.key === 'Escape' && setRenaming(false);
+                        }}
+                        onBlur={() => renameGroup()} autoFocus
+                    />
+                }
                 {name && <h3 className="title">{name}</h3>}
                 {name !== 'Identity' && name !== 'Contact' &&
                 <div className="buttons">
                     <button className="rename" type="button" title="Rename"
-                        onClick={() => onRename(name)}>{fieldseIcons.rename()}
+                        onClick={() => setRenaming(true)}>{fieldsetIcons.rename()}
                     </button>
                     <button className="exclude" type="button" title="Remove"
-                        onClick={() => onDestroy(name)}>{fieldseIcons.remove()}
+                        onClick={() => onDestroy(name)}>{fieldsetIcons.remove()}
                     </button>
                 </div>}
             </div>
@@ -106,8 +127,9 @@ function FormGroup(
                     )}
                 </ul>
                 {entries && fields.length > 1 &&
-                    <button className="add-new" type="button" onClick={
-                        updateList().insert}>Add</button>
+                    <button className="add-new" type="button"
+                        onClick={updateList().insert}>Add
+                    </button>
                 }
                 {entries && <ListGroup
                     entries={entries}

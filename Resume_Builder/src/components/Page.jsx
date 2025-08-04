@@ -59,7 +59,7 @@ function MainPage({ currentData }) {
                 {group.primary ? // Identity, Contact
                     group.fields.some(field => field.value) && fieldSet(group.fields) : <>
                     <h2 className="title">
-                        {sectionIcons[group.name] && sectionIcons[group.name]()}
+                        {sectionIcons[group.icon] && sectionIcons[group.icon]()}
                         <span>{group.name}</span>
                     </h2>
                     {group.entries ? // Skills, Language, Career, Education

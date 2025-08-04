@@ -18,12 +18,12 @@ import educationRaw from '../assets/education.svg?raw'
 import detailsRaw from '../assets/details.svg?raw'
 
 const sectionIcons = {
-    Skills: () => <SvgIcon svg={skillsRaw} />,
-    Language: () => <SvgIcon svg={languageRaw} />,
-    Profile: () => <SvgIcon svg={profileRaw} />,
-    Career: () => <SvgIcon svg={careerRaw} />,
-    Education: () => <SvgIcon svg={educationRaw} />,
-    Details: () => <SvgIcon svg={detailsRaw} />,
+    skills: () => <SvgIcon svg={skillsRaw} />,
+    language: () => <SvgIcon svg={languageRaw} />,
+    profile: () => <SvgIcon svg={profileRaw} />,
+    career: () => <SvgIcon svg={careerRaw} />,
+    education: () => <SvgIcon svg={educationRaw} />,
+    details: () => <SvgIcon svg={detailsRaw} />,
 };
 const SvgIcon = ({ svg }) => {
 
@@ -34,8 +34,8 @@ const SvgIcon = ({ svg }) => {
 import renameRaw from '../assets/rename.svg?raw'
 import removeRaw from '../assets/remove.svg?raw'
 
-const fieldseIcons = {
-    rename: (props) => <SvgIcon svg={renameRaw} />,
-    remove: (props) => <SvgIcon svg={removeRaw} />,
+const fieldsetIcons = {
+    rename: () => <SvgIcon svg={renameRaw} />,
+    remove: () => <SvgIcon svg={removeRaw} />,
 };
-export { contactIcons, sectionIcons, fieldseIcons }
+export { contactIcons, sectionIcons, fieldsetIcons }

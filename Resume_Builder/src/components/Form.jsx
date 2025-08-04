@@ -41,6 +41,14 @@ function DataForm({ currentData, setCurrentData }) {
         handleInputChange(groupName, fieldName, '');
     };
 
+    const handleGroupRename = (oldName, newName) => {
+        const updatedData = currentData.map(group =>
+            group.name === oldName ?
+                { ...group, name: newName } : group
+        );
+        setCurrentData(updatedData);
+    };
+
     const handleGroupRemove = (groupName) => {
         const updatedData = currentData.filter(group =>
             group.name !== groupName
@@ -60,6 +68,7 @@ function DataForm({ currentData, setCurrentData }) {
                     onListing = { handleListChange }
                     onUpload = { handleFileUpload }
                     onCancel = { handleFileRemove }
+                    onRename = { handleGroupRename }
                     onDestroy = { handleGroupRemove }
                 />
             ))}

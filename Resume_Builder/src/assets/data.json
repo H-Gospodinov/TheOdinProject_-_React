@@ -23,6 +23,7 @@
     {
         "name": "Skills",
         "position": "left",
+        "icon": "skills",
         "fields": [
             { "label": "Add new", "name": "skill", "type": "text" }
         ],
@@ -31,6 +32,7 @@
     {
         "name": "Language",
         "position": "left",
+        "icon": "language",
         "fields": [
             { "label": "Add new", "name": "language", "type": "text" }
         ],
@@ -39,6 +41,7 @@
     {
         "name": "Profile",
         "position": "right",
+        "icon": "profile",
         "fields": [
             { "name": "profile", "type": "textarea", "value": "Performance-driven front-end developer with 14 years of professional experience in the e-commerce field. Proficient in developing, implementing and supporting complex and flexible layouts for variety of online stores and apps. Passionate about graphic design and user experience." }
         ]
@@ -46,6 +49,7 @@
     {
         "name": "Career",
         "position": "right",
+        "icon": "career",
         "fields": [
             { "label": "Company", "name": "company", "type": "text" },
             { "label": "Position", "name": "position", "type": "text" },
@@ -73,6 +77,7 @@
     {
         "name": "Education",
         "position": "right",
+        "icon": "education",
         "fields": [
             { "label": "School", "name": "school", "type": "text" },
             { "label": "Degree", "name": "degree", "type": "text" },
@@ -94,6 +99,7 @@
     {
         "name": "Details",
         "position": "right",
+        "icon": "details",
         "fields": [
             { "name": "moreinfo", "type": "textarea", "value": "Built the front-end layout and functionality for over a 100 commercial online stores, and developed the front-end base for the \"nopCommerce\" e-commerce platform. Proficiency in HTML and CSS. Plenty of experience with JS and jQuery. Familiar with Shopify's component library Polaris. Very long experience with Adobe Photoshop." }
         ]
