@@ -6,9 +6,6 @@
 *::before, *::after {
     box-sizing: border-box;
 }
-a {
-    color: inherit;
-}
 p {
     line-height: 25px;
     white-space: pre-line;
@@ -16,7 +13,6 @@ p {
 ul {
     list-style: none;
 }
-
 button {
     border: none;
     background: none;
@@ -46,7 +42,6 @@ body {
 .container {
     display: flex;
     flex-flow: column;
-    row-gap: 10px;
     max-width: 1500px;
     min-height: 100%;
     margin: auto;
@@ -56,15 +51,102 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 25px 0;
 }
+.header h1 {
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+    font-size: 36px;
+    line-height: 1em;
+    color: var(--main-color);
+}
+.header .icon {
+    display: flex;
+}
+.header .text {
+    margin-top: -1px;
+    /*colorize text*/
+    background: linear-gradient(90deg,
+    #2b70a8, #298057, #8e9c4c, #fcb442, #fc8d36, #e74444, #d23874, #b75382, #80588f);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+.header .actions {
+    display: flex;
+    align-items: center;
+}
+.header .select {
+    appearance: none;
+    min-width: 140px;
+    height: 36px;
+    margin-right: 10px;
+    border: 1px solid var(--main-color);
+    border-radius: 3px;
+    background: #fff url(assets/select.svg) no-repeat;
+    background-position: right 4px center;
+    background-size: 22px;
+    padding: 0 10px;
+    font-size: 15px;
+    color: var(--main-color);
+}
+.header .select:focus {
+    border-color: transparent;
+    outline: 1px solid var(--main-color)
+}
+.header .color {
+    align-self: baseline;
+    width: 48px;
+    height: 48px;
+    margin: -3px 6px 0;
+    background: url(assets/color.png) center no-repeat;
+    background-size: 42px;
+}
+.header .color input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    cursor: pointer;
+    opacity: 0;
+}
+ .header .button {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    color: var(--main-color);
+ }
+ .header #save svg {
+    width: 41px;
+    height: 42px;
+ }
+ .header #print svg {
+    width: 43px;
+    height: 42px;
+ }
 .main {
     flex-grow: 1;
     display: flex;
     column-gap: 50px;
 }
+.footer {
+    padding: 30px 0;
+    text-align: center;
+}
+.footer a {
+    margin-left: 5px;
+    color: var(--main-color);
+    transition: 0.2s ease;
+}
+.footer a:hover {
+    filter: drop-shadow(0 0 0 var(--main-color));
+}
+/* DATA FORM */
+
 .data-form {
     flex: 0 0 400px;
     position: relative;
+    box-shadow: 0 0 0 1px #e6e6e6;
     overflow-y: auto;
 }
 .data-form form {
@@ -218,7 +300,6 @@ input[type="file"] + button:hover {
 }
 input[type="file"] + button:hover::before {
     filter: invert(1) drop-shadow(0 0 0 #fff);
-    /* transform: rotate(180deg); */
 }
 .input-group .add-new,
 .input-group + .add-new {
@@ -299,7 +380,11 @@ input[type="file"] + button:hover::before {
     position: absolute;
     inset: 0;
 }
+/* MAIN PAGE */
 
+.preview {
+    flex-grow: 1;
+}
 .page {
     display: grid;
     grid-template: 1fr / auto 1fr;
@@ -330,6 +415,7 @@ input[type="file"] + button:hover::before {
     height: 21px !important;
 }
 .left-column {
+    min-width: 260px;
     max-width: 300px;
     row-gap: 35px;
     box-shadow: 0 0 0 1px var(--main-color);
@@ -338,7 +424,7 @@ input[type="file"] + button:hover::before {
 }
 .identity .list {
     font-style: italic;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
 }
 .identity .fullname {
     margin: -8px 0 12px;

@@ -19,19 +19,18 @@ function RestoreData({ sampleData, currentData, setCurrentData }) {
             }
             else return count;
         }, 0);
-    
         const updatedData = [...currentData];
         updatedData.splice(index, 0, { ...restoreGroup });
         setCurrentData(updatedData);
     };
-
     return (
-        <select defaultValue="" onChange={e => {
+        <select className="select" id="restore" defaultValue=""
+            onChange={e => {
             if (e.target.value) {
                 handleRestore(e.target.value);
                 e.target.value = '';
             }}}>
-            <option value="" disabled>Select section...</option>
+            <option value="" disabled>Restore data</option>
             {deletedData.map(s => ( // s = section
                 <option key={s.name} value={s.name}>{s.name}</option>
             ))}
