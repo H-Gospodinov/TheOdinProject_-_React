@@ -53,8 +53,8 @@
         "fields": [
             { "label": "Company", "name": "company", "type": "text" },
             { "label": "Position", "name": "position", "type": "text" },
-            { "label": "From", "name": "from", "type": "date" },
-            { "label": "Until", "name": "until", "type": "date" },
+            { "label": "From", "name": "from", "type": "number" },
+            { "label": "Until", "name": "until", "type": "number" },
             { "label": "Details", "name": "details", "type": "textarea" }
         ],
         "entries": [
@@ -81,7 +81,7 @@
         "fields": [
             { "label": "School", "name": "school", "type": "text" },
             { "label": "Degree", "name": "degree", "type": "text" },
-            { "label": "Year", "name": "year", "type": "date" }
+            { "label": "Year", "name": "year", "type": "number" }
         ],
         "entries": [
             {

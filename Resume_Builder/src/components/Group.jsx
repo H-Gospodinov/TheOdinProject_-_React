@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { fieldsetIcons } from './Icons';
-import { InputGroup, ListGroup } from './Fields';
+import { InputGroup, OutputGroup } from './Fields';
 
 function FormGroup(
     { name, fields, entries, onChange, onListing,
@@ -12,6 +12,8 @@ function FormGroup(
     const [listEntry, setlistEntry] = useState(''); // single
     const [entryList, setEntryList] = useState({}); // multi
 
+    const [hasError, setHasError] = useState(false);
+
     const updateList = () => ({
 
         insert: () => { // multi || single
@@ -21,6 +23,11 @@ function FormGroup(
                     entryList).some(value => value.trim());
                 if (!hasValue) return;
 
+                const first = fields[0].name;
+                const required = entryList[first] || '';
+                if (!(required.trim())) {
+                    setHasError(true); return;
+                }
                 onListing(name, [...entries, entryList]);
                 setEntryList({});
             }
@@ -56,7 +63,7 @@ function FormGroup(
         },
     });
 
-    const prepareInput = (field) => {
+    const prepareInput = (field, index) => {
 
         switch (true) {
 
@@ -66,9 +73,13 @@ function FormGroup(
                     setEntryList((prev) => (
                         { ...prev, [field.name]: value }
                     ));
+                    if (field.name === fields[0].name) {
+                        if (value.trim()) setHasError(false);
+                    }
                 }; return {
                 value: entryList[field.name] || '',
                 onChange: e => update(field, e.target.value),
+                onError: index === 0 && hasError,
             };
 
             case !!entries: return {
@@ -119,10 +130,10 @@ function FormGroup(
             </div>
             <div className="body">
                 <ul className="input-group">
-                    {fields.map(field =>
+                    {fields.map((field, index) =>
                         <InputGroup
                             key={field.name} {...field}
-                            {...prepareInput(field)}
+                            {...prepareInput(field, index)}
                         /> // input line
                     )}
                 </ul>
@@ -131,7 +142,7 @@ function FormGroup(
                         onClick={updateList().insert}>Add
                     </button>
                 }
-                {entries && <ListGroup
+                {entries && <OutputGroup
                     entries={entries}
                     onRemove={updateList().remove}
                 />}
