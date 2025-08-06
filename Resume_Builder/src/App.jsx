@@ -52,10 +52,12 @@ function App() {
         </header>
         <main className="main">
             <div className="data-form">
-                <DataForm
-                    currentData={currentData}
-                    setCurrentData={setCurrentData}
-                />
+                <div className="scroller">
+                    <DataForm
+                        currentData={currentData}
+                        setCurrentData={setCurrentData}
+                    />
+                </div>
             </div>
             <div className="preview">
                 <MainPage currentData={currentData} />
