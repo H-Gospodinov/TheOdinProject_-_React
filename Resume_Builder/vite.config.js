@@ -5,7 +5,7 @@ export default defineConfig({
   plugins: [react()],
   // custom entry points:
   root: 'src',
-  build: {
-    outDir: '../dist',
-  }
+  build: {outDir: '../dist'},
+  // relative build paths:
+  base: './',
 })
