@@ -11,7 +11,7 @@ function InputGroup(
     const fileInputRef = useRef(null);
     const fileRemove = () => {
         if (fileInputRef.current) {
-            fileInputRef.current.value = ''; // clear the actual input value
+            fileInputRef.current.value = ''; // clear actual input value
         } onRemove();
     };
 
@@ -25,15 +25,17 @@ function InputGroup(
         ),
         fileInput: () => (<>
             <input {...sharedProps} accept="image/*" ref={fileInputRef} /> {value &&
-            <button className="remove" type="button" title="Remove" onClick={fileRemove}></button>}</>
+            <button className="remove" type="button" title="Remove" aria-label="Remove"
+                onClick={fileRemove}></button>}</>
         ),
         numericInput: () => (
             <input {...sharedProps} value={value || ''} placeholder="(year)" onKeyDown={e => {
                 if (e.key === 'e' || e.key === 'E') e.preventDefault() }} />
         ),
         blockInput: () => {
+            // eslint-disable-next-line no-unused-vars
             const { type, ...textareaProps } = sharedProps;
-            return <textarea {...textareaProps} value={value || ''} />
+            return <textarea {...textareaProps} value={value || ''} aria-label={name} />
         },
         defaultInput: () => {
             const { className, ...defaultProps } = sharedProps;
@@ -66,7 +68,9 @@ function OutputGroup({ entries, onRemove }) {
                     <span>{typeof entry !== 'object' ?
                         entry : entry.company || entry.school}
                     </span>
-                    <button className="remove" type="button" onClick={() => onRemove(entry)}></button>
+                    <button className="remove" type="button" aria-label="Remove"
+                        onClick={() => onRemove(entry)}>
+                    </button>
                 </li>
             ))} {/* single or multi */}
         </ul>

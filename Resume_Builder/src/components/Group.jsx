@@ -67,7 +67,7 @@ function FormGroup(
 
         switch (true) {
 
-            case entries && fields.length > 1:
+            case entries && fields.length > 1: {
 
                 const update = (field, value) => {
                     setEntryList((prev) => (
@@ -79,7 +79,7 @@ function FormGroup(
                 }; return {
                 value: entryList[field.name] || '',
                 onChange: e => update(field, e.target.value),
-                onError: index === 0 && hasError,
+                onError: index === 0 && hasError,}
             };
 
             case !!entries: return {
