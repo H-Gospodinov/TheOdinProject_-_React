@@ -15,14 +15,23 @@ function App() {
         return stored ? JSON.parse(stored) : sampleData;
     });
 
+    const [colorScheme, setColorScheme] = useState(() => {
+        // load stored or use default
+        const stored = localStorage.getItem('colorScheme');
+        if (stored) document.body.style.setProperty('--main-color', stored);
+        return stored || '#163853';
+    });
+
     const storeCurrentData = () => {
         localStorage.setItem('resumeData', JSON.stringify(currentData));
+        localStorage.setItem('colorScheme', colorScheme);
         alert('Data saved in your current browser.');
     };
 
     const colorPicker = (e) => {
         // only raw svg icons get the new color applied
         document.body.style.setProperty('--main-color', e.target.value);
+        setColorScheme(e.target.value);
     }
 
     return (<>
@@ -38,7 +47,7 @@ function App() {
                     setCurrentData={setCurrentData}
                 />
                 <span className="color" title="Color scheme">
-                    <input type="color" value="#163853" onChange={colorPicker} />
+                    <input type="color" value={colorScheme} aria-label="Color" onChange={colorPicker} />
                 </span>
                 <button className="button" id="save" type="button" title="Save changes"
                     onClick={storeCurrentData}
