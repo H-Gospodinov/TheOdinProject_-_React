@@ -1,0 +1,42 @@
+* {
+    margin: 0 0;
+    padding: 0 0;
+    box-sizing: border-box;
+}
+*::before, *::after {
+    box-sizing: border-box;
+}
+img {
+    max-width: 100%;
+    height: auto;
+}
+html {
+    display: flex;
+    height: 100%; /*fallback*/
+    height: -webkit-fill-available;
+}
+body {
+    width: 100%;
+    overflow-x: clip;
+    background-color: #135;
+    font-family: 'segoe ui',
+    ubuntu, helvetica, sans-serif;
+    color: #fff;
+}
+.container {
+    display: flex;
+    flex-flow: column;
+    row-gap: 30px;
+    padding: 2% 5%;
+}
+.main {
+    display: grid;
+    grid-template: 1fr 1fr / repeat(6, 1fr);
+    grid-gap: 30px 2%;
+}
+.main h2 {
+    font-size: 18px;
+}
+.card {
+    cursor: pointer;
+}
