@@ -4,21 +4,17 @@ const images = import.meta.glob('./assets/*.{jpg,jpeg}',
     { eager: true } // import images (Vite)
 );
 const shuffle = (order) => {
-    let arr = order.slice();
-    for (let i = arr.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [arr[i], arr[j]] = [arr[j], arr[i]];
-    }
-    return arr; // random order
+    return order.slice().sort(() => Math.random() - 0.5);
 };
 
-function Card({ onClick }) {
+function Card({ selectCard }) {
 
     const [cardOrder, setCardOrder] = useState(() => {
         return shuffle(Object.entries(images));
     });
 
-    const handleClick = () => {
+    const handleClick = (card) => {
+        selectCard(card);
         setCardOrder(shuffle(cardOrder));
     };
 
@@ -26,8 +22,8 @@ function Card({ onClick }) {
         cardOrder.map(([path, src]) => {
             const fileName = path.split('/').pop();
             return (
-                <div className="card" id={fileName} key={fileName}
-                    onClick={() => handleClick()}>
+                <div className="card" key={fileName}
+                    onClick={() => handleClick(fileName)}>
                     <img src={src.default ?? src} alt={fileName} />
                 </div>
             );

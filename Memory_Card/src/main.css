@@ -29,6 +29,16 @@ body {
     row-gap: 30px;
     padding: 2% 5%;
 }
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.score {
+    display: flex;
+    column-gap: 10px;
+    font-size: 18px;
+}
 .main {
     display: grid;
     grid-template: 1fr 1fr / repeat(6, 1fr);
@@ -38,5 +48,10 @@ body {
     font-size: 18px;
 }
 .card {
+    display: flex;
+    align-items: center;
+    max-height: 375px;
+    overflow: hidden;
+    border-radius: 5px;
     cursor: pointer;
 }
