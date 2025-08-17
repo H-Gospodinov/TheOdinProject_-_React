@@ -21,10 +21,13 @@ function Card({ selectCard }) {
     return (
         cardOrder.map(([path, src]) => {
             const fileName = path.split('/').pop();
+            const [loaded, setLoaded] = useState(false);
             return (
                 <div className="card" key={fileName}
                     onClick={() => handleClick(fileName)}>
-                    <img src={src.default ?? src} alt={fileName} />
+                    <img className="image" src={src.default ?? src} alt={fileName}
+                        onLoad={() => setLoaded(true)} />
+                    {!loaded && <span className="loader"></span>}
                 </div>
             );
         })
