@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import icon from './assets/kiki-jiji.svg'
 import Card from './Card'
 
 function App() {
@@ -23,10 +24,17 @@ function App() {
     return (
         <>
             <header className="header">
-                <h1 className="title">Memory Game</h1>
+                <h1 className="title">Memory Card Game</h1>
+                <p className="rules">Try clicking on every card only once. If the same card is clicked twice
+                    the game starts over.  You win the game if you click on all 18 cards.</p>
+                <img className="icon" src={icon} alt="" width="60" height="58" />
                 <div className="score">
-                    <span className="current">{nowScore}</span>
-                    <span className="highest">{highScore}</span>
+                    <div className="display current">
+                        <label>now</label> <span>{nowScore}</span>
+                    </div>
+                    <div className="display highest">
+                        <label>max</label> <span>{highScore}</span>
+                    </div>
                 </div>
             </header>
             <main className="main">
