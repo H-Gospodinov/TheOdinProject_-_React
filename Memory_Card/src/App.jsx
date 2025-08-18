@@ -4,17 +4,21 @@ import Card from './Card'
 
 function App() {
 
+    const [cards, setCards] = useState(0);
     const [loaded, setLoaded] = useState(false);
 
     const [selected, setSelected] = useState([]);
     const [nowScore, setNowScore] = useState(0);
     const [highScore, setHighScore] = useState(0);
 
+    const [message, setMessage] = useState('');
+
+
     function selectCard(cardId) {
 
         if (selected.includes(cardId)) {
 
-            gameOver(); // notify
+            gameOver(0); // game lost
 
             setNowScore(0); setSelected([]);
 
@@ -22,16 +26,33 @@ function App() {
                 setHighScore(nowScore);
             }
         } else {
-            setNowScore(score => score + 1);
+            const update = (score) => {
+
+                const newScore = score + 1;
+
+                if (newScore === cards) {
+                    gameOver(1); // game won
+                    setHighScore(newScore);
+                }
+                return newScore;
+            };
+            setNowScore(score => update(score));
             setSelected(cards => [...cards, cardId]);
         }
     }
     const dialog = document.querySelector('.modal');
     const button = document.querySelector('.close');
 
-    function gameOver() {
-        dialog.showModal(); // open ~ close
-        button.onclick = () => dialog.close();
+    function gameOver(outcome) {
+
+        setMessage(outcome ? 'you win' : 'game over');
+
+        dialog.showModal(); // outcome
+
+        button.onclick = () => {
+            dialog.close(); setSelected([]);
+            setNowScore(0); outcome && setHighScore(0);
+        };
     }
     return (
         <>
@@ -53,12 +74,15 @@ function App() {
                 </div>
             </header>
             <main className="main">
-                <Card stackLoaded={setLoaded}
-                    selectCard={selectCard} />
+                <Card
+                    cardStack={setCards}
+                    stackLoaded={setLoaded}
+                    selectCard={selectCard}
+                />
                 {!loaded && <span className="loader" />}
             </main>
             <dialog className="modal">
-                <span className="text">game over</span>
+                <span className="text">{message}</span>
                 <button className="close">OK</button>
             </dialog>
             <footer className="footer">

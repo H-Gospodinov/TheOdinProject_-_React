@@ -7,21 +7,26 @@ const shuffle = (order) => {
     return order.slice().sort(() => Math.random() - 0.5);
 };
 
-function Card({ stackLoaded, selectCard }) {
+function Card({ cardStack, stackLoaded, selectCard }) {
 
     const [loaded, setLoaded] = useState(0);
 
     const [cardOrder, setCardOrder] = useState(() => {
         return shuffle(Object.entries(images));
     });
+    const total = cardOrder.length;
 
     const handleClick = (card) => {
         selectCard(card);
         setCardOrder(shuffle(cardOrder));
     };
 
-    useEffect(() => {loaded == cardOrder.length &&
-        stackLoaded(true)}, [loaded]);
+    useEffect(() => {loaded == total &&
+        stackLoaded(true)}, [loaded]
+    );
+    useEffect(() => {
+        cardStack(total)}, [total]
+    );
 
     return (
         cardOrder.map(([path, src]) => {
