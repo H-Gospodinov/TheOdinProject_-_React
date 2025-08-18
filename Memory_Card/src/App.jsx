@@ -14,7 +14,10 @@ function App() {
 
         if (selected.includes(cardId)) {
 
+            gameOver(); // notify
+
             setNowScore(0); setSelected([]);
+
             if (nowScore > highScore) {
                 setHighScore(nowScore);
             }
@@ -23,12 +26,22 @@ function App() {
             setSelected(cards => [...cards, cardId]);
         }
     }
+    const dialog = document.querySelector('.modal');
+    const button = document.querySelector('.close');
+
+    function gameOver() {
+        dialog.showModal(); // open ~ close
+        button.onclick = () => dialog.close();
+    }
     return (
         <>
             <header className="header">
                 <h1 className="title">Memory Card Game</h1>
-                <p className="rules">Try clicking on every card only once. If the same card is clicked twice
-                    the game starts over.  You win the game if you click on all 18 cards.</p>
+                <p className="rules">
+                    Try clicking on every card only once.
+                    If the same card is clicked twice the game starts over.
+                    You win the game if you click on all 18 cards.
+                </p>
                 <img className="icon" src={icon} alt="" width="60" height="58" />
                 <div className="score">
                     <div className="display current">
@@ -44,6 +57,10 @@ function App() {
                     selectCard={selectCard} />
                 {!loaded && <span className="loader" />}
             </main>
+            <dialog className="modal">
+                <span className="text">game over</span>
+                <button className="close">OK</button>
+            </dialog>
             <footer className="footer">
                 <span>Check source code on</span>
                 <a target="_blank" rel="noopener"
