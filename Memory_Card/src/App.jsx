@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import icon from './assets/kiki-jiji.svg'
 import Card from './Card'
 
@@ -12,6 +12,7 @@ function App() {
     const [highScore, setHighScore] = useState(0);
 
     const [message, setMessage] = useState('');
+    const dialogRef = useRef(null);
 
 
     function selectCard(cardId) {
@@ -40,20 +41,24 @@ function App() {
             setSelected(cards => [...cards, cardId]);
         }
     }
-    const dialog = document.querySelector('.modal');
-    const button = document.querySelector('.close');
 
     function gameOver(outcome) {
 
         setMessage(outcome ? 'you win' : 'game over');
+        const close = dialogRef.current.querySelector('.close');
 
-        dialog.showModal(); // outcome
+        if (dialogRef.current) {
+            dialogRef.current.showModal();
+        }
+        close.onclick = null;
 
-        button.onclick = () => {
-            dialog.close(); setSelected([]);
-            setNowScore(0); outcome && setHighScore(0);
+        close.onclick = () => {
+            dialogRef.current.close();
+            setNowScore(0); setSelected([]);
+            outcome && setHighScore(0);
         };
     }
+
     return (
         <>
             <header className="header">
@@ -81,7 +86,7 @@ function App() {
                 />
                 {!loaded && <span className="loader" />}
             </main>
-            <dialog className="modal">
+            <dialog className="modal" ref={dialogRef}>
                 <span className="text">{message}</span>
                 <button className="close">OK</button>
             </dialog>
