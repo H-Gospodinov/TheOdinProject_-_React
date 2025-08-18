@@ -4,6 +4,8 @@ import Card from './Card'
 
 function App() {
 
+    const [loaded, setLoaded] = useState(false);
+
     const [selected, setSelected] = useState([]);
     const [nowScore, setNowScore] = useState(0);
     const [highScore, setHighScore] = useState(0);
@@ -38,7 +40,9 @@ function App() {
                 </div>
             </header>
             <main className="main">
-                <Card selectCard={selectCard} />
+                <Card stackLoaded={setLoaded}
+                    selectCard={selectCard} />
+                {!loaded && <span className="loader" />}
             </main>
             <footer className="footer">
                 <span>Check source code on</span>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const images = import.meta.glob('./assets/*.{jpg,jpeg}',
     { eager: true } // import images (Vite)
@@ -7,7 +7,9 @@ const shuffle = (order) => {
     return order.slice().sort(() => Math.random() - 0.5);
 };
 
-function Card({ selectCard }) {
+function Card({ stackLoaded, selectCard }) {
+
+    const [loaded, setLoaded] = useState(0);
 
     const [cardOrder, setCardOrder] = useState(() => {
         return shuffle(Object.entries(images));
@@ -18,16 +20,20 @@ function Card({ selectCard }) {
         setCardOrder(shuffle(cardOrder));
     };
 
+    useEffect(() => {loaded == cardOrder.length &&
+        stackLoaded(true)}, [loaded]);
+
     return (
         cardOrder.map(([path, src]) => {
+
             const fileName = path.split('/').pop();
-            const [loaded, setLoaded] = useState(false);
+            const filePath = src.default ?? src;
+
             return (
                 <div className="card" key={fileName}
                     onClick={() => handleClick(fileName)}>
-                    <img className="image" src={src.default ?? src} alt={fileName}
-                        onLoad={() => setLoaded(true)} />
-                    {!loaded && <span className="loader"></span>}
+                    <img src={filePath} alt="card image"
+                        onLoad={() => setLoaded(num => num + 1)} />
                 </div>
             );
         })

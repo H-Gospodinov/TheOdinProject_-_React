@@ -104,13 +104,14 @@ img {
     max-height: 375px;
     overflow: hidden;
     border-radius: 5px;
+    background-color: #fff1;
     cursor: pointer;
 }
 .loader {
-    position: absolute;
+    position: fixed;
     inset: 0;
-    width: 64px;
-    height: 64px;
+    width: 128px;
+    height: 128px;
     margin: auto;
     backdrop-filter: none !important;
     transition: 0.2s ease;
@@ -122,8 +123,8 @@ img {
     position: absolute;
     inset: 0;
     opacity: 0;
-    width: 64px;
-    height: 64px;
+    width: 128px;
+    height: 128px;
     border: 4px solid #fff;
     border-radius: 50%;
     animation: loader 2s linear infinite;
