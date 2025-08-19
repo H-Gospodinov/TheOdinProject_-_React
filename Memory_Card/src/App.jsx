@@ -44,7 +44,8 @@ function App() {
 
     function gameOver(outcome) {
 
-        setMessage(outcome ? 'you win' : 'game over');
+        setMessage(outcome ? 'Great, you win the game' :
+                             'Wrong card, try again');
         const close = dialogRef.current.querySelector('.close');
 
         if (dialogRef.current) {
@@ -64,7 +65,7 @@ function App() {
             <header className="header">
                 <h1 className="title">Memory Card Game</h1>
                 <p className="rules">
-                    Try clicking on every card only once.
+                    Try clicking on every card <u>only once</u>.
                     If the same card is clicked twice the game starts over.
                     You win the game if you click on all 18 cards.
                 </p>
