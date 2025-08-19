@@ -201,7 +201,13 @@ img {
 
 @media (max-width: 1400px) {
 
-    .rules, .icon {
+    .icon {
+        display: none;
+    }
+}
+@media (max-width: 1000px) {
+
+    .rules {
         display: none;
     }
 }
@@ -220,9 +226,16 @@ img {
     .header {
         flex-flow: column;
         align-items: center;
+        padding-block: 0 2px;
     }
     .title {
         transform: none;
+    }
+    .rules {
+        display: block;
+        padding: 2px 0;
+        text-align: center;
+        line-height: 22px;
     }
     .score {
         transform: none;
