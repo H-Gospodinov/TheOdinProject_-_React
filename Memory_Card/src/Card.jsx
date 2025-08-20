@@ -21,11 +21,11 @@ function Card({ cardStack, stackLoaded, selectCard }) {
         setCardOrder(shuffle(cardOrder));
     };
 
+    useEffect(() => {
+        cardStack(total)}, [] // constant
+    );
     useEffect(() => {loaded == total &&
         stackLoaded(true)}, [loaded]
-    );
-    useEffect(() => {
-        cardStack(total)}, [total]
     );
 
     return (

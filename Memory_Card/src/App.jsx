@@ -51,14 +51,12 @@ function App() {
         if (dialogRef.current) {
             dialogRef.current.showModal();
         }
-        close.onclick = null;
-
         close.onclick = () => {
             dialogRef.current.close();
             setNowScore(0); setSelected([]);
             outcome && setHighScore(0);
         };
-    }
+    } // win or loss
 
     return (
         <>
