@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const images = import.meta.glob('./assets/*.{jpg,jpeg}',
+const images = import.meta.glob('./assets/images/*.{jpg,webp}',
     { eager: true } // import images (Vite)
 );
 const shuffle = (order) => {
