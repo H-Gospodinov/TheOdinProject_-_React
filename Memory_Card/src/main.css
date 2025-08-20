@@ -217,7 +217,8 @@ img {
 @media (max-width: 800px) {
 
     .main {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template: repeat(6, 1fr) /
+                       repeat(3, 1fr);
         grid-gap: 15px 15px;
     }
     .footer {

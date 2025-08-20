@@ -2,12 +2,21 @@ import { useState, useRef } from 'react';
 import icon from './assets/kiki-jiji.svg'
 import Card from './Card'
 
+const images = import.meta.glob('./assets/images/*.{jpg,webp}',
+    { eager: true } // import images (Vite)
+);
+const shuffle = (order) => {
+    return order.slice().sort(() => Math.random() - 0.5);
+};
+
 function App() {
 
-    const [cards, setCards] = useState(0);
+    const [cards, setCards] = useState(() => {
+        return shuffle(Object.entries(images));
+    });
     const [loaded, setLoaded] = useState(false);
-
     const [selected, setSelected] = useState([]);
+
     const [nowScore, setNowScore] = useState(0);
     const [highScore, setHighScore] = useState(0);
 
@@ -21,17 +30,17 @@ function App() {
 
             gameOver(0); // game lost
 
-            setNowScore(0); setSelected([]);
-
             if (nowScore > highScore) {
                 setHighScore(nowScore);
             }
-        } else {
+            setNowScore(0); setSelected([]);
+        }
+        else {
             const update = (score) => {
 
                 const newScore = score + 1;
 
-                if (newScore === cards) {
+                if (newScore === cards.length) {
                     gameOver(1); // game won
                     setHighScore(newScore);
                 }
@@ -40,6 +49,7 @@ function App() {
             setNowScore(score => update(score));
             setSelected(cards => [...cards, cardId]);
         }
+        setCards(shuffle(cards));
     }
 
     function gameOver(outcome) {
@@ -79,7 +89,7 @@ function App() {
             </header>
             <main className="main">
                 <Card
-                    cardStack={setCards}
+                    cardStack={cards}
                     stackLoaded={setLoaded}
                     selectCard={selectCard}
                 />
