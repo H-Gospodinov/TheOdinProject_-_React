@@ -58,9 +58,8 @@ function App() {
                              'Wrong card, try again');
         const close = dialogRef.current.querySelector('.close');
 
-        if (dialogRef.current) {
-            dialogRef.current.showModal();
-        }
+        dialogRef.current.showModal();
+
         close.onclick = () => {
             dialogRef.current.close();
             setNowScore(0); setSelected([]);
@@ -87,18 +86,22 @@ function App() {
                     </div>
                 </div>
             </header>
+
             <main className="main">
-                <Card
-                    cardStack={cards}
-                    stackLoaded={setLoaded}
-                    selectCard={selectCard}
-                />
+                <div className="grid">
+                    <Card
+                        cardStack={cards}
+                        stackLoaded={setLoaded}
+                        selectCard={selectCard}
+                    />
+                </div>
+                <dialog className="modal" ref={dialogRef}>
+                    <span className="text">{message}</span>
+                    <button className="close">OK</button>
+                </dialog>
                 {!loaded && <span className="loader" />}
             </main>
-            <dialog className="modal" ref={dialogRef}>
-                <span className="text">{message}</span>
-                <button className="close">OK</button>
-            </dialog>
+
             <footer className="footer">
                 <span>Check source code on</span>
                 <a target="_blank" rel="noopener"
