@@ -1,0 +1,111 @@
+@font-face {
+    font-family: "Segoe UI";
+    src: local("Segoe UI"), local(SegoeUI),
+        url(assets/SegoeUI.woff2) format(woff2);
+    font-weight: 400;
+    font-display: swap;
+} * {
+    margin: 0 0;
+    padding: 0 0;
+    box-sizing: border-box;
+}
+*::before, *::after {
+    box-sizing: border-box;
+}
+a {
+    font-weight: 400;
+    color: #0c7e7c;
+    transition: 0.2s ease;
+}
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 2px;
+}
+h1, h2 {
+    font-weight: 400;
+    color: #0c7e7c;
+}
+button {
+    border: none;
+    transition: 0.2s ease;
+    cursor: pointer;
+}
+
+html {
+    display: flex;
+    height: 100%; /*fallback*/
+    height: -webkit-fill-available;
+}
+body {
+    width: 100%;
+    overflow-x: hidden;
+    background: #fff url(assets/background.jpg)
+                center -60px no-repeat;
+    background-size: 100% auto;
+    font-family: "Segoe UI",
+    Ubuntu, Helvetica, sans-serif;
+}
+.container {
+    display: flex;
+    flex-flow: column;
+    max-width: 1920px;
+    min-height: 100%;
+    margin: auto;
+}
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 15px;
+    background-color: #0c7e7c;
+    padding: 10px 15px;
+    color: #fff;
+}
+.nav-bar {
+    display: flex;
+    column-gap: 3px;
+}
+.nav-link {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    outline: 1px solid #0c7e7c;
+    border-radius: 10px;
+    background-color: #fff2;
+    background-size: 20px;
+    padding: 15px 25px;
+    font-size: 17px;
+    color: #ffff;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+    transform: skew(-25deg) translateX(10px);
+}
+.nav-link:hover {
+    background-color: #fff3;
+}
+.nav-link img {
+    margin-left: -5px;
+    transform: skewX(25deg);
+    filter: drop-shadow(0 0 10px #fff9);
+}
+.nav-link.shop img {
+    filter: drop-shadow(0 0 0 #fff6)
+            drop-shadow(0 0 10px #fff9);
+    margin: 0 -2px -3px -5px;
+}
+.nav-link span {
+    transform: skewX(25deg);
+    filter: drop-shadow(0 0 0 #fff6);
+}
+.action {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    column-gap: 15px;
+    min-width: 200px;
+}
+.action button {
+    background: none;
+}
