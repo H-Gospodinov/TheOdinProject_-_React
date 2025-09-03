@@ -1,4 +1,4 @@
-import { BrowserRouter, Link } from 'react-router-dom'
+import { HashRouter, Link } from 'react-router-dom'
 import { NavBar, NavRoutes } from './Routes'
 
 import logo from './assets/logo.png'
@@ -8,7 +8,7 @@ import basket from './assets/icons/basket.svg'
 function App() {
 
     return (
-        <BrowserRouter>
+        <HashRouter>
             <header className="header">
                 <div className="logo">
                     <Link to="/">
@@ -36,7 +36,7 @@ function App() {
                     href="https://h-gospodinov.github.io/H-Gospodinov/">GitHub
                 </a>
             </footer>
-        </BrowserRouter>
+        </HashRouter>
     )
 }
 
