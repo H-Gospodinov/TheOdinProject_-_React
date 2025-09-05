@@ -5,16 +5,16 @@ import Product from './Product.jsx'
 function HomePage() {
 
     return (
-        <section className="section">
-            <h2 className="section-title">
+        <section className="section home">
+            <h1 className="section-title">
                 <span>Organic store Demo</span>
-            </h2>
-            <div className="grid featured">
-                {
+            </h1>
+            <div className="section-body">
+                <div className="products featured">{
                     useContext(ProductsContext).map(product => {
                         return <Product product={product} key={product.id} />
                     })
-                }
+                }</div>
             </div>
         </section>
     );

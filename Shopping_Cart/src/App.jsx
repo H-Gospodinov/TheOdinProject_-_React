@@ -15,7 +15,7 @@ function App() {
                 <header className="header">
                     <div className="logo">
                         <Link to="/">
-                            <img src={logo} width="200" height="68" />
+                            <img src={logo} alt="logo" width="200" height="68" />
                         </Link>
                     </div>
                     <NavBar />
