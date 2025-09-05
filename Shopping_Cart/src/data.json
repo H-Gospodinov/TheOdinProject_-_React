@@ -1,12 +1,5 @@
 [
     {
-        "id": "gourd",
-        "name": "Dudhi/ Lauki/ Bottle gourd",
-        "price": "€4.50",
-        "discount": "9%",
-        "description": "Dudhi, also known as Lauki or Bottle Gourd, a light and refreshing vegetable that brings simplicity and nutrition to your meals. Sourced from local farms, our Dudhi is selected for its freshness and quality. With its mild, crisp texture, it's a versatile addition to soups, stews, and curries. Low in calories and rich in vitamins and minerals, Dudhi not only adds a subtle flavor to your dishes but also contributes to a healthy diet. Elevate your cooking with the natural goodness of Dudhi, a kitchen essential for those seeking a light and nutritious touch to their meals. Order now and enjoy the wholesome simplicity of Dudhi on your plate."
-    },
-    {
         "id": "coriander",
         "name": "Coriander Leaves",
         "price": "€2.00",
@@ -33,6 +26,13 @@
         "price": "€6.00",
         "discount": "8%",
         "description": ""
+    },
+    {
+        "id": "gourd",
+        "name": "Dudhi/ Lauki/ Bottle gourd",
+        "price": "€4.50",
+        "discount": "9%",
+        "description": "Dudhi, also known as Lauki or Bottle Gourd, a light and refreshing vegetable that brings simplicity and nutrition to your meals. Sourced from local farms, our Dudhi is selected for its freshness and quality. With its mild, crisp texture, it's a versatile addition to soups, stews, and curries. Low in calories and rich in vitamins and minerals, Dudhi not only adds a subtle flavor to your dishes but also contributes to a healthy diet. Elevate your cooking with the natural goodness of Dudhi, a kitchen essential for those seeking a light and nutritious touch to their meals. Order now and enjoy the wholesome simplicity of Dudhi on your plate."
     },
     {
         "id": "lime",
