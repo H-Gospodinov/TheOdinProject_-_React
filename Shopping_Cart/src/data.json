@@ -26,7 +26,7 @@
     {
         "id": "gongura",
         "name": "Fresh Gongura leaves",
-        "category": "vegetables",
+        "category": "veggies",
         "price": "€6.00",
         "discount": "8%",
         "description": ""
@@ -34,7 +34,7 @@
     {
         "id": "gourd",
         "name": "Dudhi/ Lauki/ Bottle gourd",
-        "category": "vegetables",
+        "category": "veggies",
         "price": "€4.50",
         "discount": "9%",
         "description": "Dudhi, also known as Lauki or Bottle Gourd, a light and refreshing vegetable that brings simplicity and nutrition to your meals. Sourced from local farms, our Dudhi is selected for its freshness and quality. With its mild, crisp texture, it's a versatile addition to soups, stews, and curries. Low in calories and rich in vitamins and minerals, Dudhi not only adds a subtle flavor to your dishes but also contributes to a healthy diet. Elevate your cooking with the natural goodness of Dudhi, a kitchen essential for those seeking a light and nutritious touch to their meals. Order now and enjoy the wholesome simplicity of Dudhi on your plate."
@@ -58,7 +58,7 @@
     {
         "id": "shallot",
         "name": "Sambar Onions / Shallots",
-        "category": "vegetables",
+        "category": "veggies",
         "price": "€3.25",
         "discount": "8%",
         "description": "Sambhar onions, also known as pearl onions, baby onions, or shallots, are a type of small and round onion that have a thin and papery skin. They have a sweet and mild flavor that can be enhanced by caramelizing, frying, or pickling. Sambhar onions are rich in antioxidants, vitamins, minerals, and flavonoids. They can help lower cholesterol, blood pressure, and inflammation, and prevent cancer and infections. You can use sambhar onions as a garnish, a salad ingredient, a pickle, or a curry. Sambhar onions are a tasty and healthy onion that can add a burst of flavor to any dish."
@@ -66,7 +66,7 @@
     {
         "id": "squash",
         "name": "Chayotae/Chowchow/ Squash",
-        "category": "vegetables",
+        "category": "veggies",
         "price": "€3.50",
         "discount": "6%",
         "description": "Chayote, also known as squash, is a versatile vegetable that’s native to Mexico. It’s a member of the gourd family, which includes cucumbers and melons. The vegetable has a mild, crisp texture that’s perfect for salads, stir-fries, and soups. Its light green skin encases a white, crunchy flesh that’s rich in vitamin C and fiber. The unique pear-like shape and multiple culinary uses make it a favorite in many cuisines worldwide. Whether eaten raw or cooked, Chayote adds a refreshing touch to any dish."
@@ -74,7 +74,7 @@
     {
         "id": "vellarikya",
         "name": "Madras Cucumber/ Dosakkai/ Vellarikya",
-        "category": "vegetables",
+        "category": "veggies",
         "price": "€5.00",
         "discount": "15%",
         "description": "Madras Cucumber, also known as Dosakai or Vellarikya in different regions, is a unique and versatile vegetable commonly used in Indian cuisine. This round, yellow-green cucumber is known for its crisp texture and mildly sour flavor, making it a popular choice in a variety of dishes. It's often used in curries, sambar (a lentil-based stew), and in pickles, where its ability to absorb flavors truly shines. Madras Cucumber is also enjoyed raw, added to salads for a refreshing crunch. Nutritionally, it's a great choice, being low in calories yet rich in water content, vitamins, and minerals. This vegetable is not just a culinary delight but also a healthy addition to meals, offering a blend of taste and nutrition that's hard to find. Its inclusion in recipes brings a touch of traditional Indian flavor, making it a beloved ingredient in kitchens that cherish authentic tastes."
