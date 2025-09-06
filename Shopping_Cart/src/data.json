@@ -2,6 +2,7 @@
     {
         "id": "coriander",
         "name": "Coriander Leaves",
+        "category": "herbs",
         "price": "€2.00",
         "discount": "18%",
         "description": "Coriander leaves are the fresh green leaves of the coriander plant, also known as cilantro or Chinese parsley. They have a citrusy and slightly bitter flavor that is popular in many cuisines, especially in Latin American, Asian, and Indian dishes. Coriander leaves are rich in antioxidants, vitamins, minerals, and fiber. They can help lower blood sugar, fight infections, and improve heart, brain, skin, and digestive health. You can use coriander leaves as a garnish, a salad ingredient, a sauce base, or a herb infusion. Coriander leaves are a fragrant and healthy herb that can enhance any dish."
@@ -9,6 +10,7 @@
     {
         "id": "curry",
         "name": "Fresh Curry Leaves",
+        "category": "herbs",
         "price": "€3.05",
         "discount": "10%",
         "description": "Curry leaves are the shiny green leaves of the curry tree, which belongs to the Rutaceae family. They have a distinctive and aromatic flavor that is widely used in various cuisines, especially in South Indian, Sri Lankan, and Malaysian dishes. Curry leaves are rich in antioxidants, vitamins, minerals, and carbazole alkaloids. They can help improve digestion, protect the liver, prevent anemia, and enhance hair and skin health. You can use curry leaves as a tempering, a chutney ingredient, a soup flavoring, or a rice seasoning. Curry leaves are a delicious and beneficial herb that can add a unique taste to any dish."
@@ -16,6 +18,7 @@
     {
         "id": "ginger",
         "name": "Adrak/Fresh Ginger",
+        "category": "herbs",
         "price": "€2.35",
         "discount": "17%",
         "description": "Ginger is a type of rhizome that has a brown skin and a yellow flesh. It has a spicy and pungent flavor that can be used in various cuisines, especially in Asian, Indian, and Middle Eastern dishes. Ginger is rich in antioxidants, vitamins, minerals, and gingerols. It can help improve digestion, nausea, inflammation, pain, and immunity. You can use ginger as a spice, a tea, a candy, or a medicine. Ginger is a versatile and beneficial rhizome that can add a zing to any dish."
@@ -23,6 +26,7 @@
     {
         "id": "gongura",
         "name": "Fresh Gongura leaves",
+        "category": "vegetables",
         "price": "€6.00",
         "discount": "8%",
         "description": ""
@@ -30,6 +34,7 @@
     {
         "id": "gourd",
         "name": "Dudhi/ Lauki/ Bottle gourd",
+        "category": "vegetables",
         "price": "€4.50",
         "discount": "9%",
         "description": "Dudhi, also known as Lauki or Bottle Gourd, a light and refreshing vegetable that brings simplicity and nutrition to your meals. Sourced from local farms, our Dudhi is selected for its freshness and quality. With its mild, crisp texture, it's a versatile addition to soups, stews, and curries. Low in calories and rich in vitamins and minerals, Dudhi not only adds a subtle flavor to your dishes but also contributes to a healthy diet. Elevate your cooking with the natural goodness of Dudhi, a kitchen essential for those seeking a light and nutritious touch to their meals. Order now and enjoy the wholesome simplicity of Dudhi on your plate."
@@ -37,12 +42,14 @@
     {
         "id": "lime",
         "name": "Green Lime",
+        "category": "fruits",
         "price": "€2.40",
         "discount": "48%",
         "description": "Lime is a type of citrus fruit that has a yellow skin and a juicy flesh. It has a sour and refreshing flavor that can be used in various cuisines, beverages, and desserts. Lemon is rich in vitamin C, antioxidants, and citric acid. It can help boost immunity, detoxify the body, prevent scurvy, and enhance skin health. You can use lemon as a juice, a zest, a dressing, or a garnish. Lemon is a versatile and beneficial fruit that can add a splash of brightness to any dish."
     },
     {
         "id": "pear",
+        "category": "fruits",
         "name": "",
         "price": "€",
         "discount": "",
@@ -51,6 +58,7 @@
     {
         "id": "shallot",
         "name": "Sambar Onions / Shallots",
+        "category": "vegetables",
         "price": "€3.25",
         "discount": "8%",
         "description": "Sambhar onions, also known as pearl onions, baby onions, or shallots, are a type of small and round onion that have a thin and papery skin. They have a sweet and mild flavor that can be enhanced by caramelizing, frying, or pickling. Sambhar onions are rich in antioxidants, vitamins, minerals, and flavonoids. They can help lower cholesterol, blood pressure, and inflammation, and prevent cancer and infections. You can use sambhar onions as a garnish, a salad ingredient, a pickle, or a curry. Sambhar onions are a tasty and healthy onion that can add a burst of flavor to any dish."
@@ -58,6 +66,7 @@
     {
         "id": "squash",
         "name": "Chayotae/Chowchow/ Squash",
+        "category": "vegetables",
         "price": "€3.50",
         "discount": "6%",
         "description": "Chayote, also known as squash, is a versatile vegetable that’s native to Mexico. It’s a member of the gourd family, which includes cucumbers and melons. The vegetable has a mild, crisp texture that’s perfect for salads, stir-fries, and soups. Its light green skin encases a white, crunchy flesh that’s rich in vitamin C and fiber. The unique pear-like shape and multiple culinary uses make it a favorite in many cuisines worldwide. Whether eaten raw or cooked, Chayote adds a refreshing touch to any dish."
@@ -65,6 +74,7 @@
     {
         "id": "vellarikya",
         "name": "Madras Cucumber/ Dosakkai/ Vellarikya",
+        "category": "vegetables",
         "price": "€5.00",
         "discount": "15%",
         "description": "Madras Cucumber, also known as Dosakai or Vellarikya in different regions, is a unique and versatile vegetable commonly used in Indian cuisine. This round, yellow-green cucumber is known for its crisp texture and mildly sour flavor, making it a popular choice in a variety of dishes. It's often used in curries, sambar (a lentil-based stew), and in pickles, where its ability to absorb flavors truly shines. Madras Cucumber is also enjoyed raw, added to salads for a refreshing crunch. Nutritionally, it's a great choice, being low in calories yet rich in water content, vitamins, and minerals. This vegetable is not just a culinary delight but also a healthy addition to meals, offering a blend of taste and nutrition that's hard to find. Its inclusion in recipes brings a touch of traditional Indian flavor, making it a beloved ingredient in kitchens that cherish authentic tastes."

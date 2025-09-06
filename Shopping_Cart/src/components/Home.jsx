@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { ProductsContext } from '../Context.jsx'
+import { ContentContext as data } from '../Context.jsx'
 import Product from './Product.jsx'
 
 function HomePage() {
@@ -11,7 +11,7 @@ function HomePage() {
             </h1>
             <div className="section-body">
                 <div className="products featured">{
-                    useContext(ProductsContext).map(product => {
+                    useContext(data).products.map(product => {
                         return <Product product={product} key={product.id} />
                     })
                 }</div>

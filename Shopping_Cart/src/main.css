@@ -13,17 +13,20 @@
 }
 * {
     margin: 0 0;
-    padding: 0 0;
     box-sizing: border-box;
+    padding: 0 0;
+    list-style: none;
 }
 *::before, *::after {
     box-sizing: border-box;
 }
 a {
     color: #0c7e7c;
+    text-decoration: none;
     transition: 0.2s ease;
 }
 img {
+    display: block;
     max-width: 100%;
     height: auto;
     border-radius: 2px;
@@ -67,8 +70,17 @@ body {
     color: #fff;
 }
 .nav-bar {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+.nav-list {
     display: flex;
     column-gap: 3px;
+}
+.nav-item a {
+    color: #fff;
 }
 .nav-link {
     display: flex;
@@ -81,9 +93,7 @@ body {
     padding: 15px 25px;
     font-size: 17px;
     letter-spacing: 0.5px;
-    color: #ffff;
     text-transform: uppercase;
-    text-decoration: none;
     transition: background-color 0.2s ease;
     transform: skew(-25deg) translateX(10px);
 }
@@ -103,6 +113,62 @@ body {
 .nav-link span {
     transform: skewX(25deg);
     filter: drop-shadow(0 0 0 #fff6);
+}
+.nav-box {
+    display: none;
+    column-gap: 20px;
+    position: absolute;
+    left: 0; right: 0;
+    z-index: 1;
+    max-width: 1200px;
+    margin-inline: auto;
+    box-shadow: 0 0 10px 5px #0001;
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 20px 20px;
+    transform: translateY(100px);
+    transition: 0.5s ease allow-discrete;
+    opacity: 0; /*allow discrete*/
+}
+.nav-box.active {
+    display: flex;
+    transform: translateY(0);
+    opacity: 1;
+    @starting-style {
+        transform: translateY(100px);
+        opacity: 0;
+    } /*start value goes last*/
+}
+.sub-link {
+    flex: 1 0 0;
+    display: grid;
+    box-shadow: inset 0 0 4px 2px #0002;
+    transition: 0.5s ease;
+}
+.sub-link:first-child {
+    transform: translateX(50%);
+}
+.sub-link:last-child {
+    transform: translateX(-50%);
+}
+.nav-item:hover .sub-link {
+    transform: translateX(0);
+}
+.sub-link img {
+    grid-area: 1 / 1;
+    position: relative;
+    z-index: -1;
+    width: 100%;
+}
+.sub-link strong {
+    grid-area: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Kaushan Script";
+    font-size: 46px;
+    text-transform: capitalize;
+    filter: drop-shadow(0 0 0 #000);
 }
 .action {
     display: flex;
@@ -160,7 +226,8 @@ body {
     display: none;
 }
 
-.about h1 {
+.about h1,
+.not-found {
     font-family: "Kaushan Script";
     font-size: 46px;
     text-transform: none;
@@ -182,6 +249,7 @@ body {
 }
 .about .text a {
     font-weight: 400;
+    text-decoration: underline;
 }
 
 .footer {
@@ -195,6 +263,7 @@ body {
     color: #fff;
 }
 .footer a {
+    text-decoration: underline;
     color: #fff;
 }
 

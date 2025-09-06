@@ -1,6 +1,7 @@
 import { HashRouter, Link } from 'react-router-dom'
-import { NavBar, NavRoutes } from './Routes.jsx'
-import { ProductsProvider } from './Context.jsx'
+import { ContentProvider } from './Context.jsx'
+import NavBar from './Navigation.jsx'
+import NavRoutes from './Routes.jsx'
 
 import logo from './assets/logo.png'
 import search from './assets/icons/search.svg'
@@ -10,7 +11,7 @@ function App() {
 
     return (
         <HashRouter>
-            <ProductsProvider>
+            <ContentProvider>
 
                 <header className="header">
                     <div className="logo">
@@ -40,7 +41,7 @@ function App() {
                     </a>
                 </footer>
 
-            </ProductsProvider>
+            </ContentProvider>
         </HashRouter>
     );
 }

@@ -1,5 +1,5 @@
 import { createContext } from 'react'
-import productsData from './data.json'
+import catalogData from './data.json'
 
 import noImage from './assets/images/default.webp'
 
@@ -9,21 +9,36 @@ const images = import.meta.glob('./assets/images/*.{jpg,webp}',
 
 const imageMap = Object.fromEntries(
     Object.entries(images).map(([path, url]) => [
-        path.split('/').pop().split('.')[0], url
-    ])
+        path.split('/').pop().split('.')[0], url])
 );
-const products = productsData.map(product => ({
-    ...product,
-    image: imageMap[product.id] || noImage,
+const categorySet = new Set();
+
+// map products and categories
+
+const products = catalogData.map(product => {
+    categorySet.add(product.category);
+    return {
+        ...product, image: imageMap[product.id] || noImage,
+    }
+}).sort(() => Math.random() - 0.5);
+
+const categories = [...categorySet].map(category => ({
+    name: category,
+    image: imageMap[category] || noImage,
 })).sort(() => Math.random() - 0.5);
 
-const ProductsContext = createContext([]);
+// provide content globally
 
-function ProductsProvider({ children }) {
+const ContentContext = createContext({
+    products: [],
+    categories: [],
+});
+
+function ContentProvider({ children }) {
     return (
-        <ProductsContext.Provider value={products}>
+        <ContentContext.Provider value={{ products, categories }}>
             {children}
-        </ProductsContext.Provider>
+        </ContentContext.Provider>
     );
 }
-export { ProductsContext, ProductsProvider }
+export { ContentContext, ContentProvider }
