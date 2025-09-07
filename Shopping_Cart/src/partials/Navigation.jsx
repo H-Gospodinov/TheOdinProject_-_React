@@ -34,7 +34,7 @@ function NavBar() {
                     <div className={`nav-box ${open ? 'active' : ''}`}>
                         {useContext(data).categories.map(cat => (
 
-                            <NavLink className="sub-link" to="/shop" key={cat.name}
+                            <NavLink className="sub-link" to={`/shop/${cat.name}`} key={cat.name}
                                 onClick={() => setOpen(false)}> {/*close dropdown*/}
 
                                 <img src={cat.image} alt={cat.name} width="200" height="200" />

@@ -16,6 +16,7 @@ function NavRoutes() {
         <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/shop" element={<ShopPage />} />
+            <Route path="/shop/:category" element={<ShopPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/cart" element={<CartPage />} />

@@ -11,9 +11,9 @@ function HomePage() {
             </h1>
             <div className="section-body">
                 <div className="products featured">{
-                    useContext(data).products.map(product => {
-                        return <Product product={product} key={product.id} />
-                    })
+                    useContext(data).products.map(product => (
+                        <Product product={product} key={product.id} />
+                    ))
                 }</div>
             </div>
         </section>
