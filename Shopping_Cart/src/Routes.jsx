@@ -1,9 +1,9 @@
 import { Routes, Route } from 'react-router-dom'
-import HomePage from './components/Home.jsx'
-import ShopPage from './components/Shop.jsx'
-import AboutPage from './components/About.jsx'
-import BlogPage from './components/Blog.jsx'
-import CartPage from './components/Cart.jsx'
+import HomePage from './pages/Home.jsx'
+import ShopPage from './pages/Shop.jsx'
+import AboutPage from './pages/About.jsx'
+import BlogPage from './pages/Blog.jsx'
+import CartPage from './pages/Cart.jsx'
 
 function NavRoutes() {
 

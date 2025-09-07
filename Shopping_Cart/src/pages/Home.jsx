@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { ContentContext as data } from '../Context.jsx'
-import Product from './Product.jsx'
+import Product from '../partials/Product.jsx'
 
 function HomePage() {
 

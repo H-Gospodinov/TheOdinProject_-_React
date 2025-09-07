@@ -1,6 +1,6 @@
 import { HashRouter, Link } from 'react-router-dom'
 import { ContentProvider } from './Context.jsx'
-import NavBar from './Navigation.jsx'
+import NavBar from './partials/Navigation.jsx'
 import NavRoutes from './Routes.jsx'
 
 import logo from './assets/logo.png'
