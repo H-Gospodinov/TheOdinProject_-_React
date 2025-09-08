@@ -1,0 +1,78 @@
+.sidebar {
+    display: flex;
+    flex-flow: column;
+    row-gap: 30px;
+    width: 200px;
+}
+.sidebar .title {
+    margin: 0 0 20px;
+    font-weight: normal;
+    text-transform: uppercase;
+    color: #0c7e7c;
+}
+.sidebar .list {
+    display: flex;
+    flex-flow: column;
+    row-gap: 15px;
+}
+.sidebar .item {
+    font-size: 17px;
+    line-height: 21px;
+    text-transform: capitalize;
+}
+.sidebar .link {
+    display: flex;
+    align-items: center;
+    column-gap: 15px;
+}
+.sidebar a::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    margin-bottom: -1px;
+    border-width: 1px 1px 0 0;
+    border-style: solid;
+    transform: rotate(45deg);
+}
+.sidebar a:hover,
+.sidebar a.active {
+    color: #0c7e7c;
+}
+.sidebar a:hover::before,
+.sidebar a.active::before {
+    border-color: #0c7e7c;
+}
+.sidebar .filter {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+}
+.sidebar .checkbox {
+    width: 12px;
+    height: 12px;
+    margin-bottom: -1px;
+    appearance: none;
+    border: 1px solid #333;
+    accent-color: #0c7e7c;
+    cursor: pointer;
+}
+.filter:hover .checkbox {
+    border-color: #0c7e7c;
+}
+.sidebar .checkbox:checked {
+    border-color: transparent;
+    background-color: #0c7e7c99;
+}
+.sidebar .label {
+    position: relative;
+    cursor: pointer;
+}
+.sidebar .label::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 0 -10px;
+}
+:checked + .label,
+.filter:hover label {
+    color: #0c7e7c;
+}

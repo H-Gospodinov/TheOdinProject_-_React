@@ -21,7 +21,7 @@
     box-sizing: border-box;
 }
 a {
-    color: #0c7e7c;
+    color: inherit;
     text-decoration: none;
     transition: 0.2s ease;
 }
@@ -78,9 +78,6 @@ body {
 .nav-list {
     display: flex;
     column-gap: 3px;
-}
-.nav-item a {
-    color: #fff;
 }
 .nav-link {
     display: flex;
@@ -182,6 +179,7 @@ body {
 }
 
 .main {
+    flex-grow: 1;
     display: flex;
     flex-flow: column;
     align-items: center;
@@ -191,7 +189,7 @@ body {
 }
 .section {
     max-width: 1600px;
-    margin: auto;
+    margin-inline: auto;
 }
 .section-title {
     display: flex;
@@ -218,6 +216,11 @@ body {
     grid-template: 1fr / repeat(5, 1fr);
     grid-gap: 20px;
 }
+.regular {
+    display: grid;
+    grid-template: 1fr / repeat(3, 1fr);
+    grid-gap: 20px;
+}
 .product {
     display: flex;
     flex-flow: column;
@@ -226,6 +229,18 @@ body {
     display: none;
 }
 
+.shop .section-body {
+    display: flex;
+    column-gap: 40px;
+}
+.shop .no-result b {
+    text-transform: capitalize;
+    filter: drop-shadow(0 0 0 #000);
+}
+
+.about {
+    margin-block: auto;
+}
 .about h1,
 .not-found {
     font-family: "Kaushan Script";
@@ -264,7 +279,9 @@ body {
 }
 .footer a {
     text-decoration: underline;
-    color: #fff;
+}
+.footer a:hover {
+    filter: drop-shadow(0 0 0 #fff);
 }
 
 body {
