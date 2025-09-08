@@ -14,7 +14,9 @@ function Sidebar({ filter, setFilter }) {
     return (
         <div className="sidebar">
             <div className="group">
-                <h3 className="title">Categories</h3>
+                <h3 className="title">
+                    <span className="wrap">Categories</span>
+                </h3>
                 <ul className="list">
                     <li className="item">
                         <NavLink className="link" to="/shop" end>Show all</NavLink>
@@ -26,7 +28,13 @@ function Sidebar({ filter, setFilter }) {
                 </ul>
             </div>
             <div className="group">
-                <h3 className="title">Origin</h3>
+                <h3 className="title">
+                    <span className="wrap">Origin</span>
+                    {filter.length > 0 && (
+                    <button className="clear" type="button" aria-label="clear"
+                        onClick={() => setFilter([])}>
+                    </button>)}
+                </h3>
                 <ul className="list">
                     {useContext(data).attributes.map(attr => (
                     <li className="item" key={attr}>
@@ -42,5 +50,4 @@ function Sidebar({ filter, setFilter }) {
             </div>
         </div>
     );
-}
-export default Sidebar
+} export default Sidebar

@@ -37,6 +37,7 @@ h1, h2 {
 }
 button {
     border: none;
+    background: none;
     transition: 0.2s ease;
     cursor: pointer;
 }
@@ -173,9 +174,6 @@ body {
     justify-content: flex-end;
     column-gap: 15px;
     min-width: 200px;
-}
-.action button {
-    background: none;
 }
 
 .main {
