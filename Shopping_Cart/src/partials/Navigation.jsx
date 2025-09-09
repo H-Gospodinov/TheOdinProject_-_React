@@ -2,6 +2,8 @@ import { NavLink } from 'react-router-dom'
 import { useContext, useState } from 'react'
 import { ContentContext as data } from '../Context.jsx'
 
+import '../assets/styles/navigation.css'
+
 import home from '../assets/icons/home.svg'
 import shop from '../assets/icons/food.svg'
 import about from '../assets/icons/flag.svg'
