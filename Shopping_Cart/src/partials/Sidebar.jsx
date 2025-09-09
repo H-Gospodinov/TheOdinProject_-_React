@@ -27,6 +27,21 @@ function Sidebar({ filter, setFilter }) {
                     </li>))}
                 </ul>
             </div>
+            {/* <div className="group">
+                <h3 className="title">
+                    <span className="wrap">Price range</span>
+                </h3>
+                <div className="list">
+                    <div className="item min-max">
+                        <span>min: €2</span>
+                        <span>max: €6</span>
+                    </div>
+                    <input className="slider" type="range" />
+                    <div className="item range">
+                        <span>range: €2 - €X</span>
+                    </div>
+                </div>
+            </div> */}
             <div className="group">
                 <h3 className="title">
                     <span className="wrap">Origin</span>
