@@ -75,6 +75,7 @@ body {
     display: flex;
     justify-content: center;
     position: relative;
+    z-index: 1;
 }
 .nav-list {
     display: flex;
@@ -84,7 +85,8 @@ body {
     display: flex;
     align-items: center;
     column-gap: 10px;
-    outline: 1px solid #0c7e7c;
+    position: relative;
+    z-index: 1; /**/
     border-radius: 5px;
     background-color: #fff2;
     background-size: 20px;
@@ -117,48 +119,50 @@ body {
     column-gap: 20px;
     position: absolute;
     left: 0; right: 0;
-    z-index: 1;
     max-width: 1200px;
     margin-inline: auto;
     box-shadow: 0 0 10px 5px #0001;
     border-radius: 5px;
     background-color: #fff;
     padding: 20px 20px;
-    transform: translateY(100px);
-    transition: 0.5s ease allow-discrete;
+    transition: 0.6s ease allow-discrete;
+    transition-delay: 0.25s;
+    transform: translateY(50px);
     opacity: 0; /*allow discrete*/
 }
 .nav-box.active {
     display: flex;
+    transition-duration: 0.8s;
     transform: translateY(0);
     opacity: 1;
     @starting-style {
-        transform: translateY(100px);
+        transform: translateY(50px);
         opacity: 0;
     } /*start value goes last*/
+}
+.nav-box::before {
+    content: ""; /*helper*/
+    position: absolute;
+    inset: -50px 0 0;
+    height: 50px;
 }
 .sub-link {
     flex: 1 0 0;
     display: grid;
     place-items: center;
+    align-content: center;
+    overflow: hidden;
     background-color: #f2f2f2;
-    transition: 0.5s ease;
-}
-.sub-link:first-child {
-    transform: translateX(50%);
-}
-.sub-link:last-child {
-    transform: translateX(-50%);
-}
-.nav-box.active .sub-link {
-    transform: translateX(0);
-}
-.nav-box .sub-link:hover {
-    transform: scale(1.01) skew(0.1deg);
 }
 .sub-link img {
     grid-area: 1 / 1;
     width: 100%;
+    transition: 0.2s ease;
+    filter: saturate(0.95);
+    opacity: 0.95;
+}
+.sub-link:hover img {
+    opacity: 0.8;
 }
 .sub-link strong {
     grid-area: 1 / 1;
