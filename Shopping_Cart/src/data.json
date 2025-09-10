@@ -30,10 +30,10 @@
         "id": "gongura",
         "name": "Fresh Gongura leaves",
         "category": "veggies",
-        "origin": "Africa",
+        "origin": "Asia",
         "price": "€6.00",
         "discount": "8%",
-        "description": ""
+        "description": "Gongura is at the heart of Andhra cuisine. These sorrel leaves grow abundantly in the region and are commonly consumed in the form of gongura chutney, gongura pappu, dals, and stir-fries. They have a distinct sour taste, similar to tamarind, making them perfect for a flavorful chutney that is absolutely delicious."
     },
     {
         "id": "gourd",
@@ -54,13 +54,13 @@
         "description": "Lime is a type of citrus fruit that has a yellow skin and a juicy flesh. It has a sour and refreshing flavor that can be used in various cuisines, beverages, and desserts. Lemon is rich in vitamin C, antioxidants, and citric acid. It can help boost immunity, detoxify the body, prevent scurvy, and enhance skin health. You can use lemon as a juice, a zest, a dressing, or a garnish. Lemon is a versatile and beneficial fruit that can add a splash of brightness to any dish."
     },
     {
-        "id": "pear",
-        "name": "",
+        "id": "quince",
+        "name": "Vranja Quince",
         "category": "fruits",
-        "origin": "Asia",
-        "price": "€",
+        "origin": "Europe",
+        "price": "€2.50",
         "discount": "",
-        "description": ""
+        "description": "Quinces have intense aroma, flavour, and tartness, although most varieties are too hard and tart to be eaten raw. They are commonly used in jams, jellies, marmalades, desserts, and savory dishes. Famous preparations include dulce de membrillo (quince paste) in Spain and Portugal, often paired with cheese."
     },
     {
         "id": "shallot",
