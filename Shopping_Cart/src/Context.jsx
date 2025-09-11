@@ -12,13 +12,12 @@ const imageMap = Object.fromEntries(
         path.split('/').pop().split('.')[0], url])
 );
 const categorySet = new Set();
-const attributeSet = new Set();
 
 // map products and categories
 
 const products = catalogData.map(product => {
+
     categorySet.add(product.category);
-    attributeSet.add(product.origin);
     return {
         ...product, image: imageMap[product.id] || noImage,
     }
@@ -29,18 +28,16 @@ const categories = [...categorySet].map(category => ({
     image: imageMap[category] || noImage,
 })).sort(() => Math.random() - 0.5);
 
-const attributes = [...attributeSet];
-
 // provide content globally
 
 const ContentContext = createContext({
-    products: [], categories: [], attributes: [],
+    products: [], categories: [],
 });
 
 function ContentProvider({ children }) {
     return (
         <ContentContext.Provider
-            value={{ products, categories, attributes }}
+            value={{ products, categories }}
         > {children}
         </ContentContext.Provider>
     );
