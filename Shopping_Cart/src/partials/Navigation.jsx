@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import { useContext, useState } from 'react'
 import { ContentContext as data } from '../Context.jsx'
 
@@ -8,6 +8,7 @@ import home from '../assets/icons/home.svg'
 import shop from '../assets/icons/food.svg'
 import about from '../assets/icons/flag.svg'
 import blog from '../assets/icons/blog.svg'
+import food from '../assets/images/organic.webp'
 
 function NavBar() {
 
@@ -34,14 +35,18 @@ function NavBar() {
                     </NavLink>
 
                     <div className={`nav-box ${open ? 'active' : ''}`}>
+                        <Link className="sub-link" to="/shop" onClick={() => setOpen(false)}>
+                            <img src={food} alt="All" width="284" height="426" />
+                            <strong>All</strong>
+                        </Link>
                         {useContext(data).categories.map(cat => (
 
-                            <NavLink className="sub-link" to={`/shop/${cat.name}`} key={cat.name}
+                            <Link className="sub-link" to={`/shop/${cat.name}`} key={cat.name}
                                 onClick={() => setOpen(false)}> {/*close dropdown*/}
 
-                                <img src={cat.image} alt={cat.name} width="200" height="200" />
+                                <img src={cat.image} alt={cat.name} width="284" height="426" />
                                 <strong>{cat.name}</strong>
-                            </NavLink>
+                            </Link>
                         ))}
                     </div>
                 </li>
@@ -60,5 +65,4 @@ function NavBar() {
             </ul>
         </nav>
     );
-}
-export default NavBar
+} export default NavBar
