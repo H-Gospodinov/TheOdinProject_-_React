@@ -18,8 +18,14 @@ const categorySet = new Set();
 const products = catalogData.map(product => {
 
     categorySet.add(product.category);
+
+    const discount = parseFloat(product.discount);
+    const newPrice = discount ? // discounted
+        (product.price *(1 - discount/100)).toFixed(2) : '';
+
     return {
-        ...product, image: imageMap[product.id] || noImage,
+        ...product, newPrice,
+            image: imageMap[product.id] || noImage,
     }
 }).sort(() => Math.random() - 0.5);
 

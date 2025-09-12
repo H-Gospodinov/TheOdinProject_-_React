@@ -98,5 +98,6 @@
     transform: rotate(-15deg);
 }
 .product .discount {
+    order: 1;
     color: #fa0;
 }

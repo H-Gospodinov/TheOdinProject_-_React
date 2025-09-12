@@ -6,10 +6,6 @@ function Product({ product }) {
 
     const [quantity, setQuantity] = useState(1);
 
-    const price = parseFloat(product.price.slice(1)).toFixed(2);
-    const discount = product.discount ? parseFloat(product.discount.slice(0, -1)) : null;
-    const newPrice = (price - (price * (discount / 100))).toFixed(2);
-
     return (
         <div className="product">
             <div className="upper">
@@ -31,15 +27,19 @@ function Product({ product }) {
                             onClick={() => quantity > 1 && setQuantity(String(+quantity - 1))}
                         ></button>
                     </div>
-                    <button className="purchase" type="button">Add to cart</button>
-                </div>
+                    <button className="purchase" type="button">
+                        <span>Add to cart</span>
+                    </button>
+                </div> {/*available on hover*/}
             </div>
             <div className="lower">
                 <h2 className="name">{product.name}</h2>
                 <div className="prices">
-                    {discount && <span className="price new">€{newPrice}</span>}
-                    <span className={`price ${discount && 'old'}`}>{product.price}</span>
-                    {discount && <span className="discount">{product.discount} off</span>}
+                    {product.newPrice && <> {/*discounted*/}
+                        <span className="price new">€{product.newPrice}</span>
+                        <span className="discount">{product.discount} off</span>
+                    </>}
+                    <span className={`price ${product.newPrice && 'old'}`}>€{product.price}</span>
                 </div>
             </div>
         </div>

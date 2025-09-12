@@ -9,9 +9,9 @@ function ShopPage() {
     const { category } = useParams();
     const { products } = useContext(data);
 
-    const prices = products.map(prod => {
-        return Number(prod.price.replace(/[^\d.]/g, ""))
-    });
+    const prices = products.map(prod =>
+        prod.newPrice ? prod.newPrice : prod.price
+    );
     const minPrice = Math.min(...prices);
     const maxPrice = Math.max(...prices);
 
@@ -26,10 +26,10 @@ function ShopPage() {
         .filter(prod => !category || prod.category === category)
         .filter(prod => attrs.length < 1 || attrs.includes(prod.origin))
         .filter(prod => {
-            const priceValue = Number(prod.price.replace(/[^\d.]/g, ""));
+            const priceValue = prod.newPrice ? prod.newPrice : prod.price;
             return priceValue >= range[0] && priceValue <= range[1];
     });
-    /* useEffect(() => { // reset filters when switch categories
+    /* useEffect(() => { // reset filters on category change
         setAttrs([]); setRange([minPrice, maxPrice]);
     }, [category, minPrice, maxPrice]); */
 

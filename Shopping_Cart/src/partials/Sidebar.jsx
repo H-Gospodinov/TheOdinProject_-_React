@@ -5,7 +5,8 @@ import { ContentContext as data } from '../Context';
 import '../assets/styles/sidebar.css'
 
 function Sidebar(
-    { minPrice, maxPrice, range, setRange, attributes, attrs, setAttrs }
+    { minPrice, maxPrice, range, setRange,
+        attributes, attrs, setAttrs }
 ) {
     return (
         <div className="sidebar">
@@ -26,32 +27,32 @@ function Sidebar(
             <div className="group">
                 <h3 className="title">
                     <span className="wrap">Price range</span>
-                    {(range[1] !== maxPrice) && ( // clear
+                    {(range[1] !== maxPrice) && // clear
                     <button className="clear" type="button" aria-label="clear"
                         onClick={() => setRange([minPrice, maxPrice])}>
-                    </button>)}
+                    </button>}
                 </h3>
                 <div className="list">
                     <div className="item min-max">
-                        <span>min: €{minPrice}</span>
-                        <span>max: €{maxPrice}</span>
+                        <span>min: €{Math.floor(minPrice)}</span>
+                        <span>max: €{Math.ceil(maxPrice)}</span>
                     </div>
                     <input className="slider" type="range"
-                        min={minPrice} max={maxPrice} value={range[1]}
+                        min={minPrice} max={maxPrice} value={range[1]} step="0.01"
                         onChange={(e) => setRange([range[0], Number(e.target.value)])}
                     />
                     <div className="item range">
-                        <span>range: €{range[0]} - €{range[1]}</span>
+                        <span>€{range[0].toFixed(2)} - €{range[1].toFixed(2)}</span>
                     </div>
                 </div>
             </div>
             <div className="group">
                 <h3 className="title">
                     <span className="wrap">Origin</span>
-                    {attrs.length > 0 && ( // clear selected
+                    {attrs.length > 0 && // clear selected
                     <button className="clear" type="button" aria-label="clear"
                         onClick={() => setAttrs([])}>
-                    </button>)}
+                    </button>}
                 </h3>
                 <ul className="list">
                     {attributes.map(attr => (
