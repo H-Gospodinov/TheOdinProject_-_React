@@ -92,15 +92,9 @@ body {
     display: flex;
     flex-flow: column;
     align-items: center;
-    width: 100%;
-    margin: auto;
     padding: 3% 2% 5%;
 }
-.section {
-    max-width: 1600px;
-    margin-inline: auto;
-}
-.section-title {
+.title {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -111,8 +105,8 @@ body {
     text-transform: uppercase;
     color: #0c7e7c;
 }
-.section-title::before,
-.section-title::after {
+.title::before,
+.title::after {
     content: "";
     width: 42px;
     height: 42px;
@@ -120,17 +114,25 @@ body {
     mask: url(assets/icons/food.svg) no-repeat center;
     mask-size: contain;
 }
-.featured {
+.home {
+    max-width: 1580px;
+}
+.products {
+    flex-grow: 1;
     display: grid;
-    grid-template: 1fr / repeat(5, 1fr);
     grid-gap: 20px;
+}
+.featured {
+    grid-template: 1fr / repeat(5, 1fr);
 }
 .regular {
-    display: grid;
     grid-template: 1fr / repeat(3, 1fr);
-    grid-gap: 20px;
 }
-.shop .section-body {
+.shop {
+    width: 100%;
+    max-width: 1180px;
+}
+.shop .content {
     display: flex;
     column-gap: 40px;
 }
@@ -143,6 +145,7 @@ body {
 }
 .about h1,
 .not-found {
+    margin-block: auto;
     font-family: "Kaushan Script";
     font-size: 46px;
     text-transform: none;
@@ -182,7 +185,7 @@ body {
 .footer a:hover {
     filter: drop-shadow(0 0 0 #fff);
 }
-
+/*body bckgrnd comes last*/
 body {
     background-image: url(assets/background.webp);
     background-position: center -60px;

@@ -12,7 +12,7 @@ function Product({ product }) {
                 <img src={product.image} alt={product.name} width="300" height="300" />
                 <div className="action">
                     <div className="quantity">
-                        <input className="input" name="qty" type="text"
+                        <input className="input" name="qty" type="text" aria-label="qty"
                             inputMode="numeric" pattern="\d*" value={quantity}
                             onChange={(e) => {
                                 const value = e.target.value;

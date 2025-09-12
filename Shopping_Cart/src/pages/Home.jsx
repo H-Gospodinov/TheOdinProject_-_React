@@ -6,10 +6,10 @@ function HomePage() {
 
     return (
         <section className="section home">
-            <h1 className="section-title">
+            <h1 className="section-title title">
                 <span>Organic store Demo</span>
             </h1>
-            <div className="section-body">
+            <div className="section-body content">
                 <div className="products featured">{
                     useContext(data).products.map(product => (
                         <Product product={product} key={product.id} />

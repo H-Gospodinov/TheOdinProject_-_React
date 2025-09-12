@@ -5,13 +5,12 @@ import { ContentContext as data } from '../Context';
 import '../assets/styles/sidebar.css'
 
 function Sidebar(
-    { minPrice, maxPrice, range, setRange,
-        attributes, attrs, setAttrs }
+    { minPrice, maxPrice, range, setRange, attrs, setAttrs }
 ) {
     return (
         <div className="sidebar">
             <div className="group">
-                <h3 className="title">
+                <h3 className="name">
                     <span className="wrap">Categories</span>
                 </h3>
                 <ul className="list">
@@ -25,7 +24,7 @@ function Sidebar(
                 </ul>
             </div>
             <div className="group">
-                <h3 className="title">
+                <h3 className="name">
                     <span className="wrap">Price range</span>
                     {(range[1] !== maxPrice) && // clear
                     <button className="clear" type="button" aria-label="clear"
@@ -47,15 +46,16 @@ function Sidebar(
                 </div>
             </div>
             <div className="group">
-                <h3 className="title">
+                <h3 className="name">
                     <span className="wrap">Origin</span>
-                    {attrs.length > 0 && // clear selected
+                    {(attrs.length > 0) && // clear selected
                     <button className="clear" type="button" aria-label="clear"
                         onClick={() => setAttrs([])}>
                     </button>}
                 </h3>
                 <ul className="list">
-                    {attributes.map(attr => (
+                    {[...new Set(useContext(data).products.map(
+                        prod => prod.origin))].map(attr => (
                     <li className="item" key={attr}>
                         <span className="filter">
                             <input className="checkbox" id={attr} type="checkbox"

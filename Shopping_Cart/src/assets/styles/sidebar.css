@@ -4,7 +4,7 @@
     row-gap: 30px;
     width: 200px;
 }
-.sidebar .title {
+.sidebar .name {
     display: flex;
     align-items: center;
     justify-content: space-between;

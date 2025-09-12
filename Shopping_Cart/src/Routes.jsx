@@ -8,7 +8,7 @@ import CartPage from './pages/Cart.jsx'
 function NavRoutes() {
 
     const NotFound = () => (
-        <h1 className="section-title not-found">
+        <h1 className="title not-found">
             Page not found
         </h1> // no route match
     );
