@@ -93,7 +93,18 @@ body {
     display: flex;
     flex-flow: column;
     align-items: center;
+    row-gap: 3.33vw;
     padding: 3% 2% 5%;
+}
+.main .home {
+    max-width: 1580px;
+}
+.main .shop {
+    width: 100%;
+    max-width: 1180px;
+}
+.main .demo {
+    margin-block: auto;
 }
 .title {
     display: flex;
@@ -115,9 +126,6 @@ body {
     mask: url(assets/icons/leaf.svg) no-repeat center;
     mask-size: contain;
 }
-.main .home {
-    max-width: 1580px;
-}
 .products {
     flex-grow: 1;
     display: grid;
@@ -129,9 +137,8 @@ body {
 .regular {
     grid-template: 1fr / repeat(3, 1fr);
 }
-.main .shop {
-    width: 100%;
-    max-width: 1180px;
+.related {
+    grid-template: 1fr / repeat(4, 1fr);
 }
 .shop .content {
     display: flex;
@@ -140,9 +147,6 @@ body {
 .shop .no-result b {
     text-transform: capitalize;
     filter: drop-shadow(0 0 0 #000);
-}
-.main .demo {
-    margin-block: auto;
 }
 .demo h1, .not-found {
     margin-block: auto;

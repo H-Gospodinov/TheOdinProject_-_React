@@ -2,6 +2,7 @@ import { useContext } from 'react'
 import { useParams, Link } from 'react-router-dom';
 import { ContentContext as data } from '../Context.jsx'
 import Purchase from '../partials/Purchase.jsx';
+import Product from '../partials/Product.jsx'
 
 import '../assets/styles/details.css'
 
@@ -17,8 +18,12 @@ function DetailsPage() {
     const product = products.find(prod => {
         return prod.id === details;
     });
+    const related = products.filter(prod => (
+        prod.id !== product.id &&
+        prod.category === product.category
+    ));
 
-    return (product ?
+    return (product ? <>
         <section className="section details">
             <h1 className="section-title title">
                 <span>{product.name}</span>
@@ -70,10 +75,21 @@ function DetailsPage() {
                                 <span>Pickup available at OrganicFood</span>
                             </li>
                         </ul>
-                    </div>
-                </div>
+                    </div> {/*overview*/}
+                </div> {/*wrapper*/}
             </div>
-        </section> :
+        </section>
+        {related.length > 0 &&
+        <section className="section shop">
+            <h1 className="section-title title">
+                <span>More {product.category}</span>
+            </h1>
+            <div className="section-body content">
+                <div className="products related">
+                    {related.map(prod => <Product product={prod} key={prod.id} />)}
+                </div> {/*same category*/}
+            </div>
+        </section>}</>:
         <h1 className="title not-found">
             Product not found
         </h1>
