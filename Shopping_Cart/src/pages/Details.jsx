@@ -42,6 +42,11 @@ function DetailsPage() {
                                 <span className="discount">{product.discount} off</span>
                             </>}
                             <span className={`price ${product.newPrice && 'old'}`}>€{product.price}</span>
+                            {(product.amount || product.weight) &&
+                                <span className="amount">
+                                    {product.amount && `${product.amount} pieces`}
+                                    {product.weight && `appx. ${product.weight}`}
+                                </span>}
                         </div>
                         <p className="description">{product.description}</p>
                         <p className="inform-1">Usually ready in 24 hours. View store<Link to="/demo">info</Link>.</p>
@@ -51,8 +56,7 @@ function DetailsPage() {
                                 product.stock <= 10 ?
                                 <span className="low-stock">Low stock - <b>{product.stock}</b> items left</span> :
                                 <><img src={stock} alt="" width="26" height="26" />
-                                <span className="in-stock">In stock - more than 10 items left</span></>
-                            }
+                                <span className="in-stock">In stock - more than 10 available</span></>}
                         </div>
                         <Purchase />
                         <p className="inform-2">Tax included. Shipping calculated at checkout.</p>

@@ -65,6 +65,14 @@
     font-size: 18px;
     color: #fa0;
 }
+.details .amount {
+    order: 1;
+    background: #0c7e7c11;
+    padding: 1px 4px 1px 2px;
+    border-radius: 3px;
+    font-size: 17px;
+    color: #888;
+}
 .details .description {
     line-height: 24px;
 }
