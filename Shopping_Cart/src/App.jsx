@@ -20,7 +20,7 @@ function App() {
                         </Link>
                     </div>
                     <NavBar />
-                    <div className="action">
+                    <div className="actions">
                         <button type="button" aria-label="Search">
                             <img src={search} alt="" width="36" height="36" />
                         </button>

@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 
 import HomePage from './pages/Home.jsx'
 import ShopPage from './pages/Shop.jsx'
+import DetailsPage from './pages/Details.jsx'
 import AboutPage from './pages/About.jsx'
 import BlogPage from './pages/Blog.jsx'
 import CartPage from './pages/Cart.jsx'
@@ -39,6 +40,14 @@ function NavRoutes() {
                 <Route path="/shop/:category" element={
                     // no animation for sub-pages,
                     <ShopPage /> // but "all" is animated
+                } />
+                <Route path="/product/:details" element={
+                    <motion.div className="fader"
+                        initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }} transition={{ duration: 0.1 }}
+                    >
+                        <DetailsPage />
+                    </motion.div>
                 } />
                 <Route path="/about" element={
                     <motion.div className="fader"
