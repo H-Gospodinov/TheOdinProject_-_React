@@ -1,20 +1,20 @@
-import icon from '../assets/organic.png'
+import icon from '../assets/react.png'
 
-function AboutPage() {
+function DemoPage() {
 
     return (
         <section className="section demo">
             <h1 className="section-title title">
-                <span>About Organic food store</span>
+                <span>Just a shopping cart demo</span>
             </h1>
             <div className="section-body content">
-                <img src={icon} className="image" width="150" height="150" alt="" />
-                <p className="text">Just a demo of a single-page Shopping Cart application, not a real online food store. Thanks for visiting.</p>
+                <img src={icon} className="image animate" width="150" height="150" alt="" />
+                <p className="text">As of now only the Catalog and Shopping Cart functionalities are implemented. Blog and other content may be added to the application later.</p>
                 <p className="text">Check source code on
                     <a href="https://github.com/H-Gospodinov/TheOdinProject_-_React" target="_blank" rel="noopener">GitHub</a>
                 </p>
             </div>
         </section>
-    );
+    )
 }
-export default AboutPage
+export default DemoPage

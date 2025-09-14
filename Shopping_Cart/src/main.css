@@ -112,10 +112,10 @@ body {
     width: 42px;
     height: 42px;
     background-color: #fa0;
-    mask: url(assets/icons/food.svg) no-repeat center;
+    mask: url(assets/icons/leaf.svg) no-repeat center;
     mask-size: contain;
 }
-.home {
+.main .home {
     max-width: 1580px;
 }
 .products {
@@ -129,7 +129,7 @@ body {
 .regular {
     grid-template: 1fr / repeat(3, 1fr);
 }
-.shop {
+.main .shop {
     width: 100%;
     max-width: 1180px;
 }
@@ -141,21 +141,26 @@ body {
     text-transform: capitalize;
     filter: drop-shadow(0 0 0 #000);
 }
-.about {
+.main .demo {
     margin-block: auto;
 }
-.about h1,
-.not-found {
+.demo h1, .not-found {
     margin-block: auto;
     font-family: "Kaushan Script";
     font-size: 46px;
     text-transform: none;
 }
-.about .image {
+.demo .image {
     display: block;
     margin: 30px auto;
 }
-.about .text {
+.demo .animate {
+    animation: rotate 8s linear infinite;
+}
+@keyframes rotate {
+    100% {transform: rotate(360deg)}
+}
+.demo .text {
     display: flex;
     justify-content: center;
     column-gap: 5px;
@@ -166,7 +171,7 @@ body {
     line-height: 36px;
     color: #0c7e7c;
 }
-.about .text a {
+.demo .text a {
     font-weight: normal;
     text-decoration: underline;
 }

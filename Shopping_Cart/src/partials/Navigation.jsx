@@ -5,7 +5,7 @@ import { ContentContext as data } from '../Context.jsx'
 import '../assets/styles/navigation.css'
 
 import home from '../assets/icons/home.svg'
-import shop from '../assets/icons/food.svg'
+import shop from '../assets/icons/leaf.svg'
 import about from '../assets/icons/flag.svg'
 import blog from '../assets/icons/blog.svg'
 import food from '../assets/images/organic.webp'
@@ -51,13 +51,13 @@ function NavBar() {
                     </div>
                 </li>
                 <li className="nav-item">
-                    <NavLink to="/about" className="nav-link about">
+                    <NavLink to="/about" className="nav-link">
                         <img src={about} alt="" width="23" height="23" />
                         <span>About</span>
                     </NavLink>
                 </li>
                 <li className="nav-item">
-                    <NavLink to="/blog" className="nav-link blog">
+                    <NavLink to="/demo" className="nav-link">
                         <img src={blog} alt="" width="23" height="23" />
                         <span>Blog</span>
                     </NavLink>

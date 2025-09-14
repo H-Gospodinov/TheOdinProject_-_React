@@ -5,7 +5,7 @@ import HomePage from './pages/Home.jsx'
 import ShopPage from './pages/Shop.jsx'
 import DetailsPage from './pages/Details.jsx'
 import AboutPage from './pages/About.jsx'
-import BlogPage from './pages/Blog.jsx'
+import DemoPage from './pages/Demo.jsx'
 import CartPage from './pages/Cart.jsx'
 
 function NavRoutes() {
@@ -57,12 +57,12 @@ function NavRoutes() {
                         <AboutPage />
                     </motion.div>
                 } />
-                <Route path="/blog" element={
+                <Route path="/demo" element={
                     <motion.div className="fader"
                         initial={{ opacity: 0 }} animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }} transition={{ duration: 0.1 }}
                     >
-                        <BlogPage />
+                        <DemoPage />
                     </motion.div>
                 } />
                 <Route path="/cart" element={

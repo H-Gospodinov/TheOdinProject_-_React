@@ -44,7 +44,7 @@ function DetailsPage() {
                             <span className={`price ${product.newPrice && 'old'}`}>€{product.price}</span>
                         </div>
                         <p className="description">{product.description}</p>
-                        <p className="inform-1">Usually ready in 24 hours. View store<Link>info</Link>.</p>
+                        <p className="inform-1">Usually ready in 24 hours. View store<Link to="/demo">info</Link>.</p>
                         <div className="stock">
                             {!product.stock ?
                                 <span className="no-stock">Out of stock - sold out</span> : 

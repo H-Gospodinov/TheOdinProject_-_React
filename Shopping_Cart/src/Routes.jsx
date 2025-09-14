@@ -3,7 +3,7 @@ import HomePage from './pages/Home.jsx'
 import ShopPage from './pages/Shop.jsx'
 import DetailsPage from './pages/Details.jsx'
 import AboutPage from './pages/About.jsx'
-import BlogPage from './pages/Blog.jsx'
+import DemoPage from './pages/Demo.jsx'
 import CartPage from './pages/Cart.jsx'
 
 function NavRoutes() {
@@ -20,7 +20,7 @@ function NavRoutes() {
             <Route path="/shop/:category" element={<ShopPage />} />
             <Route path="/product/:details" element={<DetailsPage />} />
             <Route path="/about" element={<AboutPage />} />
-            <Route path="/blog" element={<BlogPage />} />
+            <Route path="/demo" element={<DemoPage />} />
             <Route path="/cart" element={<CartPage />} />
             <Route path="*" element={<NotFound />} />
         </Routes>
