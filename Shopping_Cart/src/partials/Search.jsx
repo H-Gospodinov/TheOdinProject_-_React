@@ -1,5 +1,5 @@
-import { useContext, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { useContext, useState, useEffect, useRef } from 'react'
 import { ContentContext as data } from '../Context';
 
 import '../assets/styles/search.css'
@@ -13,35 +13,128 @@ const SearchIcon = () => (
 function SearchBox() {
 
     const [open, setOpen] = useState(false);
+    const [query, setQuery] = useState('');
+    const [focus, setFocus] = useState(-1);
+    const [results, setResults] = useState([]);
+
+    const { products } = useContext(data);
+    const itemRefs = useRef([]);
+
+    const resetSearch = () => {
+        setOpen(false); setQuery('');
+        setResults([]); setFocus(-1);
+    };
+    useEffect(() => {
+        if (results.length < 1 || !open) {
+            setFocus(-1);
+        }
+    }, [results.length, open]);
 
     useEffect(() => {
         const keyDown = (e) => {
-            e.key === "Escape" && setOpen(false);
+            e.key === "Escape" && resetSearch();
         };
         document.addEventListener("keydown", keyDown);
         return () => {
             document.removeEventListener("keydown", keyDown);
         };
-    }, [open]); // close by esc
+    }, []); // close by esc
 
+    function handleInput(e) {
+        const value = e.target.value;
+        setQuery(value); // display type
+
+        if (value.trim().length < 3) {
+            setResults([]); setFocus(-1); return;
+        }
+        const filtered = products.filter(product =>
+            product.name.toLowerCase().includes(value.toLowerCase())
+        );
+        setResults(filtered);
+    }
+
+    function handleKeyDown(e) {
+        if (query.trim().length < 3 || results.length < 1) {
+            return;
+        }
+        switch (e.key) {
+
+            case 'ArrowDown':
+                e.preventDefault(); setFocus(prev =>
+                    prev < results.length - 1 ? prev + 1 : 0);
+                    break;
+            case 'ArrowUp':
+                e.preventDefault(); setFocus(prev =>
+                    prev > 0 ? prev - 1 : results.length - 1);
+                    break;
+            case 'Enter':
+                if(!itemRefs.current[focus] || focus < 0) {
+                    return;
+                } e.preventDefault();
+                itemRefs.current[focus].click();
+        }
+    }
     return (
         <div className="search">
-            <button type="button" aria-label="search"
+
+            <button type="button"
+                aria-label="search"
                 className={`toggle ${open ? 'on':''}`}
                 onClick={(e) => {
+                    const reset = () => {
+                        setQuery(''); setFocus(-1); setResults([]);
+                    };
+                    open ? setTimeout(() => reset(), 400) : reset();
                     setOpen(!open); e.currentTarget.blur();
-                }}> {open ?
+                }}
+            > {open ?
                 <img src={close} alt="" width="36" height="36" /> :
                 <SearchIcon />}
             </button>
+
             <search className={`search-box ${open ? 'active':''}`}>
-                <form className="form" role="search">
-                    <input className="input" id="search" type="text" placeholder="Search" />
+
+                <form
+                    className="form" role="search"
+                    onSubmit={(e) => e.preventDefault()}>
+
+                    <input
+                        className="input" type="text"
+                        name="search" placeholder="Search"
+                        value={query} autoFocus
+                        onChange={handleInput}
+                        onKeyDown={handleKeyDown}/>
+
                     <button className="button" aria-label="search">
                         <SearchIcon />
                     </button>
                 </form>
-                <div className="results"></div>
+
+                <div className="results">
+                    {query.trim().length < 3 ? null : results.length > 0 ?
+
+                    <ul className="list">
+                        {results.map((product, idx) => (
+
+                            <li className={`item ${idx !== focus ? '': 'active'}`}
+                                key={product.id}> {/*link wrapper*/}
+
+                                <Link
+                                    className="link"
+                                    to={`/product/${product.id}`}
+                                    onClick={() => {resetSearch()}}
+                                    tabIndex={-1} ref={(link) => {
+                                        return itemRefs.current[idx] = link;
+                                }}>
+                                    <img src={product.image} alt={product.name} width="64" height="64" />
+                                    <span>{product.name}</span>
+                                </Link>
+                            </li>
+                        ))}
+                    </ul> : <div className="list">
+                        <p className="no-result">No results for "<b>{query}</b>"</p>
+                    </div>}
+                </div>
             </search>
         </div>
     );
