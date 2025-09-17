@@ -151,6 +151,10 @@ body {
     display: flex;
     column-gap: 40px;
 }
+.shop .no-result {
+    padding: 10px 0;
+    line-height: 24px;
+}
 .shop .no-result b {
     text-transform: capitalize;
     filter: drop-shadow(0 0 0 #000);

@@ -4,12 +4,12 @@
 .search .toggle {
     position: relative;
     z-index: 2;
-    outline: 2px solid transparent;
+    box-shadow: 0 0 0 2px transparent;
     border-radius: 50%;
     color: #fff;
 }
 .search .toggle.on {
-    outline-color: #fff;
+    box-shadow: 0 0 0 2px #fff;
 }
 .search .toggle.on img {
     filter: invert(1);
@@ -57,6 +57,7 @@
     overflow: hidden;
     border-radius: 4px;
     background-color: #fff;
+    transition: 0.2s ease;
 }
 .search-box .input {
     flex-grow: 1;
@@ -98,6 +99,10 @@
 }
 .search .results .no-result {
     padding: 15px;
+}
+#shop.no-hover .nav-box {
+    display: none;
+    transition: none;
 }
 body:has(.search-box.active) {
     overflow: hidden;
