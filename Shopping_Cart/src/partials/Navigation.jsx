@@ -23,7 +23,7 @@ function NavBar() {
                         <span>Home</span>
                     </NavLink>
                 </li>
-                <li className="nav-item"
+                <li className="nav-item" id="shop"
                     onMouseEnter={() => setOpen(true)}
                     onMouseLeave={() => setOpen(false)}>
 

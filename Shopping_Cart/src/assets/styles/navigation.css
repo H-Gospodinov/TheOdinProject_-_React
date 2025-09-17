@@ -34,9 +34,7 @@
     transform: skewX(25deg);
     filter: drop-shadow(0 0 10px #fff9);
 }
-.nav-link.shop img {
-    filter: drop-shadow(0 0 0 #fff6)
-            drop-shadow(0 0 10px #fff9);
+#shop .nav-link img {
     margin: 0 -2px -3px -5px;
 }
 .nav-link span {
