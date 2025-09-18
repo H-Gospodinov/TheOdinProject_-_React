@@ -11,7 +11,7 @@ function Product({ product }) {
                 <Link to={`/product/${product.id}`}>
                     <img src={product.image} alt={product.name} width="300" height="300" />
                 </Link>
-                <Purchase />
+                <Purchase product={product} />
             </div>
             <div className="lower">
                 <h2 className="name">

@@ -114,68 +114,43 @@
     line-height: 16px;
     opacity: 0.75;
 }
-.details .action {
-    display: flex;
-    align-items: center;
-}
 .details .quantity {
-    display: grid;
-    grid-template: 1fr 1fr / 1fr auto;
     flex: 0 1 19%;
     min-width: 95px;
 }
-.details .input {
-    grid-area: 1 / 1 / -1;
+.details .qty-input {
     width: 100%;
     height: 54px;
-    border: none;
-    border-radius: 4px 0 0 4px;
     background-color: #0c7e7c11;
-    text-align: center;
     font-size: 17px;
 }
-.details .button {
-    display: flex;
-    justify-content: center;
+.details .qty-button {
     width: 32px;
     height: 27px;
     background-color: #eee;
-    padding: 3px 0;
 }
-.details .button:hover {
-    background-color: #e3e3e3;
+.details .qty-button:hover {
+    background-color: #f3f3f3;
 }
-.details .button::after {
-    content: "";
+.details .qty-button::after {
     width: 10px;
     height: 10px;
-    border: solid #666;
-    transition: 0.2s ease;
-}
-.details .increase::after {
-    align-self: flex-end;
-    border-width: 1px 1px 0 0;
-    transform: rotate(-45deg);
-}
-.details .decrease::after {
-    border-width: 0 1px 1px 0;
-    transform: rotate(45deg);
 }
 .details .purchase {
     flex-grow: 1;
     height: 54px;
-    border-radius: 0 4px 4px 0;
-    background-color: #fa0;
     padding: 0 28px;
     font-size: 17px;
     letter-spacing: 0.5px;
-    color: #fff;
-    white-space: nowrap;
     text-transform: uppercase;
     filter: drop-shadow(0 0 0 #fff6);
 }
-.details .purchase:hover {
-    background-color: #ffb006;
+.details .action.off {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+.details .action.off > * {
+    pointer-events: none;
 }
 .details .inform-2 {
     font-size: 15px;

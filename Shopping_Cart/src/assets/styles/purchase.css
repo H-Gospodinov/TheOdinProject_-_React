@@ -1,0 +1,110 @@
+.action {
+    display: flex;
+    align-items: center;
+}
+.action .quantity {
+    display: grid;
+    grid-template: 1fr 1fr / 1fr auto;
+}
+.action .qty-input {
+    grid-area: 1 / 1 / -1;
+    border: none;
+    border-radius: 4px 0 0 4px;
+    text-align: center;
+}
+.action .qty-button {
+    display: flex;
+    justify-content: center;
+    padding: 3px 0;
+}
+.action .qty-button::after {
+    content: "";
+    border: solid #666;
+    transition: 0.2s ease;
+}
+.action .increase::after {
+    align-self: flex-end;
+    border-width: 1px 1px 0 0;
+    transform: rotate(-45deg);
+}
+.action .decrease::after {
+    border-width: 0 1px 1px 0;
+    transform: rotate(45deg);
+}
+.action .purchase {
+    border-radius: 0 4px 4px 0;
+    background-color: #fa0;
+    color: #fff;
+    white-space: nowrap;
+}
+.action .purchase:hover {
+    background-color: #ffb006;
+}
+
+.modal-box {
+    position: fixed;
+    top: 50%; left: 50%;
+    min-width: 300px;
+    overflow: clip;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 5px #0001;
+    background-color: #fff;
+    padding: 20px 20px;
+    transform: translate(-50%, -50%);
+    transition: 0.4s ease allow-discrete;
+    opacity: 0; /*allow discrete*/
+}
+.modal-box::backdrop {
+    background-color: #0009;
+    transition: 0.4s ease allow-discrete;
+    opacity: 0; /*allow discrete*/
+}
+.modal-box[open],
+.modal-box[open]::backdrop {
+    opacity: 1;
+    @starting-style {
+        opacity: 0;
+    } /*start value last*/
+}
+.modal-box .name {
+    margin: 0 0 10px !important;
+    font-size: 20px;
+}
+.modal-box .success {
+    color: #0c7e7c;
+}
+.modal-box .error {
+    color: #f00;
+}
+.modal-box .actions {
+    column-gap: 10px;
+    margin-top: 15px;
+}
+.modal-box .link {
+    flex: 1 1 50%;
+    border-radius: 4px;
+    background-color: #fa0;
+    padding: 6px 18px 8px;
+    text-align: center;
+    white-space: nowrap;
+    color: #fff;
+}
+.modal-box .link:hover {
+    opacity: 0.85;
+}
+.modal-box .link + a {
+    background-color: #bbb;
+}
+.modal-box .close {
+    position: absolute;
+    top: 0; right: 0;
+    width: 32px;
+    height: 32px;
+    background: center no-repeat;
+    background-image: url(../icons/clear.svg);
+    transition: 0.4s ease;
+}
+.modal-box .close:hover {
+    transform: rotate(180deg);
+}

@@ -63,7 +63,7 @@ function DetailsPage() {
                                 <><img src={stock} alt="" width="26" height="26" />
                                 <span className="in-stock">In stock - more than 10 available</span></>}
                         </div>
-                        <Purchase />
+                        <Purchase product={product} />
                         <p className="inform-2">Tax included. Shipping calculated at checkout.</p>
                         <ul className="shipping">
                             <li className="delivery">

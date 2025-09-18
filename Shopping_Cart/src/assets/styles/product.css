@@ -9,73 +9,54 @@
     position: relative;
 }
 .product .action {
-    display: flex;
-    align-items: center;
     justify-content: center;
     position: absolute;
     inset: 0px 0px;
     background-color: #0005;
     transition: 0.5s ease;
+    pointer-events: none;
     opacity: 0;
 }
-.product .upper:hover .action {
-    pointer-events: none;
+.product :hover >.action {
     opacity: 1;
 }
 .product .quantity {
-    display: grid;
-    grid-template: 1fr 1fr / 1fr auto;
     pointer-events: auto;
 }
-.product .input {
-    grid-area: 1 / 1 / -1;
+.product .qty-input {
     width: 50px;
     height: 48px;
-    border: none;
-    border-radius: 4px 0 0 4px;
     background-color: #fffe;
-    text-align: center;
     font-size: 16px;
 }
-.product .button {
-    display: flex;
-    justify-content: center;
+.product .qty-button {
     width: 24px;
     height: 24px;
     background-color: #ddd;
-    padding: 3px 0;
 }
-.product .button:hover {
+.product .qty-button:hover {
     background-color: #e3e3e3;
 }
-.product .button::after {
-    content: "";
+.product .qty-button::after {
     width: 8px;
     height: 8px;
-    border: solid #666;
-    transition: 0.2s ease;
-}
-.product .increase::after {
-    align-self: flex-end;
-    border-width: 1px 1px 0 0;
-    transform: rotate(-45deg);
-}
-.product .decrease::after {
-    border-width: 0 1px 1px 0;
-    transform: rotate(45deg);
 }
 .product .purchase {
     height: 48px;
-    border-radius: 0 4px 4px 0;
-    background-color: #fa0;
     padding: 0 24px;
     font-size: 16px;
-    color: #fff;
-    white-space: nowrap;
     pointer-events: auto;
 }
-.product .purchase:hover {
-    background-color: #ffb006;
+.product .off::before {
+    content: "Out of stock";
+    font-size: 17px;
+    letter-spacing: 0.5px;
+    filter: drop-shadow(0 0 0 #fff);
+    color: #fff;
+}
+.product .off .quantity,
+.product .off .purchase {
+    display: none;
 }
 .product .name {
     margin: 12px 0 3px;
