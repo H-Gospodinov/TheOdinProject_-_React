@@ -1,5 +1,7 @@
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route, useLocation,
+    useNavigationType } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
+import { useEffect } from 'react'
 
 import HomePage from './pages/Home.jsx'
 import ShopPage from './pages/Shop.jsx'
@@ -10,7 +12,14 @@ import CartPage from './pages/Cart.jsx'
 
 function NavRoutes() {
 
-    const location = useLocation();
+  const location = useLocation();
+  const navType = useNavigationType();
+
+    useEffect(() => {
+        if (navType === "PUSH") {
+            window.scrollTo({top: 0, behavior:'smooth'});
+        } // skip reload
+    }, [location.pathname, navType]);
 
     const NotFound = () => (
         <h1 className="title not-found">
