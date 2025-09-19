@@ -13,6 +13,7 @@ import food from '../assets/images/organic.webp'
 function NavBar() {
 
     const [open, setOpen] = useState(false);
+    const { categories } = useContext(data);
 
     return (
         <nav className="nav-bar">
@@ -39,8 +40,7 @@ function NavBar() {
                             <img src={food} alt="All" width="284" height="426" />
                             <strong>All</strong>
                         </Link>
-                        {useContext(data).categories.map(cat => (
-
+                        {categories.map(cat => (
                             <Link className="sub-link" to={`/shop/${cat.name}`} key={cat.name}
                                 onClick={() => setOpen(false)}> {/*close dropdown*/}
 

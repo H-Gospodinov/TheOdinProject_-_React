@@ -7,6 +7,9 @@ import '../assets/styles/sidebar.css'
 function Sidebar(
     { minPrice, maxPrice, range, setRange, attrs, setAttrs }
 ) {
+    const { categories } = useContext(data);
+    const { products } = useContext(data);
+
     return (
         <div className="sidebar">
             <div className="group">
@@ -17,9 +20,11 @@ function Sidebar(
                     <li className="item">
                         <NavLink className="link" to="/shop" end>Show all</NavLink>
                     </li>
-                    {useContext(data).categories.map(cat => (
-                    <li className="item" key={cat.name}>
-                        <NavLink className="link" to={`/shop/${cat.name}`}>{cat.name}</NavLink>
+                    {categories.map(category => (
+                    <li className="item" key={category.name}>
+                        <NavLink className="link" to={`/shop/${category.name}`}>
+                            {category.name}
+                        </NavLink>
                     </li>))}
                 </ul>
             </div>
@@ -27,6 +32,7 @@ function Sidebar(
                 <h3 className="name">
                     <span className="wrap">Price range</span>
                     {(range[1] !== maxPrice) && // clear
+
                     <button className="clear" type="button" aria-label="clear"
                         onClick={() => setRange([minPrice, maxPrice])}>
                     </button>}
@@ -48,24 +54,27 @@ function Sidebar(
             <div className="group">
                 <h3 className="name">
                     <span className="wrap">Origin</span>
-                    {(attrs.length > 0) && // clear selected
+                    {(attrs.length > 0) && // clear
+
                     <button className="clear" type="button" aria-label="clear"
                         onClick={() => setAttrs([])}>
                     </button>}
                 </h3>
                 <ul className="list">
-                    {[...new Set(useContext(data).products.map(
-                        prod => prod.origin))].map(attr => (
+                    {[...new Set( // ignore existing
+                        products.map(prod => prod.origin)
+                    )].map(attr => ( // unique only
+
                     <li className="item" key={attr}>
                         <span className="filter">
                             <input className="checkbox" id={attr} type="checkbox"
                                 checked={attrs.includes(attr)}
-                                onChange={() => setAttrs(selected =>
+                                onChange={() => setAttrs(selected => (
                                     // select or deselect
                                     !selected.includes(attr) ? [...selected, attr]
-                                    : selected.filter(every => every !== attr)
-                                )}
-                            /> <label className="label" htmlFor={attr}>{attr}</label>
+                                    : selected.filter(every => every !== attr))
+                                )} />
+                            <label className="label" htmlFor={attr}>{attr}</label>
                         </span>
                     </li>))}
                 </ul>
