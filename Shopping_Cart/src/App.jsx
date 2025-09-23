@@ -1,5 +1,5 @@
 import { HashRouter, Link } from 'react-router-dom'
-import { ContentProvider } from './Context.jsx'
+import { ContentProvider } from './context/Catalog.jsx'
 import NavBar from './partials/Navigation.jsx'
 import NavRoutes from './Routes.jsx'
 import SearchBox from './partials/Search.jsx'

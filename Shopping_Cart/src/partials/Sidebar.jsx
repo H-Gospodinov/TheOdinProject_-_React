@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
-import { ContentContext as data } from '../Context';
+import { ContentContext as data } from '../context/Catalog.jsx';
 
 import '../assets/styles/sidebar.css'
 

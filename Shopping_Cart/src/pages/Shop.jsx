@@ -1,6 +1,6 @@
 import { useParams, useLocation } from 'react-router-dom'
 import { useContext, useState, useEffect } from 'react'
-import { ContentContext as data } from '../Context.jsx'
+import { ContentContext as data } from '../context/Catalog.jsx'
 import Sidebar from '../partials/Sidebar.jsx'
 import Product from '../partials/Product.jsx'
 

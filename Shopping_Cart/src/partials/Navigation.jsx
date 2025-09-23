@@ -1,6 +1,6 @@
 import { NavLink, Link } from 'react-router-dom'
 import { useContext, useState } from 'react'
-import { ContentContext as data } from '../Context.jsx'
+import { ContentContext as data } from '../context/Catalog.jsx'
 
 import '../assets/styles/navigation.css'
 

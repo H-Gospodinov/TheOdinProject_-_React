@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { useParams, Link } from 'react-router-dom';
-import { ContentContext as data } from '../Context.jsx'
+import { ContentContext as data } from '../context/Catalog.jsx'
 import Purchase from '../partials/Purchase.jsx';
 import Product from '../partials/Product.jsx'
 

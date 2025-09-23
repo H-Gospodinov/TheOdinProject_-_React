@@ -1,9 +1,9 @@
 import { createContext } from 'react'
-import catalogData from './data.json'
+import catalogData from '../data.json'
 
-import noImage from './assets/images/default.webp'
+import noImage from '../assets/images/default.webp'
 
-const images = import.meta.glob('./assets/images/*.{jpg,webp}',
+const images = import.meta.glob('../assets/images/*.{jpg,webp}',
     { eager: true, query: '?url', import: 'default' }
 ); // import images (Vite)
 

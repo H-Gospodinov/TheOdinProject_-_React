@@ -1,6 +1,6 @@
 import { useNavigate, Link } from 'react-router-dom'
 import { useContext, useState, useEffect, useRef } from 'react'
-import { ContentContext as data } from '../Context';
+import { ContentContext as data } from '../context/Catalog.jsx';
 
 import '../assets/styles/search.css'
 
