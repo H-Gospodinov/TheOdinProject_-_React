@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom'
-import { useState, useRef } from 'react'
+import { useContext, useState, useRef } from 'react'
+import { BasketContext as basket } from '../context/Basket.jsx';
 
 import '../assets/styles/purchase.css'
 
 function Purchase({ product }) {
+
+    const { insert } = useContext(basket);
 
     const [quantity, setQuantity] = useState(1);
     const [message, setMessage] = useState('');
@@ -15,7 +18,7 @@ function Purchase({ product }) {
             setMessage(`Only ${product.stock} available`);
         }
         else {
-            // add-to-cart action
+            insert(product, quantity);
             setMessage(`${quantity} added to cart`);
         }
         modalRef.current.showModal();
