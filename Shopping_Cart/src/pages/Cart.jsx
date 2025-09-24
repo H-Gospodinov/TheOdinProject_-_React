@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { BasketContext as data } from '../context/Basket.jsx'
 import { useNavigate, Link } from 'react-router-dom'
 
@@ -7,9 +7,28 @@ import '../assets/styles/basket.css'
 function CartPage() {
 
     const currentBasket = useContext(data).basket;
-    const { remove } = useContext(data);
+    const { update, remove } = useContext(data);
+
+    const [notAvailable, setNotAvailable] = useState(null);
+
     const navigate = useNavigate();
 
+    function handleQuantity() {
+        const change = (product, num) => {
+            const newQuantity = product.quantity + num;
+
+            if (newQuantity < 1) return;
+
+            if (newQuantity > product.stock) {
+                setNotAvailable(product.id);
+            } else {
+                update(product.id, newQuantity);
+                setNotAvailable(null);
+        }}; return {
+            increase: (product) => change(product, +1),
+            decrease: (product) => change(product, -1),
+        };
+    }
     return (
         currentBasket.length > 0 ?
         <section className="section cart">
@@ -23,7 +42,7 @@ function CartPage() {
                         <th className="align">details</th>
                         <th>price</th>
                         <th>qnty</th>
-                        <th>total</th>
+                        <th>sum</th>
                         <th>remove</th>
                     </tr></thead>
                     <tbody>
@@ -31,7 +50,7 @@ function CartPage() {
                         <tr key={product.id}>
                             <td className="image">
                                 <Link to={`/product/${product.id}`}>
-                                    <img src={product.image} alt={product.name} width="100" height="100" />
+                                    <img src={product.image} alt="" width="100" height="100" />
                                 </Link>
                             </td>
                             <td className="details align">
@@ -49,10 +68,45 @@ function CartPage() {
                             <td className="price">
                                 € {product.newPrice ? product.newPrice : product.price}
                             </td>
-                            <td className="quantity">
-                                {product.quantity}
+                            <td className="qnty action">
+                                <div className="quantity">
+                                    <input
+                                        className="qty-input" name="qty"
+                                        type="text" aria-label="qty"
+
+                                        inputMode="numeric" pattern="\d*"
+                                        value={String(product.quantity)}
+
+                                        onChange={(e) => {
+                                            const value = e.target.value;
+                                            if (!value.match(/^\d*$/)) return;
+                                            // block non-numbers, empty string, and zero
+                                            if (+value > product.stock) {
+                                                setNotAvailable(product.id);
+                                            } else {
+                                                update(product.id, value > 0 ? +value : 1);
+                                                setNotAvailable(null);
+                                            }
+                                        }} onKeyDown={(e) => (e.key == 'Enter' || e.key == 'Escape')
+                                            && e.currentTarget.blur()}
+                                    />
+                                    <button
+                                        className="qty-button increase"
+                                        type="button" aria-label="increase"
+                                        onClick={() => handleQuantity().increase(product)}>
+                                    </button>
+                                    <button
+                                        className="qty-button decrease"
+                                        type="button" aria-label="decrease"
+                                        onClick={() => handleQuantity().decrease(product)}>
+                                    </button>
+                                </div>
+                                {notAvailable === product.id &&
+                                    <span className="error">
+                                        only <b>{product.stock}</b> available
+                                    </span>}
                             </td>
-                            <td className="total">
+                            <td className="sums">
                                 € {((product.newPrice ? product.newPrice : product.price)
                                     * product.quantity).toFixed(2)}
                             </td>
@@ -74,6 +128,6 @@ function CartPage() {
                 </div>
             </div>
         </section> : <p className="title not-found">Cart is empty</p>
-    )
+    );
 }
 export default CartPage

@@ -8,16 +8,16 @@ function BasketProvider({ children }) {
         const stored = sessionStorage.getItem('basket');
         return stored ? JSON.parse(stored) : []
     });
+
     useEffect(() => {sessionStorage
         .setItem('basket', JSON.stringify(basket));
-    }, [basket]);
+    }, [basket]); // store in browser
+
 
     // add product to basket
 
-    function insert(product, quantity = 1) {
-
+    function insert(product, quantity) {
         setBasket(current => {
-
             const alreadyAdded = current.find(item => {
                 return item.id === product.id
             });
@@ -25,26 +25,29 @@ function BasketProvider({ children }) {
                 current.map(item => item.id === product.id ?
                     // if already added -> increase quantity
                     { ...item, quantity: item.quantity + quantity } : item
-                ) : [...current, { ...product, quantity }]
-
+                ) : [...current, { ...product, quantity }];
             return newBasket;
         });
     }
-
     // update product quantity
 
-    function update() {
+    function update(productId, quantity) {
+        setBasket(current => (
+            current.map(product => (
+                product.id !== productId ? product
+            : { ...product, quantity }))
+        ));
     }
-
-    //remove products from basket
+    // remove product(s) from basket
 
     function remove(productId) {
-        setBasket(current =>
+        setBasket(current => (
             productId ? current.filter(product => (
                 product.id !== productId
             )) : [] // if no ID -> remove all
-        );
+        ));
     }
+    // provide basket data and tools
 
     return (
         <BasketContext.Provider
