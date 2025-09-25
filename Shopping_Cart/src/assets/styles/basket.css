@@ -107,6 +107,77 @@ tr:last-child td:last-child {
     border-color: #555;
     opacity: 1;
 }
+.cart .total {
+    display: flex;
+    flex-flow: column;
+    align-items: flex-end;
+    row-gap: 5px;
+    margin: 30px 0;
+    color: #555;
+}
+.cart .total-price {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+}
+.cart .total span {
+    border-radius: 3px;
+    background-color: #0c7e7c11;
+    padding: 2px 8px 3px;
+    color: #888;
+}
+.cart .total strong {
+    margin: -1px 0 1px;
+    font-size: 24px;
+    color: #0c7e7c;
+    filter: drop-shadow(0 0 0 #0c7e7c);
+}
+.cart .shipping {
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+.cart .terms {
+    display: flex;
+    align-items: center;
+    column-gap: 7px;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+}
+.cart .terms input {
+    width: 13px;
+    height: 13px;
+    margin-bottom: -1px;
+    appearance: none;
+    border: 1px solid #555;
+    accent-color: #0c7e7c;
+    cursor: pointer;
+}
+.cart .terms input:checked {
+    border-color: transparent;
+    background-color: #0c7e7c99;
+}
+.cart .terms .void {
+    border-color: #f00;
+}
+.cart .terms .void + label {
+    color: #f00;
+}
+.cart .terms label {
+    position: relative;
+    cursor: pointer;
+}
+.cart .terms label::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 0 -10px;
+}
+.cart .terms .link {
+    margin-left: -2px;
+    color: #0c7e7c;
+}
+.cart .terms .link:hover {
+    text-decoration: underline;
+}
 .cart .actions {
     column-gap: 10px;
     margin-top: 20px;

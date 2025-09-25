@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useState, useRef } from 'react'
 import { BasketContext as data } from '../context/Basket.jsx'
 import { useNavigate, Link } from 'react-router-dom'
 
@@ -11,6 +11,7 @@ function CartPage() {
 
     const [notAvailable, setNotAvailable] = useState(null);
 
+    const termsRef = useRef(null);
     const navigate = useNavigate();
 
     function handleQuantity() {
@@ -102,11 +103,11 @@ function CartPage() {
                                     </button>
                                 </div>
                                 {notAvailable === product.id &&
-                                    <span className="error">
-                                        only <b>{product.stock}</b> available
-                                    </span>}
+                                <span className="error">
+                                    only <b>{product.stock}</b> available
+                                </span>}
                             </td>
-                            <td className="sums">
+                            <td className="sum">
                                 € {((product.newPrice ? product.newPrice : product.price)
                                     * product.quantity).toFixed(2)}
                             </td>
@@ -118,12 +119,37 @@ function CartPage() {
                         </tr>)}
                     </tbody>
                 </table>
+                <div className="total">
+                    <div className="total-price">
+                        <span>Total Price</span>
+                        <strong>€{currentBasket.reduce((total, product) => {
+                            const price = product.newPrice ? product.newPrice : product.price;
+                            return total + (price * product.quantity)}, 0).toFixed(2)}
+                        </strong>
+                    </div>
+                    <div className="shipping">
+                        <p>shipping calculated at checkout</p>
+                    </div>
+                    <div className="terms">
+                        <input type="checkbox" id="terms" ref={termsRef}
+                            onChange={() => termsRef.current.classList.remove('void')} />
+                        <label htmlFor="terms">Accept terms of service</label>
+                        <Link className="link" to="/demo">(read)</Link>
+                    </div>
+                </div>
                 <div className="actions">
                     <button className="button discard"
                         onClick={() => remove()}>Remove products
                     </button>
                     <button className="button checkout"
-                        onClick={() => navigate("/demo")}>Proceed to checkout
+                        onClick={() => {
+                            if (termsRef.current.checked) {
+                                navigate("/demo")
+                            }
+                            else {
+                                termsRef.current.classList.add('void');
+                            }
+                        }}>Proceed to checkout
                     </button>
                 </div>
             </div>
