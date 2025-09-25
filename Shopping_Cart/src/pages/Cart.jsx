@@ -4,6 +4,9 @@ import { useNavigate, Link } from 'react-router-dom'
 
 import '../assets/styles/basket.css'
 
+import visa from '../assets/icons/card1.png'
+import master from '../assets/icons/card2.png'
+
 function CartPage() {
 
     const currentBasket = useContext(data).basket;
@@ -119,10 +122,14 @@ function CartPage() {
                         </tr>)}
                     </tbody>
                 </table>
-                <div className="total">
-                    <div className="total-price">
-                        <span>Total Price</span>
-                        <strong>€{currentBasket.reduce((total, product) => {
+                <div className="summary">
+                    <div className="payment">
+                        <div className="methods">
+                            <img src={visa} alt="" width="56" height="39" />
+                            <img src={master} alt="" width="40" height="28" />
+                        </div>
+                        <strong className="total">
+                            €{currentBasket.reduce((total, product) => {
                             const price = product.newPrice ? product.newPrice : product.price;
                             return total + (price * product.quantity)}, 0).toFixed(2)}
                         </strong>

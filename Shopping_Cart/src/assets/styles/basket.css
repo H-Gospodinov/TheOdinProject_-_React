@@ -107,7 +107,7 @@ tr:last-child td:last-child {
     border-color: #555;
     opacity: 1;
 }
-.cart .total {
+.cart .summary {
     display: flex;
     flex-flow: column;
     align-items: flex-end;
@@ -115,22 +115,30 @@ tr:last-child td:last-child {
     margin: 30px 0;
     color: #555;
 }
-.cart .total-price {
+.cart .payment {
     display: flex;
     align-items: center;
-    column-gap: 8px;
+    column-gap: 10px;
 }
-.cart .total span {
-    border-radius: 3px;
-    background-color: #0c7e7c11;
-    padding: 2px 8px 3px;
-    color: #888;
+.cart .methods {
+    display: flex;
+    align-items: center;
 }
-.cart .total strong {
+.methods img:first-child {
+    opacity: 0.8;
+}
+.methods img:last-child {
+    opacity: 0.9;
+}
+.cart .total {
     margin: -1px 0 1px;
     font-size: 24px;
-    color: #0c7e7c;
+    letter-spacing: 0.5px;
     filter: drop-shadow(0 0 0 #0c7e7c);
+    color: #0c7e7c;
+}
+.cart .total::first-letter {
+    margin-right: 3px;
 }
 .cart .shipping {
     font-size: 15px;
@@ -148,7 +156,7 @@ tr:last-child td:last-child {
     height: 13px;
     margin-bottom: -1px;
     appearance: none;
-    border: 1px solid #555;
+    border: 1px solid #777;
     accent-color: #0c7e7c;
     cursor: pointer;
 }
@@ -160,6 +168,10 @@ tr:last-child td:last-child {
     border-color: #f00;
 }
 .cart .terms .void + label {
+    color: #f00;
+}
+.cart .terms .void ~ .link {
+    text-decoration: underline;
     color: #f00;
 }
 .cart .terms label {
