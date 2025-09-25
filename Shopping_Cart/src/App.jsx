@@ -34,7 +34,7 @@ function App() {
                         <NavRoutes />
                     </main>
                     <footer className="footer">
-                        <span>Check source code on</span>
+                        <span>Check source code on </span>
                         <a target="_blank" rel="noopener"
                             href="https://h-gospodinov.github.io/H-Gospodinov/">GitHub
                         </a>

@@ -9,8 +9,9 @@ function DemoPage() {
             </h1>
             <div className="section-body content">
                 <img src={icon} className="image animate" width="150" height="150" alt="" />
-                <p className="text">As of now only the Catalog and Shopping Cart functionalities are implemented. Blog and other content may be added to the application later.</p>
-                <p className="text">Check source code on
+                <p className="text">As of now only the Catalog and Shopping Cart functionalities are implemented.
+                    Other content, blog, checkout, may be added to the application later.</p>
+                <p className="text">Check source code on {''}
                     <a href="https://github.com/H-Gospodinov/TheOdinProject_-_React" target="_blank" rel="noopener">GitHub</a>
                 </p>
             </div>

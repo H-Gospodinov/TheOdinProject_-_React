@@ -182,9 +182,6 @@ body {
     100% {transform: rotate(360deg)}
 }
 .demo .text {
-    display: flex;
-    justify-content: center;
-    column-gap: 5px;
     max-width: 600px;
     margin: 20px auto;
     text-align: center;
@@ -197,9 +194,6 @@ body {
     text-decoration: underline;
 }
 .footer {
-    display: flex;
-    justify-content: center;
-    column-gap: 5px;
     background-color: #0c7e7c;
     padding: 15px;
     text-align: center;
