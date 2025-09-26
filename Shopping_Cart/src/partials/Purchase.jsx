@@ -1,29 +1,45 @@
 import { Link } from 'react-router-dom'
-import { useContext, useState, useRef } from 'react'
-import { BasketContext as basket } from '../context/Basket.jsx';
+import { useContext, useState, useEffect, useRef } from 'react'
+import { BasketContext as data } from '../context/Basket.jsx';
 
 import '../assets/styles/purchase.css'
 
 function Purchase({ product }) {
 
-    const { insert } = useContext(basket);
+    const { basket, insert } = useContext(data);
 
     const [quantity, setQuantity] = useState(1);
-    const [message, setMessage] = useState('');
+    const [validation, setValidation] = useState(null);
 
     const modalRef = useRef(null);
+    const modalReset = () => setTimeout(() => {
+        setValidation(null);
+    }, 400); // match css
+
+    useEffect(() => {
+        if (validation && modalRef.current) {
+            modalRef.current.showModal();
+        }
+    }, [validation]);
 
     const handleAddToCart = () => {
-        if (quantity > product.stock) {
-            setMessage(`Only ${product.stock} available`);
+        const inBasket = basket.find(added => {
+            return added.id === product.id
+        });
+        const basketQty = inBasket?.quantity || 0;
+        const totalQty = quantity + basketQty;
+
+        if (totalQty > product.stock) {
+            setValidation({status: 'error',
+            message: `Only ${product.stock} available` + (
+            basketQty ? ` (${basketQty} already added)` :'')});
         }
         else {
             insert(product, quantity);
-            setMessage(`${quantity} added to cart`);
+            setValidation({status: "success",
+            message: `${quantity} added to cart`});
         }
-        modalRef.current.showModal();
     };
-
     return (<>
         <div className={`action ${product.stock ?'':'off'}`}>
             <div className="quantity">
@@ -47,24 +63,26 @@ function Purchase({ product }) {
                 <span>Add to cart</span>
             </button>
         </div>
+        {validation && // feedback message
         <dialog className="modal-box" ref={modalRef}>
             <div className="status">
                 <h4 className="name">{product.name}</h4>
-                <span className={quantity > product.stock ?
-                    'error' : 'success'}>{message}</span>
+                <span className={validation.status}>{validation.message}</span>
             </div>
-            {(quantity <= product.stock) &&
-                <div className="actions">
-                    <Link className="link" to="/cart">Go to cart</Link>
-                    <Link className="link" to="/shop" onClick={() => {
-                        modalRef.current.close();
-                        window.scrollTo({top: 0, behavior:'smooth'});
-                    }}>Browse more</Link>
-                </div>
-            } <button className="close" aria-label="close"
-                onClick={() => modalRef.current.close()}>
-            </button>
-        </dialog>
+            {validation.status == "success" &&
+            <div className="actions">
+                <Link className="link" to="/cart">Go to cart</Link>
+                <Link className="link" to="/shop"
+                    onClick={() => {
+                    modalRef.current.close(); modalReset();
+                    window.scrollTo({top: 0, behavior:'smooth'});
+                }}>Browse more</Link>
+            </div>}
+            <button className="close" aria-label="close"
+                onClick={() => {
+                    modalRef.current.close(); modalReset();
+            }}></button>
+        </dialog>}
     </>);
 }
 export default Purchase
