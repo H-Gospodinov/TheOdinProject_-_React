@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
 
 function CartItem({ product, update, remove }) {
@@ -6,22 +6,20 @@ function CartItem({ product, update, remove }) {
     const [isEmpty, setIsEmpty] = useState(false);
     const [notAvailable, setNotAvailable] = useState(null);
 
-    const handleQuantity = () => {
-        const change = (product, num) => {
-            const newQuantity = product.quantity + num;
+    const actionDisabled = useRef(false);
 
-            if (newQuantity < 1) return;
+    const handleQuantity = (x) => {
+        const newQuantity = product.quantity + x;
 
-            if (newQuantity > product.stock) {
-                setNotAvailable(product.id);
-            } else {
-                update(product.id, newQuantity);
-                setNotAvailable(null);
-        }}; return {
-            increase: () => change(product, +1),
-            decrease: () => change(product, -1),
-        };
-    }
+        if (newQuantity < 1) return;
+
+        if (newQuantity > product.stock) {
+            setNotAvailable(product.id);
+        } else {
+            update(product.id, newQuantity);
+            setNotAvailable(null);
+        } // buttons only
+    };
     return (
         <tr key={product.id}>
             <td className="image">
@@ -57,6 +55,7 @@ function CartItem({ product, update, remove }) {
                             const value = e.target.value;
                             if (!value.match(/^\d*$/)) return;
                             if (value === "") {
+                                actionDisabled.current = true;
                                 setIsEmpty(true); return;
                             }
                             if (+value > product.stock) {
@@ -81,7 +80,10 @@ function CartItem({ product, update, remove }) {
                         className="qty-button increase"
                         type="button" aria-label="increase"
                         onClick={(e) => {
-                            handleQuantity().increase();
+                            if (!actionDisabled.current) {
+                                handleQuantity(1);
+                            }
+                            actionDisabled.current = false;
                             e.currentTarget.blur();
                         }}>
                     </button>
@@ -89,7 +91,7 @@ function CartItem({ product, update, remove }) {
                         className="qty-button decrease"
                         type="button" aria-label="decrease"
                         onClick={(e) => {
-                            handleQuantity().decrease();
+                            handleQuantity(-1);
                             e.currentTarget.blur();
                         }}>
                     </button>

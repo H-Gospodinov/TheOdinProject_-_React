@@ -65,22 +65,24 @@ function Purchase({ product }) {
 
                     onChange={(e) => {
                         const value = e.target.value;
-                        if (!value.match(/^\d*$/)) return;
+                        if (!value.match(/^\d*$/)) {
+                            return; // non-numeric
+                        }
                         if (value === "") {
-                            actionDisabled.current = true;
-                            setIsEmpty(true); return;
+                            setIsEmpty(true); // empty
+                        } else {
+                            setQuantity(+value);
+                            setIsEmpty(false);
                         }
-                        if (+value < 1) {
-                            actionDisabled.current = true
-                        }
-                        setQuantity(+value);
-                        setIsEmpty(false);
+                        // disable if zero or empty
+                        actionDisabled.current =
+                            +value < 1 ? true : false;
                     }}
                     onBlur={(e) => {
-                        if (e.target.value === "") {
+                        if (+e.target.value < 1) {
                             setQuantity(1);
                             setIsEmpty(false);
-                        } // reset quantity
+                        } // 0 or empty
                     }}
                     onKeyDown={(e) => {
                         if (e.key === 'Enter') {
@@ -88,14 +90,16 @@ function Purchase({ product }) {
                             e.currentTarget.blur();
                         }
                         if (e.key === 'Escape') {
-                            setInput(quantity);
                             e.currentTarget.blur();
                     }}} />
                 <button
                     className="qty-button increase"
                     type="button" aria-label="increase"
                     onClick={(e) => {
-                        setQuantity(quantity + 1);
+                        if (!actionDisabled.current) {
+                            setQuantity(quantity + 1);
+                        }
+                        actionDisabled.current = false;
                         e.currentTarget.blur();
                     }}>
                 </button>
@@ -103,8 +107,10 @@ function Purchase({ product }) {
                     className="qty-button decrease"
                     type="button" aria-label="decrease"
                     onClick={(e) => {
-                        if (quantity <= 1) return;
-                        setQuantity(quantity - 1);
+                        if (quantity > 1) {
+                            setQuantity(quantity - 1);
+                        }
+                        actionDisabled.current = false;
                         e.currentTarget.blur();
                     }}>
                 </button>
