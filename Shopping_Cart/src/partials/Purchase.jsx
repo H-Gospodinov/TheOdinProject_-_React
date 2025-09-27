@@ -9,20 +9,33 @@ function Purchase({ product }) {
     const { basket, insert } = useContext(data);
 
     const [quantity, setQuantity] = useState(1);
-    const [validation, setValidation] = useState(null);
+    const [isEmpty, setIsEmpty] = useState(false);
 
+    const [feedback, setFeedback] = useState(null);
+
+    const buttonRef = useRef(null);
     const modalRef = useRef(null);
+
+    const actionDisabled = useRef(false);
+
     const modalReset = () => setTimeout(() => {
-        setValidation(null);
+        setFeedback(null);
     }, 400); // match css
 
     useEffect(() => {
-        if (validation && modalRef.current) {
+        if (feedback && modalRef.current) {
             modalRef.current.showModal();
         }
-    }, [validation]);
+    }, [feedback]);
 
     const handleAddToCart = () => {
+        // check action flag
+        if (actionDisabled.current) {
+            setFeedback({status: 'error',
+            message: 'At least 1 is required.'});
+            actionDisabled.current = false;
+            return;
+        }
         const inBasket = basket.find(added => {
             return added.id === product.id
         });
@@ -30,46 +43,88 @@ function Purchase({ product }) {
         const totalQty = quantity + basketQty;
 
         if (totalQty > product.stock) {
-            setValidation({status: 'error',
+            setFeedback({status: 'error',
             message: `Only ${product.stock} available` + (
             basketQty ? ` (${basketQty} already added)` :'')});
         }
         else {
             insert(product, quantity);
-            setValidation({status: "success",
+            setFeedback({status: 'success',
             message: `${quantity} added to cart`});
         }
     };
     return (<>
         <div className={`action ${product.stock ?'':'off'}`}>
             <div className="quantity">
-                <input className="qty-input" name="qty" type="text" aria-label="qty"
-                    inputMode="numeric" pattern="\d*" value={String(quantity)}
+                <input
+                    className="qty-input" name="qty"
+                    type="text" aria-label="qty"
+                    inputMode="numeric" pattern="\d*"
+
+                    value={isEmpty ? "": String(quantity)}
+
                     onChange={(e) => {
                         const value = e.target.value;
-                        value.match(/^\d*$/) && setQuantity(value > 0 ? +value : 1);
-                    }} // block non-numbers, empty string, and zero
-                    onKeyDown={(e) => e.key == "Enter" && e.currentTarget.blur()}
-                />
-                <button className="qty-button increase" type="button" aria-label="+"
-                    onClick={() => setQuantity((quantity || 0) + 1)}
-                ></button>
-                <button className="qty-button decrease" type="button" aria-label="-"
-                    onClick={() => quantity > 1 && setQuantity(quantity - 1)}
-                ></button>
+                        if (!value.match(/^\d*$/)) return;
+                        if (value === "") {
+                            actionDisabled.current = true;
+                            setIsEmpty(true); return;
+                        }
+                        if (+value < 1) {
+                            actionDisabled.current = true
+                        }
+                        setQuantity(+value);
+                        setIsEmpty(false);
+                    }}
+                    onBlur={(e) => {
+                        if (e.target.value === "") {
+                            setQuantity(1);
+                            setIsEmpty(false);
+                        } // reset quantity
+                    }}
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                            buttonRef.current.focus();
+                            e.currentTarget.blur();
+                        }
+                        if (e.key === 'Escape') {
+                            setInput(quantity);
+                            e.currentTarget.blur();
+                    }}} />
+                <button
+                    className="qty-button increase"
+                    type="button" aria-label="increase"
+                    onClick={(e) => {
+                        setQuantity(quantity + 1);
+                        e.currentTarget.blur();
+                    }}>
+                </button>
+                <button
+                    className="qty-button decrease"
+                    type="button" aria-label="decrease"
+                    onClick={(e) => {
+                        if (quantity <= 1) return;
+                        setQuantity(quantity - 1);
+                        e.currentTarget.blur();
+                    }}>
+                </button>
             </div>
             <button className="purchase" type="button"
-                onClick={handleAddToCart}>
+                ref={buttonRef} onClick={(e) => {
+                    handleAddToCart();
+                    e.currentTarget.blur();
+                }}>
                 <span>Add to cart</span>
             </button>
         </div>
-        {validation && // feedback message
+        {feedback && // feedback message
         <dialog className="modal-box" ref={modalRef}>
             <div className="status">
                 <h4 className="name">{product.name}</h4>
-                <span className={validation.status}>{validation.message}</span>
+                <span className={feedback.status}>
+                    {feedback.message}</span>
             </div>
-            {validation.status == "success" &&
+            {feedback.status == "success" &&
             <div className="actions">
                 <Link className="link" to="/cart">Go to cart</Link>
                 <Link className="link" to="/shop"
