@@ -4,9 +4,9 @@ import { BasketProvider } from './context/Basket.jsx'
 import NavBar from './partials/Navigation.jsx'
 import NavRoutes from './Routes.jsx'
 import SearchBox from './partials/Search.jsx'
+import CartBadge from './partials/Badge.jsx'
 
 import logo from './assets/logo.png'
-import basket from './assets/icons/basket.svg'
 
 function App() {
 
@@ -23,11 +23,7 @@ function App() {
                         <NavBar />
                         <div className="actions">
                             <SearchBox />
-                            <div className="basket">
-                                <Link to="/cart">
-                                    <img src={basket} alt="" width="42" height="42" />
-                                </Link>
-                            </div>
+                            <CartBadge />
                         </div>
                     </header>
                     <main className="main">
