@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { useContext, useState, useEffect, useRef } from 'react'
+import { useContext, useState, useRef, useEffect } from 'react'
 import { BasketContext as data } from '../context/Basket.jsx';
 
 import '../assets/styles/purchase.css'
@@ -15,9 +15,13 @@ function Purchase({ product }) {
 
     const buttonRef = useRef(null);
     const modalRef = useRef(null);
+    const wasEmpty = useRef(false);
+    const cartLocked = useRef(false);
 
-    const actionDisabled = useRef(false);
-
+    const inputReset = () => {
+        wasEmpty.current = false;
+        cartLocked.current = false;
+    }
     const modalReset = () => setTimeout(() => {
         setFeedback(null);
     }, 400); // match css
@@ -29,11 +33,14 @@ function Purchase({ product }) {
     }, [feedback]);
 
     const handleAddToCart = () => {
-        // check action flag
-        if (actionDisabled.current) {
-            setFeedback({status: 'error',
-            message: 'At least 1 is required.'});
-            actionDisabled.current = false;
+        if (cartLocked.current) {
+            // action disabled
+            setFeedback({
+                status: 'error',
+                message: 'At least 1 is required.'
+            });
+            cartLocked.current = false;
+            wasEmpty.current = false;
             return;
         }
         const inBasket = basket.find(added => {
@@ -43,15 +50,17 @@ function Purchase({ product }) {
         const totalQty = quantity + basketQty;
 
         if (totalQty > product.stock) {
-            setFeedback({status: 'error',
-            message: `Only ${product.stock} available` + (
-            basketQty ? ` (${basketQty} already added)` :'')});
-        }
-        else {
+            setFeedback({
+                status: 'error',
+                message: `Only ${product.stock} available` +
+                (basketQty ? ` (${basketQty} already added)` :''),
+            });
+        } else {
             insert(product, quantity);
-            setFeedback({status: 'success',
-            message: `${quantity} added to cart`});
-        }
+            setFeedback({
+                status: 'success',
+                message: `${quantity} added to cart`,
+        });}
     };
     return (<>
         <div className={`action ${product.stock ?'':'off'}`}>
@@ -75,13 +84,14 @@ function Purchase({ product }) {
                             setIsEmpty(false);
                         }
                         // disable if zero or empty
-                        actionDisabled.current =
+                        cartLocked.current =
                             +value < 1 ? true : false;
                     }}
                     onBlur={(e) => {
                         if (+e.target.value < 1) {
                             setQuantity(1);
                             setIsEmpty(false);
+                            wasEmpty.current = true;
                         } // 0 or empty
                     }}
                     onKeyDown={(e) => {
@@ -90,16 +100,17 @@ function Purchase({ product }) {
                             e.currentTarget.blur();
                         }
                         if (e.key === 'Escape') {
+                            cartLocked.current = false;
                             e.currentTarget.blur();
+                            wasEmpty.current = false;
                     }}} />
                 <button
                     className="qty-button increase"
                     type="button" aria-label="increase"
                     onClick={(e) => {
-                        if (!actionDisabled.current) {
+                        if (!wasEmpty.current) {
                             setQuantity(quantity + 1);
-                        }
-                        actionDisabled.current = false;
+                        } inputReset();
                         e.currentTarget.blur();
                     }}>
                 </button>
@@ -109,8 +120,7 @@ function Purchase({ product }) {
                     onClick={(e) => {
                         if (quantity > 1) {
                             setQuantity(quantity - 1);
-                        }
-                        actionDisabled.current = false;
+                        } inputReset();
                         e.currentTarget.blur();
                     }}>
                 </button>

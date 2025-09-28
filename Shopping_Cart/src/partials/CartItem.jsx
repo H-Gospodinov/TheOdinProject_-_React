@@ -6,7 +6,7 @@ function CartItem({ product, update, remove }) {
     const [isEmpty, setIsEmpty] = useState(false);
     const [notAvailable, setNotAvailable] = useState(null);
 
-    const actionDisabled = useRef(false);
+    const wasEmpty = useRef(false);
 
     const handleQuantity = (x) => {
         const newQuantity = product.quantity + x;
@@ -55,7 +55,6 @@ function CartItem({ product, update, remove }) {
                             const value = e.target.value;
                             if (!value.match(/^\d*$/)) return;
                             if (value === "") {
-                                actionDisabled.current = true;
                                 setIsEmpty(true); return;
                             }
                             if (+value > product.stock) {
@@ -70,20 +69,26 @@ function CartItem({ product, update, remove }) {
                             if (e.target.value === "") {
                                 update(product.id, 1);
                                 setIsEmpty(false);
+                                wasEmpty.current = true;
                             } // reset quantity
                         }}
                         onKeyDown={(e) => {
-                            e.key == 'Enter' || e.key == 'Escape' ?
-                            e.currentTarget.blur() : null;
+                            if (e.key === 'Enter') {
+                                e.currentTarget.blur();
+                            }
+                            if (e.key === 'Escape') {
+                                e.currentTarget.blur();
+                                wasEmpty.current = false;
+                            } // allow increment
                         }}/>
                     <button
                         className="qty-button increase"
                         type="button" aria-label="increase"
                         onClick={(e) => {
-                            if (!actionDisabled.current) {
+                            if (!wasEmpty.current) {
                                 handleQuantity(1);
                             }
-                            actionDisabled.current = false;
+                            wasEmpty.current = false;
                             e.currentTarget.blur();
                         }}>
                     </button>
@@ -92,6 +97,7 @@ function CartItem({ product, update, remove }) {
                         type="button" aria-label="decrease"
                         onClick={(e) => {
                             handleQuantity(-1);
+                            wasEmpty.current = false;
                             e.currentTarget.blur();
                         }}>
                     </button>
