@@ -144,17 +144,20 @@
         flex-flow: row;
         flex-wrap: wrap;
         width: auto;
-        gap: 0px 20px;
-        margin-top: 8%;
+        gap: 16px 16px;
+        margin-bottom: 5.5%;
     }
     .sidebar .group {
-        flex-basis: calc(50% - 10px);
+        flex-basis: calc(50% - 8px);
         position: relative;
+    }
+    .sidebar .name {
+        margin-bottom: 0;
     }
     .sidebar .list {
         display: none;
         position: absolute;
-        inset: auto 0 100% 0;
+        inset: 100% 0 auto 0;
         z-index: 1; /**/
         box-shadow: 0 0 10px 5px #0001;
         background-color: #fff;
@@ -162,5 +165,18 @@
     }
     .sidebar .list.active {
         display: flex;
+    }
+}
+@media (max-width: 450px) {
+
+    .sidebar {
+        gap: 3vw 3%;
+        margin-bottom: 6%;
+    }
+    .sidebar .group {
+        flex-basis: 48.5%;
+    }
+    .sidebar .name {
+        font-size: 18px;
     }
 }
