@@ -15,6 +15,7 @@
     column-gap: 10px;
     position: relative;
     z-index: 1; /**/
+    height: 100%;
     border-radius: 5px;
     background-color: #fff2;
     background-size: 20px;
@@ -31,14 +32,14 @@
 }
 .nav-link img {
     margin-left: -5px;
-    transform: skewX(25deg);
+    transform: skew(25deg);
     filter: drop-shadow(0 0 10px #fff9);
 }
 #shop .nav-link img {
     margin: 0 -2px -3px -5px;
 }
 .nav-link span {
-    transform: skewX(25deg);
+    transform: skew(25deg);
     filter: drop-shadow(0 0 0 #fff6);
 }
 .nav-box {
@@ -98,4 +99,93 @@
     color: #0c7e7c;
     text-transform: capitalize;
     filter: drop-shadow(0 0 15px #fff);
+}
+
+@media (max-width: 1000px) {
+
+    .menu-open {
+        display: flex;
+        width: 36px;
+        height: 36px;
+        box-shadow: 0 0 0 2px transparent;
+        border-radius: 50%;
+    }
+    .menu-open img {
+        max-width: none;
+        transform: skew(-15deg);
+    }
+    .menu-close {
+        position: absolute;
+        top: 7px;
+        right: -7px;
+        z-index: 2;
+        border: 2px solid #fff;
+        border-radius: 50%;
+        background-color: #021919;
+        transform: translateX(100%);
+    }
+    .menu-close img {
+        filter: invert(1);
+    }
+    .nav-bar {
+        display: none;
+        flex-flow: column;
+        position: fixed;
+        z-index: 3;
+        inset: 17px auto 17px 17px;
+        width: 280px;
+        transition: 0.4s ease allow-discrete;
+        opacity: 0; /*allow discrete*/
+    }
+    .nav-bar.active {
+        display: flex;
+        opacity: 1;
+        @starting-style {
+            opacity: 0;
+        } /*start value last*/
+    }
+    .nav-bar::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        background: #000c;
+    }
+    .nav-list {
+        display: none;
+        flex-grow: 1;
+        flex-flow: column;
+        border-radius: 4px;
+        background-color: #fff;
+    }
+    .active .nav-list {
+        display: flex;
+    }
+    .nav-item {
+        border: solid #ddd;
+        border-width: 0 0 1px;
+    }
+    .nav-link {
+        transform: none;
+    }
+    .nav-link:hover {
+        outline: none;
+    }
+    .nav-link img,
+    .nav-link span {
+        transform: none;
+        filter: invert(1);
+    }
+    .nav-box { /*sub*/
+        display: none !important;
+    }
+    body:has(.nav-bar.active) {
+        overflow: hidden;
+    }
+}
+@media (min-width: 1001px) {
+
+    .menu-open, .menu-close {
+        display: none !important;
+    }
 }

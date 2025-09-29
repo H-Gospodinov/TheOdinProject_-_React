@@ -1,6 +1,8 @@
+import { useState } from 'react'
 import { HashRouter, Link } from 'react-router-dom'
 import { ContentProvider } from './context/Catalog.jsx'
 import { BasketProvider } from './context/Basket.jsx'
+
 import NavBar from './partials/Navigation.jsx'
 import NavRoutes from './Routes.jsx'
 import SearchBox from './partials/Search.jsx'
@@ -8,7 +10,11 @@ import CartBadge from './partials/Badge.jsx'
 
 import logo from './assets/logo.png'
 
+import menu from './assets/icons/menu.svg'
+
 function App() {
+
+    const [toggle, setToggle] = useState(false);
 
     return (
         <HashRouter>
@@ -20,8 +26,14 @@ function App() {
                                 <img src={logo} alt="logo" width="200" height="68" />
                             </Link>
                         </div>
-                        <NavBar />
+                        <NavBar toggle={toggle} setToggle={setToggle} />
                         <div className="actions">
+                            <button
+                                className={`menu-open ${toggle ? 'active':''}`}
+                                  type="button" aria-label="mobile menu"
+                                    onClick={() => setToggle(true)}>
+                                      <img src={menu} alt="" width="40" height="40" />
+                            </button>
                             <SearchBox />
                             <CartBadge />
                         </div>

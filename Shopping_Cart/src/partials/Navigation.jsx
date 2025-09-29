@@ -1,5 +1,5 @@
 import { NavLink, Link } from 'react-router-dom'
-import { useContext, useState } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import { ContentContext as data } from '../context/Catalog.jsx'
 
 import '../assets/styles/navigation.css'
@@ -10,14 +10,37 @@ import about from '../assets/icons/flag.svg'
 import blog from '../assets/icons/blog.svg'
 import food from '../assets/images/organic.webp'
 
-function NavBar() {
+import close from '../assets/icons/clear.svg'
+
+function NavBar({ toggle, setToggle }) {
 
     const [open, setOpen] = useState(false);
     const { categories } = useContext(data);
 
+    useEffect(() => {
+        const screenSize = window
+            .matchMedia('(min-width: 1000px)');
+        const handleResize = (e) => {
+            e.matches && setToggle(false);
+        }
+        screenSize.addEventListener('change', handleResize);
+        return () => {
+            screenSize.removeEventListener('change', handleResize);
+        };
+    }, [setToggle]);
+
     return (
-        <nav className="nav-bar">
-            <ul className="nav-list">
+        <nav className={`nav-bar ${toggle ? 'active' : ''}`}>
+            {toggle && // close mobile menu
+            <button
+                className="menu-close" type="button" aria-label="close"
+                onClick={() => setToggle(false)}>
+                <img src={close} alt="" width="36" height="36" />
+            </button>}
+            <ul className="nav-list"
+                onClick={(e) => {
+                    e.target.closest('.nav-link') && setToggle(false);
+                }}>
                 <li className="nav-item">
                     <NavLink to="/" className="nav-link">
                         <img src={home} alt="" width="23" height="23" />
