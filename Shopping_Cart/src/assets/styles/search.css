@@ -113,4 +113,18 @@ body:has(.search-box.active) {
     .search-box::before {
         background: #000c;
     }
+    .search-box .form,
+    .search .results {
+        max-width: calc(100% - 300px);
+    }
+}
+@media (max-width: 750px) {
+
+    .search .toggle.on img {
+        filter: none;
+    }
+    .search-box .form,
+    .search .results {
+        max-width: none;
+    }
 }

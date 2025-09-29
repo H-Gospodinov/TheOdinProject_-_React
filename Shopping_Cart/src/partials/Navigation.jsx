@@ -19,7 +19,7 @@ function NavBar({ toggle, setToggle }) {
 
     useEffect(() => {
         const screenSize = window
-            .matchMedia('(min-width: 1000px)');
+            .matchMedia('(min-width: 1001px)');
         const handleResize = (e) => {
             e.matches && setToggle(false);
         }

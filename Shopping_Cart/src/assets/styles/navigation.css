@@ -133,7 +133,8 @@
         position: fixed;
         z-index: 3;
         inset: 17px auto 17px 17px;
-        width: 280px;
+        width: calc(100% - 75px);
+        max-width: 320px;
         transition: 0.4s ease allow-discrete;
         opacity: 0; /*allow discrete*/
     }

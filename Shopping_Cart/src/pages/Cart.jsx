@@ -27,7 +27,7 @@ function CartPage() {
                     <thead><tr>
                         <th>product</th>
                         <th className="align">details</th>
-                        <th>price</th>
+                        <th className="hide">price</th>
                         <th>qnty</th>
                         <th>sum</th>
                         <th>remove</th>

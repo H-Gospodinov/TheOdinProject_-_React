@@ -178,3 +178,17 @@
     margin-bottom: -2px;
     opacity: 0.75;
 }
+
+@media (max-width: 750px) {
+
+    .details {
+        max-width: 500px;
+    }
+    .details ~.shop {
+        max-width: 500px;
+    }
+    .wrapper {
+        flex-flow: column;
+        row-gap: 20px;
+    }
+}

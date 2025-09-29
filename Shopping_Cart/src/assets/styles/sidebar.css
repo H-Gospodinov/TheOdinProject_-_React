@@ -16,6 +16,7 @@
 }
 .sidebar .wrap {
     display: block;
+    white-space: nowrap;
     transform: skew(20deg);
 }
 .sidebar .list {
@@ -129,4 +130,37 @@
 :checked + .label,
 .filter:hover label {
     color: #0c7e7c;
+}
+
+@media (max-width: 1000px) {
+
+    .sidebar .name {
+        margin-left: 0;
+    }
+}
+@media (max-width: 750px) {
+
+    .sidebar {
+        flex-flow: row;
+        flex-wrap: wrap;
+        width: auto;
+        gap: 0px 20px;
+        margin-top: 8%;
+    }
+    .sidebar .group {
+        flex-basis: calc(50% - 10px);
+        position: relative;
+    }
+    .sidebar .list {
+        display: none;
+        position: absolute;
+        inset: auto 0 100% 0;
+        z-index: 1; /**/
+        box-shadow: 0 0 10px 5px #0001;
+        background-color: #fff;
+        padding: max(6%, 14px);
+    }
+    .sidebar .list.active {
+        display: flex;
+    }
 }

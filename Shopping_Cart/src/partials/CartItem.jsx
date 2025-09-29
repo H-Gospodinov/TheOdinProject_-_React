@@ -39,7 +39,7 @@ function CartItem({ product, update, remove }) {
                     </span>}
                 </div>
             </td>
-            <td className="price">
+            <td className="price hide">
                 € {product.newPrice ? product.newPrice : product.price}
             </td>
             <td className="qnty action">

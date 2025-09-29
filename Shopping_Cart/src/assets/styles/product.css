@@ -60,7 +60,7 @@
 }
 .product .name {
     margin: 12px 0 3px;
-    font-size: 20px;
+    font-size: clamp(18px, 1.8vw, 20px);
 }
 .product .prices {
     display: flex;
@@ -86,4 +86,17 @@
 .product .discount {
     order: 1;
     color: #fa0;
+}
+
+@media (max-width: 1000px) {
+
+    .product .action {
+        display: none !important;
+    }
+}
+@media (max-width: 450px) {
+
+    .product .name {
+        font-size: 17px;
+    }
 }
