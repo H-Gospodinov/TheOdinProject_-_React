@@ -194,6 +194,39 @@ body {
     font-weight: normal;
     text-decoration: underline;
 }
+.loader {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    width: 128px;
+    height: 128px;
+    margin: auto;
+    transition: 0.2s ease;
+    pointer-events: none;
+}
+.loader::after,
+.loader::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    width: 128px;
+    height: 128px;
+    border: 4px solid #0c7e7c;
+    border-radius: 50%;
+    animation: loader 2s infinite;
+}
+.loader::after {
+    animation-delay: 1s;
+}
+@keyframes loader {
+    0% {
+        transform: scale(0);
+        opacity: 1;}
+    100% {
+        transform: scale(1);
+        opacity: 0;}
+}
 .footer {
     background-color: #0c7e7c;
     padding: 15px;

@@ -1,15 +1,17 @@
 import { Link } from 'react-router-dom'
-import Purchase from './Purchase.jsx';
+import Purchase from './Purchase.jsx'
 
 import '../assets/styles/product.css'
 
-function Product({ product }) {
+function Product({ product, loaded }) {
 
     return (
         <div className="product">
             <div className="upper">
                 <Link to={`/product/${product.id}`}>
-                    <img src={product.image} alt={product.name} width="300" height="300" />
+                    <img src={product.image} alt={product.name}
+                        width="300" height="300"
+                        onLoad={loaded} onError={loaded} />
                 </Link>
                 <Purchase product={product} />
             </div>
