@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useContext, useState, useRef, useEffect } from 'react'
-import { BasketContext as data } from '../context/Basket.jsx';
+import { BasketContext as data } from '../context/Basket.jsx'
 
 import '../assets/styles/purchase.css'
 
@@ -70,7 +70,7 @@ function Purchase({ product }) {
                     type="text" aria-label="qty"
                     inputMode="numeric" pattern="\d*"
 
-                    value={isEmpty ? "": String(quantity)}
+                    value={isEmpty ? '': String(quantity)}
 
                     onChange={(e) => {
                         const value = e.target.value;
@@ -153,7 +153,7 @@ function Purchase({ product }) {
                 onClick={() => {
                     modalRef.current.close(); modalReset();
             }}></button>
-        </dialog>}
-    </>);
+        </dialog>}</>
+    );
 }
 export default Purchase

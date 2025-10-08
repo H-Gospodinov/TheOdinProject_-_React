@@ -29,4 +29,5 @@ function Product({ product, loaded }) {
             </div>
         </div>
     );
-} export default Product
+}
+export default Product

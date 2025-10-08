@@ -28,4 +28,5 @@ function HomePage() {
             </div>
         </section>
     );
-} export default HomePage
+}
+export default HomePage

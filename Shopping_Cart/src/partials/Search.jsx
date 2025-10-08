@@ -1,6 +1,6 @@
 import { useNavigate, Link } from 'react-router-dom'
 import { useContext, useState, useEffect, useRef } from 'react'
-import { ContentContext as data } from '../context/Catalog.jsx';
+import { ContentContext as data } from '../context/Catalog.jsx'
 
 import '../assets/styles/search.css'
 
@@ -157,4 +157,5 @@ function SearchBox() {
             </search>
         </div>
     );
-} export default SearchBox
+}
+export default SearchBox

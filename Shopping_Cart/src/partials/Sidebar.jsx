@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import { useContext, useState, useEffect } from 'react'
-import { ContentContext as data } from '../context/Catalog.jsx';
+import { ContentContext as data } from '../context/Catalog.jsx'
 
 import '../assets/styles/sidebar.css'
 
@@ -110,4 +110,5 @@ function Sidebar(
             </div>
         </div>
     );
-} export default Sidebar
+}
+export default Sidebar

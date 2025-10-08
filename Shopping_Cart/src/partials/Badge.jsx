@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { BasketContext as data } from '../context/Basket.jsx';
+import { BasketContext as data } from '../context/Basket.jsx'
 import { Link } from 'react-router-dom'
 
 import '../assets/styles/badge.css'

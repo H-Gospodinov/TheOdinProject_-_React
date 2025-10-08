@@ -16,6 +16,6 @@ function DemoPage() {
                 </p>
             </div>
         </section>
-    )
+    );
 }
 export default DemoPage
