@@ -1,4 +1,4 @@
-import { NavLink, Link } from 'react-router-dom'
+import { NavLink, Link, useLocation } from 'react-router-dom'
 import { useContext, useState, useEffect } from 'react'
 import { ContentContext as data } from '../context/Catalog.jsx'
 
@@ -16,6 +16,10 @@ function NavBar({ toggle, setToggle }) {
 
     const [open, setOpen] = useState(false);
     const { categories } = useContext(data);
+
+    const location = useLocation();
+
+    useEffect(() => {setOpen(false)}, [location]);
 
     useEffect(() => {
         const screenSize = window
@@ -36,7 +40,8 @@ function NavBar({ toggle, setToggle }) {
                 className="menu-close" type="button" aria-label="close"
                 onClick={() => setToggle(false)}>
                 <img src={close} alt="" width="36" height="36" />
-            </button>}
+            </button>
+            }
             <ul className="nav-list"
                 onClick={(e) => {
                     e.target.closest('.nav-link') && setToggle(false);
@@ -51,22 +56,21 @@ function NavBar({ toggle, setToggle }) {
                     onMouseEnter={() => setOpen(true)}
                     onMouseLeave={() => setOpen(false)}>
 
-                    <NavLink to="/shop" className="nav-link"
-                        onClick={() => setOpen(false)}> {/*close dropdown*/}
-
+                    <NavLink to="/shop" className="nav-link">
                         <img src={shop} alt="" width="23" height="23" />
                         <span>Shop</span>
                     </NavLink>
 
                     <div className={`nav-box ${open ? 'active' : ''}`}>
-                        <Link className="sub-link" to="/shop" onClick={() => setOpen(false)}>
+
+                        <Link to="/shop" className="sub-link">
                             <img src={food} alt="All" width="284" height="426" />
                             <strong>All</strong>
                         </Link>
                         {categories.map(cat => (
-                            <Link className="sub-link" to={`/shop/${cat.name}`} key={cat.name}
-                                onClick={() => setOpen(false)}> {/*close dropdown*/}
-
+                            <Link
+                                to={`/shop/${cat.name}`} key={cat.name}
+                                className="sub-link">
                                 <img src={cat.image} alt={cat.name} width="284" height="426" />
                                 <strong>{cat.name}</strong>
                             </Link>
@@ -88,4 +92,5 @@ function NavBar({ toggle, setToggle }) {
             </ul>
         </nav>
     );
-} export default NavBar
+}
+export default NavBar
