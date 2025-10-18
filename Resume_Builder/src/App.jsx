@@ -64,8 +64,7 @@ function App() {
                 <div className="scroller">
                     <DataForm
                         currentData={currentData}
-                        setCurrentData={setCurrentData}
-                    />
+                        setCurrentData={setCurrentData} />
                 </div>
             </div>
             <div className="preview">

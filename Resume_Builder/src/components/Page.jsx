@@ -1,4 +1,4 @@
-import { contactIcons, sectionIcons } from "./Icons";
+import { contactIcons, sectionIcons } from './Icons'
 
 function MainPage({ currentData }) {
 
@@ -57,17 +57,19 @@ function MainPage({ currentData }) {
         groups.map((group) => (
             <section className={'section ' + group.name.toLowerCase()} key={group.name}>
                 {group.primary ? // Identity, Contact
-                    group.fields.some(field => field.value) && fieldSet(group.fields) : <>
-                    <h2 className="title">
-                        {sectionIcons[group.icon] && sectionIcons[group.icon]()}
-                        <span>{group.name}</span>
-                    </h2>
-                    {group.entries ? // Skills, Language, Career, Education
+                    group.fields.some(field => field.value) && fieldSet(group.fields) :
+                    <>
+                        <h2 className="title">
+                            {sectionIcons[group.icon] && sectionIcons[group.icon]()}
+                            <span>{group.name}</span>
+                        </h2>
+                        {group.entries ? // Skills, Language, Career, Education
                         group.entries.length > 0 && listStack(group.entries) :
+                        // Profile, Details
                         <div className="block">
                             <p className="text">{group.fields[0].value || ''}</p>
-                        </div>
-                    }</> // Profile, Details
+                        </div>}
+                    </>
                 }
             </section> // all sections
         ))

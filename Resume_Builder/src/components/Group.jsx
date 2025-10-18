@@ -1,6 +1,6 @@
-import { useState } from 'react'
-import { fieldsetIcons } from './Icons';
-import { InputGroup, OutputGroup } from './Fields';
+import { useState, useEffect } from 'react'
+import { fieldsetIcons } from './Icons'
+import { InputGroup, OutputGroup } from './Fields'
 
 function FormGroup(
     { name, fields, entries, onChange, onListing,
@@ -13,6 +13,20 @@ function FormGroup(
     const [entryList, setEntryList] = useState({}); // multi
 
     const [hasError, setHasError] = useState(false);
+
+    const [toggle, setToggle] = useState(false);
+
+    useEffect(() => {
+        const screenSize = window
+            .matchMedia('(min-width: 1201px)');
+        const handleResize = (e) => {
+            e.matches && setToggle(false);
+        }
+        screenSize.addEventListener('change', handleResize);
+        return () => {
+            screenSize.removeEventListener('change', handleResize);
+        };
+    }, [setToggle]);
 
     const updateList = () => ({
 
@@ -106,7 +120,9 @@ function FormGroup(
 
     return (
         <fieldset className="fieldset">
-            <div className="head">
+            <div className={`head ${toggle ? 'active' :''}`}
+                onClick={() => window.matchMedia('(max-width: 1200px)').matches
+                               && setToggle(prev => !prev)}>
                 {renaming &&
                     <input className="edit" type="text" value={newName}
                         onChange={e => setNewName(e.target.value)}
@@ -128,7 +144,7 @@ function FormGroup(
                     </button>
                 </div>}
             </div>
-            <div className="body">
+            <div className={`body ${toggle ? 'active' :''}`}>
                 <ul className="input-group">
                     {fields.map((field, index) =>
                         <InputGroup

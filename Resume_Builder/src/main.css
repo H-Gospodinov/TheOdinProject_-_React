@@ -147,7 +147,8 @@ body {
 /* DATA FORM */
 
 .data-form {
-    flex: 0 0 400px;
+    flex: 0 0 28%;
+    max-width: 400px;
     position: relative;
     box-shadow: 0 0 0 1px #e6e6e6;
 }
@@ -588,5 +589,115 @@ input[type="number"] {
         background-color: var(--main-color);
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+
+    .main {
+        flex-flow: column;
+        row-gap: 40px;
+        max-width: 100%;
+        overflow-x: clip;
+        padding: 0 1px;
+    }
+    .data-form {
+        max-width: none;
+        box-shadow: none;
+    }
+    .data-form::after {
+        display: none;
+    }
+    .data-form .scroller {
+        overflow: visible;
+    }
+    .data-form .form {
+        display: flex;
+        gap: 10px 10px;
+        flex-wrap: wrap;
+        position: static;
+    }
+    .fieldset {
+        flex: 1 0 calc(50% - 5px);
+        align-self: flex-start;
+    }
+    .fieldset .title {
+        display: flex;
+        align-items: center;
+        column-gap: 15px;
+    }
+    .fieldset .title::before {
+        content: "";
+        width: 11px;
+        height: 11px;
+        margin-top: -3px;
+        border: solid var(--main-color);
+        border-width: 0 1px 1px 0;
+        transform: rotate(45deg);
+        transition: 0.3s ease;
+    }
+    .fieldset .head.active
+    .title::before {
+        transform: rotate(-135deg);
+        margin-top: 9px;
+    }
+    .fieldset .buttons {
+        margin: -7px -5px;
+    }
+    .fieldset .body {
+        display: none;
+        transition: 1s ease;
+        opacity: 0;
+    }
+    .fieldset .body.active {
+        display: block;
+        opacity: 1;
+        @starting-style {
+            opacity: 0;
+        } /*start value last*/
+    }
+}
+
+@media screen and (max-width: 660px) {
+
+    .data-form .form {
+        flex-flow: column;
+        flex-wrap: nowrap;
+    }
+    .fieldset {
+        align-self: unset;
+    }
+    .page {
+        display: flex;
+        flex-flow: column;
+    }
+    .left-column {
+        max-width: none;
+    }
+    .identity .photo {
+        justify-content: flex-start;
+    }
+}
+
+@media screen and (max-width: 460px) {
+
+    .container {
+        padding: 0 15px;
+    }
+    .header {
+        justify-content: center;
+        position: relative;
+        padding-bottom: 80px;
+    }
+    .header .button {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+    }
+    .header #save {
+        transform: translateX(-108%);
+    }
+    .header #print {
+        transform: translateX(8%);
     }
 }
