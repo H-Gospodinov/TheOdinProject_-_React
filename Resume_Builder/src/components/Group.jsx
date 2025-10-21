@@ -137,7 +137,8 @@ function FormGroup(
                 {name !== 'Identity' && name !== 'Contact' &&
                 <div className="buttons">
                     <button className="rename" type="button" title="Rename"
-                        onClick={() => setRenaming(true)}>{fieldsetIcons.rename()}
+                        onClick={(e) => {e.stopPropagation(); setRenaming(true)}}>
+                        {fieldsetIcons.rename()}
                     </button>
                     <button className="exclude" type="button" title="Remove"
                         onClick={() => onDestroy(name)}>{fieldsetIcons.remove()}
