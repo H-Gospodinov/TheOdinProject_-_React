@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, memo } from 'react'
 import { Link } from 'react-router-dom'
 
 function CartItem({ product, update, remove }) {
@@ -119,4 +119,4 @@ function CartItem({ product, update, remove }) {
         </tr>
     );
 }
-export default CartItem
+export default memo(CartItem)
