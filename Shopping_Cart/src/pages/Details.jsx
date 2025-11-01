@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { ContentContext as data } from '../context/Catalog.jsx'
 import Purchase from '../partials/Purchase.jsx'
@@ -6,6 +6,7 @@ import Product from '../partials/Product.jsx'
 
 import '../assets/styles/details.css'
 
+import close from '../assets/icons/clear.svg'
 import stock from '../assets/icons/check.svg'
 import delivery from '../assets/icons/location.png'
 import pickup from '../assets/icons/pickup.png'
@@ -15,6 +16,8 @@ function DetailsPage() {
     const { details } = useParams();
     const { products } = useContext(data);
 
+    const [preview, setPreview] = useState(null);
+
     const product = products.find(prod => {
         return prod.id === details;
     });
@@ -22,6 +25,18 @@ function DetailsPage() {
         prod.id !== product.id &&
         prod.category === product.category
     ));
+
+    useEffect(() => {
+        const screenSize = window
+            .matchMedia('(max-width: 1000px)');
+        const handleResize = (e) => {
+            e.matches && setPreview(null);
+        }
+        screenSize.addEventListener('change', handleResize);
+        return () => {
+            screenSize.removeEventListener('change', handleResize);
+        };
+    }, [setPreview]);
 
     return (product ? <>
         <section className="section details">
@@ -31,7 +46,16 @@ function DetailsPage() {
             <div className="section-body content">
                 <div className="wrapper">
                     <div className="picture">
-                        <img src={product.image} alt={product.name} />
+                        <img src={product.image} alt={product.name}
+                            onClick={() => setPreview(true)}
+                        /> {preview &&
+                        <div className="preview">
+                            <img src={product.image} alt={product.name} />
+                            <button className="close" aria-label="close"
+                                onClick={() => setPreview(null)}>
+                                <img src={close} alt="" width="36" height="36" />
+                            </button>
+                        </div>}
                     </div>
                     <div className="overview">
                         <ul className="breadcrumb">

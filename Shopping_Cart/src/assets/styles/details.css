@@ -9,6 +9,12 @@
 .picture {
     flex: 1 1 50%;
 }
+.picture > img {
+    pointer-events: none;
+}
+.preview {
+    display: none;
+}
 .overview {
     flex: 1 1 50%;
     display: flex;
@@ -190,5 +196,45 @@
     .wrapper {
         flex-flow: column;
         row-gap: 20px;
+    }
+}
+@media (min-width: 1001px) {
+
+    .picture > img {
+        pointer-events: auto;
+        cursor: pointer;
+    }
+    .preview {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        inset: 0; z-index: 3;
+        background-color: #000c;
+        transition: 0.5s ease;
+        opacity: 1;
+        @starting-style {
+            opacity: 0;
+        } /*start value last*/
+    }
+    .preview > img {
+        width: 750px;
+    }
+    .preview .close {
+        position: absolute;
+        top: 20px;
+        right: 15px;
+        border-radius: 50%;
+        background-color: #fff;
+        padding: 5px;
+    }
+    .preview .close img {
+        transition: 0.5s ease;
+    }
+    .preview .close:hover img {
+        transform: rotate(180deg);
+    }
+    body:has(.preview) {
+        overflow: hidden;
     }
 }
