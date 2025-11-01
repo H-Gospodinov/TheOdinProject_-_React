@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { Link } from 'react-router-dom'
 import Purchase from './Purchase.jsx'
 
@@ -30,4 +31,4 @@ function Product({ product, loaded }) {
         </div>
     );
 }
-export default Product
+export default memo(Product)

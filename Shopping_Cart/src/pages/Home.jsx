@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useState, useCallback } from 'react'
 import { ContentContext as data } from '../context/Catalog.jsx'
 import Product from '../partials/Product.jsx'
 
@@ -7,9 +7,9 @@ function HomePage() {
     const { products } = useContext(data);
     const [loaded, setLoaded] = useState(0);
 
-    const handleLoad = () => {
+    const handleLoad = useCallback(() => {
         setLoaded((count) => count + 1);
-    };
+    }, []);
     const loading = loaded < products.length;
 
     return (
