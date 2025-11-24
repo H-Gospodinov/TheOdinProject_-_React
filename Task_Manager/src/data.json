@@ -1,0 +1,42 @@
+[
+    {
+        "title": "Start the Task Manager project",
+        "dueDate": "2025-04-25",
+        "label": "Personal",
+        "priority": "high"
+    },
+    {
+        "title": "Don't forget to eat and sleep",
+        "dueDate": "2025-04-25"
+    },
+    {
+        "title": "Create primary logic for the Task Manager project",
+        "dueDate": "2025-04-26",
+        "label": "Personal",
+        "priority": "high"
+    },
+    {
+        "title": "Do nothing else because it's weekend",
+        "dueDate": "2025-04-26"
+    },
+    {
+        "title": "Create additional logic for the Task Manager project",
+        "dueDate": "2025-04-27",
+        "label": "Personal",
+        "priority": "high"
+    },
+    {
+        "title": "Spend at least two hours playing 'Days Gone'",
+        "dueDate": "2025-04-27",
+        "priority": "high"
+    },
+    {
+        "title": "Don't forget to go to work",
+        "dueDate": "2025-04-28",
+        "label": "Work"
+    },
+    {
+        "title": "Wake up in the distant future",
+        "dueDate": "2075-04-28"
+    }
+]
