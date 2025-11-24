@@ -3,7 +3,7 @@
         "title": "Start the Task Manager project",
         "dueDate": "2025-04-25",
         "label": "Personal",
-        "priority": "high"
+        "priority": true
     },
     {
         "title": "Don't forget to eat and sleep",
@@ -13,7 +13,7 @@
         "title": "Create primary logic for the Task Manager project",
         "dueDate": "2025-04-26",
         "label": "Personal",
-        "priority": "high"
+        "priority": true
     },
     {
         "title": "Do nothing else because it's weekend",
@@ -23,12 +23,12 @@
         "title": "Create additional logic for the Task Manager project",
         "dueDate": "2025-04-27",
         "label": "Personal",
-        "priority": "high"
+        "priority": true
     },
     {
         "title": "Spend at least two hours playing 'Days Gone'",
         "dueDate": "2025-04-27",
-        "priority": "high"
+        "priority": true
     },
     {
         "title": "Don't forget to go to work",
